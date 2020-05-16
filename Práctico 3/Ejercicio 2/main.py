@@ -6,7 +6,7 @@ import os
 if __name__ == '__main__':
     os.system("cls")
     ms = ManejaSabores()
-    ms.cargasabor()
+    ms.cargaSabor()
     #print(ms)
     #os.system("pause")
     menu = Menu()

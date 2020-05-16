@@ -10,7 +10,7 @@ class ManejaSabores:
     def agregar(self, sabor):
         self.__lista.append(sabor)
 
-    def cargasabor(self):
+    def cargaSabor(self):
         archivo = open('sabores.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
