@@ -1,5 +1,6 @@
 from ClaseManejaSabores import ManejaSabores
 from ClaseManejaHelados import ManejaHelados
+from ClaseHelado import Helado
 import os
 
 class Menu:
@@ -30,6 +31,7 @@ class Menu:
         os.system("cls")
         mh = ManejaHelados()
         mh.RegistroVenta(ms)
+        print(mh)
         print()
         os.system("pause")
 

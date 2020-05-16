@@ -23,7 +23,7 @@ class ManejaHelados:
         return band
 
     def RegistroVenta(self, ms):
-        helado = []
+        lista_helado = []
         band = False
         while not band:
             pesohelado = int(input('Ingrese peso de helado: '))
@@ -33,12 +33,25 @@ class ManejaHelados:
             else:
                 print('Peso de helado incorrecto.')
         
-        bande = False
-        saborHelado = ''
-        while not bande:
-            saborHelado = input('Ingrese sabor de helado: ')
-            if ms.validaSabor(saborhelado) == True:
-                print('Sabor correcto.')
-                band = True
-            else:
-                print('Sabor de helado incorrecto.')
+        sabores = []
+        saborHelado = input('Ingrese sabor de helado(Finaliza con "x"): ')
+        while saborHelado != 'x':
+            bande = False
+            while not bande:
+                if ms.validaSabor(saborHelado) == True:
+                    print('Sabor correcto.')
+                    bande = True
+                else:
+                    print('Sabor de helado incorrecto.')
+                    saborHelado = input('Ingrese sabor de helado(Finaliza con "x"): ')
+            sabores.append(saborHelado)
+            saborHelado = input('Ingrese sabor de helado(Finaliza con "x"): ')
+        unHelado = Helado(pesohelado)
+        #lista_helado = [unHelado, sabores]
+        self.agregar(unHelado)
+
+    def __str__(self):
+        s = ''
+        for helado in self.__lista:
+            s += str(helado) + '\n'
+        return s
