@@ -29,7 +29,7 @@ class Menu:
     def opcion1(self, ms):
         os.system("cls")
         mh = ManejaHelados()
-        mh.RegistroVenta()
+        mh.RegistroVenta(ms)
         print()
         os.system("pause")
 

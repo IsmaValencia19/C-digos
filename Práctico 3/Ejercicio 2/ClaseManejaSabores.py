@@ -10,8 +10,19 @@ class ManejaSabores:
     def agregar(self, sabor):
         self.__lista.append(sabor)
 
+    def validaSabor(self, sabor):
+        band = False
+        i = 0
+        while i < len(self.__lista):
+            if sabor == self.__lista[i].getNom():
+                band = True
+                i = len(self.__lista)
+            else:
+                i += 1
+        return band
+
     def cargaSabor(self):
-        archivo = open('sabores.csv')
+        archivo = open('sabor.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
             unSabor = Sabor(int(fila[0]), fila[1], fila[2])
