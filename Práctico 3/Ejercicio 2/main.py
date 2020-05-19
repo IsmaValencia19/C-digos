@@ -8,8 +8,6 @@ if __name__ == '__main__':
     ms = ManejaSabores()
     ms.cargaSabor()
     mh = ManejaHelados()
-    #print(ms)
-    #os.system("pause")
     menu = Menu()
     cad = ' MENÚ '
     salir = False

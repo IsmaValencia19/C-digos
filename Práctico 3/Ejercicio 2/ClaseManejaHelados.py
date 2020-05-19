@@ -5,74 +5,143 @@ import numpy as np
 class ManejaHelados:
     __lista = []
     __contSabores = 0   #variable usada para contar las veces que se pide un sabor
+    __acumgramos = 0
+    __tipoHelado = []
+    __listsab = []
 
     def __init__(self):
         self.__lista = []
         self.__contSabores = 0
+        self.__tipoHelado = [100, 150, 250, 500, 1000]
+        self.__listsab = [[None], [None], [None], [None], [None]]
 
     def agregar(self, helado):
         self.__lista.append(helado)
 
-    def validaPeso(self, peso):
-        band = False
-        tiposHelados = [100, 150, 250, 500, 1000]
+    def agregarlista(self, sabores, num):
         i = 0
-        while i < len(tiposHelados):
-            if peso == tiposHelados[i]:
+        while i < 5:
+            #self.__listsab.append([])
+            j = 0
+            while j < 5:
+                self.__listsab[i].append(sabores)
+                j += 1
+            i += 1
+
+    def validaPeso(self, tipo):
+        band = False
+        i = 0
+        while i < len(self.__tipoHelado):
+            if tipo == i:
                 band = True
-                i = len(tiposHelados)
+                i = len(self.__tipoHelado)
             else:
                 i += 1
         return band
 
-    #en esta función convierto el contador que esta en atributos en un arreglo numpy
+    #en la primer función de estas 2 convierto el contador que esta en atributos en un arreglo numpy y en la segunda cuento por sabor 
+    #las veces que se pide
     def arreglo(self, ms):
-        cantSabor = ms.cantSabores()
-        self.__contSabores = np.full(cantSabor, 0)
+        self.__contSabores = np.full(6, 0)
+    def acumular(self, id):
+        self.__contSabores[id - 1] += 1
+
+    #en la primer función de estas 2 convierto el acumulador que esta en atributos en un arreglo numpy y en la segunda acumulo por sabor los 
+    #gramos vendidos
+    def arregloacum(self, ms):
+        self.__acumgramos = np.full(6, 0)
+    def acumgramo(self, ids, gr):
+        i = 0
+        while i < len(self.__acumgramos):
+            j = 0
+            while j < len(ids):
+                if ids[j] == i:
+                    self.__acumgramos[i] += gr
+                j += 1
+            i += 1
 
     def RegistroVenta(self, ms):
         self.arreglo(ms)
+        self.arregloacum(ms)
         cad = ' REGISTRAR VENTA '
         print(cad.center(50, '='))
-        pesohelado = int(input('Ingrese peso de helado(Finaliza con 0): '))
-        while pesohelado != 0:
-            band = False
-            while not band:
-                if self.validaPeso(pesohelado) == True:
-                    print('Peso de helado correcto.')
-                    band = True
-                else:
-                    print('Peso de helado incorrecto.')
-                    pesohelado = int(input('Ingrese peso de helado: '))
+        
+        #esta función lista los tipos de helados
+        i = 0
+        while i < len(self.__tipoHelado):
+            print('Tipo de helado %s - %s gs.' % (i+1, self.__tipoHelado[i]))
+            i += 1
+
+        band = False
+        while not band:
+            tipohelado = int(input('Ingrese tipo de helado: '))
+            if self.validaPeso(tipohelado - 1) == True:
+                #print('Peso de helado correcto.')
+                band = True
+            else:
+                print('Peso de helado incorrecto.')
             
-            sabores = []
-            print(ms)
-            idHelado = int(input('Ingrese ID de helado(Finaliza con 0): '))
-            while idHelado != 0:
-                bande = False
-                while not bande:
-                    if ms.validaSabor(idHelado) == True:
-                        print('Sabor correcto.')
-                        self.__contSabores[idHelado - 1] += 1
-                        sabor = ms.getSabor(idHelado)
-                        bande = True
-                    else:
-                        print('Sabor de helado incorrecto.')
-                        idHelado = int(input('Ingrese ID de helado: '))
-                        self.__contSabores[idHelado - 1] += 1
-                        sabor = ms.getSabor(idHelado)
-                        
-                sabores.append(sabor)
-                idHelado = int(input('Ingrese ID de helado(Finaliza con 0): '))
+        sabores = []
+        listadeids = []
+        print()
+        t = 0
+        #el print de abajo muestra los sabores disponibles
+        print(ms)
+        print('Una venta de helado incluye de 1...4 sabores.')
+        idSabor = int(input('Ingrese ID de sabor(Finalice con 0): '))
+        while (idSabor != 0) and (0 <= t < 4):
+            bande = False
+            while not bande:
+                if ms.validaSabor(idSabor) == True:
+                    #print('ID de sabor correcto.')
+                    self.acumular(idSabor)
+                    sabor = ms.getSabor(idSabor)
+                    listadeids.append(idSabor - 1)
+                    bande = True
+                else:
+                    print('ID de sabor incorrecto.')
+                    idSabor = int(input('Ingrese ID de sabor: '))
 
-            unHelado = Helado(pesohelado, sabores)
-            self.agregar(unHelado)
+            sabores.append(sabor)
+            t += 1
+            idSabor = int(input('Ingrese ID de sabor(Finalice con 0): '))
 
-            pesohelado = int(input('Ingrese peso de helado(Finaliza con 0): '))
+        self.agregarlista(sabores, tipohelado - 1)
+        pesohelado = self.__tipoHelado[tipohelado - 1]
+        gramos = pesohelado / len(sabores)
+        self.acumgramo(listadeids, gramos)
+        unHelado = Helado(pesohelado, sabores)
+        self.agregar(unHelado)
 
     def most5sab(self, ms):
-        cont = self.__contSabores
-        ms.b5sabores(cont)
+        cont = self.__contSabores   
+        ms.b5sabores(cont)      #función de manejasabor
+
+    def grvendidos(self):
+        i = 0
+        while i < len(self.__lista):
+            gramos = self.__lista[i].getGramos()
+            print(gramos)
+            i += 1
+
+    def mostraracum(self, ms):
+        acum = self.__acumgramos
+        ms.gramosabor(acum)
+
+    def item4(self):
+        #band = False
+        #while not band:
+        #    tipo = int(input('Ingrese un tipo de helado: '))
+        #    if self.validaPeso(tipo - 1) == True:
+        #        print('Tipo de helado valido.')
+        #        band = True
+        #    else:
+        #        print('Tipo de helado incorrecto.')
+        #        tipo = int(input('Ingrese un tipo de helado: '))
+        
+        for fila in self.__listsab:
+            print(fila)
+        
 
     def __str__(self):
         s = ''

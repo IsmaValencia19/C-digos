@@ -11,7 +11,8 @@ class Menu:
                             1:self.opcion1,
                             2:self.opcion2,
                             3:self.opcion3,
-                            4:self.opcion4
+                            4:self.opcion4,
+                            5:self.opcion5
                           }
 
     def getSwitcher(self):
@@ -30,6 +31,7 @@ class Menu:
     def opcion1(self, ms, mh):
         os.system("cls")
         mh.RegistroVenta(ms)
+        print()
         cad = ' VENTAS '
         print(cad.center(50, '='))
         print(mh)
@@ -44,12 +46,20 @@ class Menu:
 
     def opcion3(self, ms, mh):
         os.system("cls")
-        print('opcion3')
+        #mh.grvendidos()
+        mh.mostraracum(ms)
         print()
         os.system("pause")
 
     def opcion4(self, ms, mh):
         os.system("cls")
-        print('opcion4')
+        mh.item4()
         print()
+        os.system("pause")
+
+    def opcion5(self, ms, mh):
+        os.system("cls")
+        cad = ' LISTA DE SABORES REGISTRADOS '
+        print(cad.center(80, '='))
+        print(ms)
         os.system("pause")

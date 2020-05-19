@@ -10,7 +10,8 @@ class Helado:
         return self.__gramos
 
     def __str__(self):
-        s = 'PESO %sgs\n' % (self.__gramos)
+        s = 'PESO: %sgs\n' % (self.__gramos)
+        s += 'SABOR/ES:\n'
         for sabor in self.__sabor:
             s += str(sabor) + '\n'
         return s
