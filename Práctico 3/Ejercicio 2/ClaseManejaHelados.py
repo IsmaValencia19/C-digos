@@ -74,7 +74,7 @@ class ManejaHelados:
                 #print('Peso de helado correcto.')
                 band = True
             else:
-                print('Peso de helado incorrecto.')
+                print('Tipo de helado incorrecto.')
             
         sabores = []
         listadeids = []
