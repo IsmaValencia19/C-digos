@@ -11,7 +11,8 @@ class ManejaHelados:
 
     def __init__(self):
         self.__lista = []
-        self.__contSabores = 0
+        self.__contSabores = np.full(6, 0)
+        self.__acumgramos = np.full(6, 0)
         self.__tipoHelado = [100, 150, 250, 500, 1000]
         self.__listsab = [[], [], [], [], []]
 
@@ -42,17 +43,11 @@ class ManejaHelados:
                 i += 1
         return band
 
-    #en la primer función de estas 2 convierto el contador que esta en atributos en un arreglo numpy y en la segunda cuento por sabor 
-    #las veces que se pide
-    def arreglo(self, ms):
-        self.__contSabores = np.full(6, 0)
+    #cuenta por sabor las veces que se pide
     def acumular(self, id):
         self.__contSabores[id - 1] += 1
 
-    #en la primer función de estas 2 convierto el acumulador que esta en atributos en un arreglo numpy y en la segunda acumulo por sabor los 
-    #gramos vendidos
-    def arregloacum(self, ms):
-        self.__acumgramos = np.full(6, 0)
+    #acumula por sabor los gramos vendidos
     def acumgramo(self, ids, gr):
         i = 0
         while i < len(self.__acumgramos):
@@ -64,8 +59,6 @@ class ManejaHelados:
             i += 1
 
     def RegistroVenta(self, ms):
-        self.arreglo(ms)
-        self.arregloacum(ms)
         cad = ' REGISTRAR VENTA '
         print(cad.center(50, '='))
         
