@@ -17,37 +17,38 @@ class Menu:
     def getSwitcher(self):
         return self.__switcher
 
-    def opcion(self, op, ms):
+    def opcion(self, op, ms, mh):
         func = self.__switcher.get(op, lambda: print("Opción no válida"))
-        func(ms)
+        func(ms, mh)
 
-    def salir(self, ms):
+    def salir(self, ms, mh):
         os.system("cls")
         cad = ' SALIÓ DEL PROGRAMA '
         print(cad.center(70, '='))
         print()
 
-    def opcion1(self, ms):
+    def opcion1(self, ms, mh):
         os.system("cls")
-        mh = ManejaHelados()
         mh.RegistroVenta(ms)
+        cad = ' VENTAS '
+        print(cad.center(50, '='))
         print(mh)
-        print()
         os.system("pause")
 
-    def opcion2(self, ms):
+    def opcion2(self, ms, mh):
         os.system("cls")
-        print('opcion2')
-        print()
+        #c = ms.cantSabores()
+        #print('Hay', c, 'sabores.')
+        mh.most5sab(ms)
         os.system("pause")
 
-    def opcion3(self, ms):
+    def opcion3(self, ms, mh):
         os.system("cls")
         print('opcion3')
         print()
         os.system("pause")
 
-    def opcion4(self, ms):
+    def opcion4(self, ms, mh):
         os.system("cls")
         print('opcion4')
         print()

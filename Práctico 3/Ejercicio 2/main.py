@@ -7,6 +7,7 @@ if __name__ == '__main__':
     os.system("cls")
     ms = ManejaSabores()
     ms.cargaSabor()
+    mh = ManejaHelados()
     #print(ms)
     #os.system("pause")
     menu = Menu()
@@ -21,5 +22,5 @@ if __name__ == '__main__':
         print('3 - Ingresar ID de un sabor para ver el total de gramos vendidos.')
         print('4 - Ingresar Tipo de Helado para ver los sabores más vendidos en dicho tipo.')
         op = int(input('Ingrese una opcion: '))
-        menu.opcion(op, ms)
+        menu.opcion(op, ms, mh)
         salir = op == 0
