@@ -13,19 +13,22 @@ class ManejaHelados:
         self.__lista = []
         self.__contSabores = 0
         self.__tipoHelado = [100, 150, 250, 500, 1000]
-        self.__listsab = [[None], [None], [None], [None], [None]]
+        self.__listsab = [[], [], [], [], []]
 
     def agregar(self, helado):
         self.__lista.append(helado)
 
+    #esta función agrega los sabores a un tipo de helado
     def agregarlista(self, sabores, num):
         i = 0
         while i < 5:
-            #self.__listsab.append([])
             j = 0
             while j < 5:
-                self.__listsab[i].append(sabores)
-                j += 1
+                if num == i:
+                    self.__listsab[i].append(sabores)
+                    j = 5
+                else:
+                    j += 1
             i += 1
 
     def validaPeso(self, tipo):
@@ -66,9 +69,8 @@ class ManejaHelados:
         cad = ' REGISTRAR VENTA '
         print(cad.center(50, '='))
         
-        #esta función lista los tipos de helados
         i = 0
-        while i < len(self.__tipoHelado):
+        while i < len(self.__tipoHelado):       #lista los tipos de helado
             print('Tipo de helado %s - %s gs.' % (i+1, self.__tipoHelado[i]))
             i += 1
 
@@ -85,8 +87,7 @@ class ManejaHelados:
         listadeids = []
         print()
         t = 0
-        #el print de abajo muestra los sabores disponibles
-        print(ms)
+        print(ms)   #muestra los sabores disponibles
         print('Una venta de helado incluye de 1...4 sabores.')
         idSabor = int(input('Ingrese ID de sabor(Finalice con 0): '))
         while (idSabor != 0) and (0 <= t < 4):
@@ -106,10 +107,10 @@ class ManejaHelados:
             t += 1
             idSabor = int(input('Ingrese ID de sabor(Finalice con 0): '))
 
-        self.agregarlista(sabores, tipohelado - 1)
+        self.agregarlista(sabores, tipohelado - 1)      #agrega los sabores a la lista por tipo de helado
         pesohelado = self.__tipoHelado[tipohelado - 1]
         gramos = pesohelado / len(sabores)
-        self.acumgramo(listadeids, gramos)
+        self.acumgramo(listadeids, gramos)  #acumula los gramos de un sabor
         unHelado = Helado(pesohelado, sabores)
         self.agregar(unHelado)
 
@@ -129,19 +130,21 @@ class ManejaHelados:
         ms.gramosabor(acum)
 
     def item4(self):
-        #band = False
-        #while not band:
-        #    tipo = int(input('Ingrese un tipo de helado: '))
-        #    if self.validaPeso(tipo - 1) == True:
-        #        print('Tipo de helado valido.')
-        #        band = True
-        #    else:
-        #        print('Tipo de helado incorrecto.')
-        #        tipo = int(input('Ingrese un tipo de helado: '))
+        band = False
+        while not band:
+            tipo = int(input('Ingrese un tipo de helado: '))
+            if self.validaPeso(tipo - 1) == True:
+                #print('Tipo de helado valido.')
+                band = True
+            else:
+                print('Tipo de helado incorrecto.')
+                tipo = int(input('Ingrese un tipo de helado: '))
         
-        for fila in self.__listsab:
-            print(fila)
-        
+        i = 0
+        while i < 5:
+            if (tipo - 1) == i:
+                print('Tipo de helado %s - Sabores Vendidos: %s' % (i+1, self.__listsab[i]))
+            i += 1
 
     def __str__(self):
         s = ''
