@@ -36,14 +36,11 @@ class Menu:
 
     def opcion2(self, ms, mh):
         os.system("cls")
-        #c = ms.cantSabores()
-        #print('Hay', c, 'sabores.')
         mh.most5sab(ms)
         os.system("pause")
 
     def opcion3(self, ms, mh):
         os.system("cls")
-        #mh.grvendidos()
         mh.mostraracum(ms)
         print()
         os.system("pause")

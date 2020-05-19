@@ -111,13 +111,6 @@ class ManejaHelados:
         cont = self.__contSabores   
         ms.b5sabores(cont)      #función de manejasabor
 
-    def grvendidos(self):
-        i = 0
-        while i < len(self.__lista):
-            gramos = self.__lista[i].getGramos()
-            print(gramos)
-            i += 1
-
     def mostraracum(self, ms):
         acum = self.__acumgramos
         ms.gramosabor(acum)
@@ -125,13 +118,13 @@ class ManejaHelados:
     def item4(self):
         band = False
         while not band:
-            tipo = int(input('Ingrese un tipo de helado: '))
+            tipo = int(input('Ingrese un tipo de helado(1...5): '))
             if self.validaPeso(tipo - 1) == True:
                 #print('Tipo de helado valido.')
                 band = True
             else:
                 print('Tipo de helado incorrecto.')
-                tipo = int(input('Ingrese un tipo de helado: '))
+                tipo = int(input('Ingrese un tipo de helado(1...5): '))
         
         i = 0
         while i < 5:
