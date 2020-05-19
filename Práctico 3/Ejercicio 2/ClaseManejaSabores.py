@@ -53,8 +53,8 @@ class ManejaSabores:
             i += 1
         
         listapedido.sort(key = lambda x:x[1], reverse = True)
-        for fila in listapedido:
-            print(fila)
+        for i in range(5):
+            print(listapedido[i])
 
     def gramosabor(self, acum):
         band = False
