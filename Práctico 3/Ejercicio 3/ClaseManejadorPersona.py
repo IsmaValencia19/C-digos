@@ -14,7 +14,7 @@ class ManejaPersona:
 
     def registrar(self, mt, mi):
         cad = ' FORMULARIO DE REGISTRO '
-        print(cad.center(40, '='))
+        print(cad.center(81, '='))
         print()
         band = False
         print(mt)
@@ -54,23 +54,31 @@ class ManejaPersona:
                 i += 1
         return band
 
-    def consultaInscripcion(self, mt):
+    def consultaInscripcion(self, mi, mt):
         band = False
         while not band:
-            dni = input('Ingresa DNI: ')
+            dni = input('Ingrese DNI: ')
             if self.busca(dni) == True:
                 band = True
             else:
                 print('Persona no inscripta.')
-                dni = input('Ingresa DNI: ')
-        
-        i = 0
-        while i < len(self.__lista):
-            if dni == self.__lista[i].getDni(): 
-                print('Inscripcion: %s' % (self.__lista[i].getInscripcion()))
-                i = len(self.__lista)
+                dni = input('Ingrese DNI: ')
+
+        print()
+        mi.buscapersona(dni, mt)
+
+    def registrapago(self, mi, mt):
+        band = False
+        while not band:
+            dni = input('Ingrese DNI: ')
+            if self.busca(dni) == True:
+                band = True
             else:
-                i += 1
+                print('DNI incorrecto.')
+                dni = input('Ingrese DNI: ')
+
+        print()
+        mi.buscaparapagar(dni, mt)
 
     def testing(self, mt, mi):
         persona1 = Persona('Martin Gomez', 'Av. Cordoba 5403', '35034523')

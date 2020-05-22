@@ -4,7 +4,7 @@ class Persona:
     __dni = ''
     __insc = None
 
-    def __init__(self, nom = '', dir = '', dni = ''):
+    def __init__(self, nom, dir, dni):
         self.__nom = nom
         self.__dir = dir
         self.__dni = dni

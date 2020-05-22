@@ -33,25 +33,25 @@ class Menu:
     
     def opcion2(self, mt, mp, mi):
         os.system("cls")
-        mp.consultaInscripcion(mt)
+        mp.consultaInscripcion(mi, mt)
         print()
         os.system("pause")
     
     def opcion3(self, mt, mp, mi):
         os.system("cls")
-        print('opcion')
+        mi.consultaInscriptos(mt)
         print()
         os.system("pause")
     
     def opcion4(self, mt, mp, mi):
         os.system("cls")
-        print('opcion')
+        mp.registrapago(mi, mt)
         print()
         os.system("pause")
     
     def opcion5(self, mt, mp, mi):
         os.system("cls")
-        print('opcion')
+        
         print()
         os.system("pause")
 

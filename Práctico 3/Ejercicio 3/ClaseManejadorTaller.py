@@ -43,6 +43,16 @@ class ManejaTaller:
                 i += 1
         return taller
 
+    def getPago(self, taller):
+        i = 0
+        while i < len(self.__arre):
+            if taller == self.__arre[i].getNom():
+                pago = self.__arre[i].getPago()
+                i = len(self.__arre)
+            else:
+                i += 1
+        return pago
+
     def modificavacante(self, id):
         i = 0
         while i < len(self.__arre):

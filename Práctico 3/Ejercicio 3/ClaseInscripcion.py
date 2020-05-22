@@ -13,6 +13,18 @@ class Inscripcion:
     def agregar(self, persona):
         self.__persona = persona
 
+    def getPersona(self):
+        return self.__persona
+
+    def getTaller(self):
+        return self.__taller
+
+    def getPago(self):
+        return self.__pago
+
+    def modificapago(self):
+        self.__pago = True
+
     def __str__(self):
         s = ''
         if self.__pago == True:
