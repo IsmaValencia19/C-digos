@@ -13,7 +13,7 @@ if __name__ == '__main__':
     mt.carga()
     mp = ManejaPersona()
     mi = ManejaInscripcion()
-    mp.carga(mt, mi)
+    mp.testing(mt, mi)
 
     menu = Menu()
     salir = False

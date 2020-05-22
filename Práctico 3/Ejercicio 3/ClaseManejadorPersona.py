@@ -12,7 +12,67 @@ class ManejaPersona:
     def agregar(self, persona):
         self.__lista.append(persona)
 
-    def carga(self, mt, mi):
+    def registrar(self, mt, mi):
+        cad = ' FORMULARIO DE REGISTRO '
+        print(cad.center(40, '='))
+        print()
+        band = False
+        print(mt)
+        while not band:
+            id = int(input('Ingrese ID de taller para inscribirse: '))
+            if mt.validataller(id) == True:
+                band = True
+            else:
+                print('ID de taller incorrecto.')
+                id = int(input('Ingrese ID de taller para inscribirse: '))
+        nom = input('Ingrese nombre y apellido: ')
+        dir = input('Ingrese domicilio: ')
+        dni = input('Ingrese DNI: ')
+        unapersona = Persona(nom, dir, dni)
+
+        fecha = input('Ingrese fecha de inscripción: ')
+        pago = False
+        taller = mt.getTaller(id)
+        unainscripcion = Inscripcion(fecha, pago, taller)
+        unainscripcion.agregar(unapersona)
+        mt.modificavacante(id)
+
+        self.agregar(unapersona)
+
+        mi.agregaInscripcion(unainscripcion)
+        print()
+        print('Inscripto exitosamente.')
+
+    def busca(self, dni):
+        band = False
+        i = 0
+        while i < len(self.__lista):
+            if dni == self.__lista[i].getDni():
+                band = True
+                i = len(self.__lista)
+            else:
+                i += 1
+        return band
+
+    def consultaInscripcion(self, mt):
+        band = False
+        while not band:
+            dni = input('Ingresa DNI: ')
+            if self.busca(dni) == True:
+                band = True
+            else:
+                print('Persona no inscripta.')
+                dni = input('Ingresa DNI: ')
+        
+        i = 0
+        while i < len(self.__lista):
+            if dni == self.__lista[i].getDni(): 
+                print('Inscripcion: %s' % (self.__lista[i].getInscripcion()))
+                i = len(self.__lista)
+            else:
+                i += 1
+
+    def testing(self, mt, mi):
         persona1 = Persona('Martin Gomez', 'Av. Cordoba 5403', '35034523')
         persona2 = Persona('Julieta Martinez', 'Juan Jofre 304', '40129321')
         persona3 = Persona('Martina Lopez', 'Urquiza 123', '42932094')

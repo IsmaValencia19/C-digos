@@ -1,27 +1,22 @@
-from ClasePersona import Persona
-
 class Inscripcion:
     __fechainscrip = ''
     __pago = None
     __taller = None
-    __persona = []
+    __persona = None
 
     def __init__(self, fecha = '', pago = None, taller = None):
         self.__fechainscrip = fecha
         self.__pago = pago
         self.__taller = taller
-        self.__persona = []
+        self.__persona = None
 
     def agregar(self, persona):
-        self.__persona.append(persona)
+        self.__persona = persona
 
     def __str__(self):
-        s = '\nFecha de Inscripción: ' + self.__fechainscrip + '\n'
+        s = ''
         if self.__pago == True:
-            s += 'Pagó: Si' + '\n'
+            s = 'Si'
         else:
-            s += 'Pagó: No' + '\n'
-        s += 'Taller: ' + self.__taller + '\n'
-        for persona in self.__persona:
-            s += str(persona) + '\n'
-        return s
+            s = 'No'
+        return '\nFECHA DE INSCRIPCIÓN: %s - PAGÓ: %s - TALLER: %s - INSCRIPTO: %s' % (self.__fechainscrip, s, self.__taller, self.__persona)

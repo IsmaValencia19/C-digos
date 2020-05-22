@@ -21,6 +21,28 @@ class ManejaTaller:
                 self.__arre = np.append(self.__arre, unTaller)
         archivo.close()
 
+    def validataller(self, id):
+        band = False
+        i = 0
+        while i < len(self.__arre):
+            if id == self.__arre[i].getId():
+                band = True
+                i = len(self.__arre)
+            else:
+                i += 1
+        return band
+
+    def getTaller(self, id):
+        taller = ''
+        i = 0
+        while i < len(self.__arre):
+            if id == self.__arre[i].getId():
+                taller = self.__arre[i].getNom()
+                i = len(self.__arre)
+            else:
+                i += 1
+        return taller
+
     def modificavacante(self, id):
         i = 0
         while i < len(self.__arre):

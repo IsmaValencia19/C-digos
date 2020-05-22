@@ -16,6 +16,9 @@ class TallerCapacitacion:
     def getNom(self):
         return self.__nom
 
+    def getPago(self):
+        return self.__montoInscripcion
+
     def modificavacante(self):
         self.__vacantes -= 1
 

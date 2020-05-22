@@ -16,5 +16,11 @@ class Persona:
     def getInscripcion(self):
         return self.__insc
 
+    def getNom(self):
+        return self.__nom
+
+    def getDni(self):
+        return self.__dni
+
     def __str__(self):
         return 'NOMBRE Y APELLIDO: %s - DNI: %s - DIRECCIÓN: %s' % (self.__nom, self.__dni, self.__dir)
