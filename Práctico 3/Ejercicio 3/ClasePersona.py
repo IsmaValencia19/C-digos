@@ -10,6 +10,7 @@ class Persona:
         self.__dni = dni
         self.__insc = None
 
+    #agrega una inscripción por persona
     def agregar(self, inscrip):
         self.__insc = inscrip
 

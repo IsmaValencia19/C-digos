@@ -1,4 +1,5 @@
 import numpy as np
+import csv
 
 class ManejaInscripcion:
     __arre = 0
@@ -9,6 +10,7 @@ class ManejaInscripcion:
     def agregaInscripcion(self, inscrip):
         self.__arre = np.append(self.__arre, inscrip)
 
+    #busca una persona por el dni y muestro si debe dinero o no
     def buscapersona(self, dni, mt):
         i = 0
         while i < len(self.__arre):
@@ -26,6 +28,7 @@ class ManejaInscripcion:
             else:
                 i += 1
 
+    #muestra los inscriptos en un taller ingresado por teclado
     def consultaInscriptos(self, mt):
         print(mt)
         band = False
@@ -46,6 +49,7 @@ class ManejaInscripcion:
                 print(persona)
             i +=1
 
+    #ingresa dni de algún inscripto para pagar si adeuda
     def buscaparapagar(self, dni, mt):
         i = 0
         while i < len(self.__arre):
@@ -74,8 +78,30 @@ class ManejaInscripcion:
             else:
                 i += 1
 
-    def guardarArchivo(self):
-                 
+    #genera el archivo con los inscriptos
+    def guardarArchivo(self, mp, mt):
+        archivo = open('inscriptos.csv', 'w')
+        i = 0
+        while i < len(self.__arre):
+            persona = self.__arre[i].getPersona()
+            dni = str(persona.getDni())
+            taller = self.__arre[i].getTaller()
+            id = str(mt.getId(taller))
+            fecha = self.__arre[i].getFecha()
+            pago = self.__arre[i].getPago()
+            archivo.write(dni)
+            archivo.write(',')
+            archivo.write(id)
+            archivo.write(',')
+            archivo.write(fecha)
+            archivo.write(',')
+            if pago == True:
+                archivo.write('Si\n')
+            else:
+                archivo.write('No\n')
+            i += 1
+        print('Archivo guardado con exito.')
+        archivo.close()
 
     def __str__(self):
         s = ''

@@ -12,6 +12,7 @@ class ManejaPersona:
     def agregar(self, persona):
         self.__lista.append(persona)
 
+    #función para registrar personas
     def registrar(self, mt, mi):
         cad = ' FORMULARIO DE REGISTRO '
         print(cad.center(81, '='))
@@ -43,6 +44,7 @@ class ManejaPersona:
         print()
         print('Inscripto exitosamente.')
 
+    #busca una persona por dni
     def busca(self, dni):
         band = False
         i = 0
@@ -54,6 +56,7 @@ class ManejaPersona:
                 i += 1
         return band
 
+    #consulta la inscripción, si debe o no dinero, para eso llama a la funcion del manejador de inscripciones
     def consultaInscripcion(self, mi, mt):
         band = False
         while not band:
@@ -67,6 +70,7 @@ class ManejaPersona:
         print()
         mi.buscapersona(dni, mt)
 
+    #se registra el pago si el inscripto debe o no
     def registrapago(self, mi, mt):
         band = False
         while not band:

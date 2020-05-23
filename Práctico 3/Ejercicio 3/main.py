@@ -14,7 +14,6 @@ if __name__ == '__main__':
     mp = ManejaPersona()
     mi = ManejaInscripcion()
     mp.testing(mt, mi)
-
     menu = Menu()
     salir = False
     while not salir:
@@ -29,4 +28,4 @@ if __name__ == '__main__':
         print('5 - Guardar inscripciones.')
         op = int(input('Ingrese una opcion: '))
         menu.opcion(op, mt, mp, mi)
-        salir = op == 0
+        salir = op == 0 

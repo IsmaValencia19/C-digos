@@ -22,8 +22,10 @@ class Menu:
 
     def salir(self, mt, mp, mi):
         os.system("cls")
+        print()
         cad = ' SALIÓ DEL PROGRAMA '
         print(cad.center(50, '='))
+        print()
 
     def opcion1(self, mt, mp, mi):
         os.system("cls")
@@ -51,10 +53,11 @@ class Menu:
     
     def opcion5(self, mt, mp, mi):
         os.system("cls")
-        
+        mi.guardarArchivo(mp, mt)
         print()
         os.system("pause")
 
+    #opcion 6 la añadi yo
     def opcion6(self, mt, mp, mi):
         os.system("cls")
         print('>>>>>MANEJADOR DE TALLERES<<<<<')
@@ -62,6 +65,7 @@ class Menu:
         print(mt)
         os.system("pause")
 
+    #opcion 7 la añadi yo
     def opcion7(self, mt, mp, mi):
         os.system("cls")
         print('>>>>>MANEJADOR DE PERSONAS<<<<<')
@@ -69,6 +73,7 @@ class Menu:
         print(mp)
         os.system("pause")
 
+    #opcion 8 la añadi yo
     def opcion8(self, mt, mp, mi):
         os.system("cls")
         print('>>>>>MANEJADOR DE INSCRIPCIONES<<<<<')

@@ -10,6 +10,7 @@ class Inscripcion:
         self.__taller = taller
         self.__persona = None
 
+    #agrega una persona por inscripción
     def agregar(self, persona):
         self.__persona = persona
 
@@ -24,6 +25,9 @@ class Inscripcion:
 
     def modificapago(self):
         self.__pago = True
+
+    def getFecha(self):
+        return self.__fechainscrip
 
     def __str__(self):
         s = ''
