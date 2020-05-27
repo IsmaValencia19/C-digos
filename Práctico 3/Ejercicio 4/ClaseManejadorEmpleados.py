@@ -8,16 +8,15 @@ import csv
 
 class ManejaEmpleados:
     __arre = 0
-    __dimension = 0
     __cantidad = 0
 
     def __init__(self, tamaño):
-        self.__arre = np.empty(tamaño, dtype = Planta)
-        self.__dimension = tamaño
+        self.__arre = np.empty(tamaño, dtype = Empleado)
         self.__cantidad = 0
 
     def agregar(self, unEmpleado):
         if type(unEmpleado) == Planta:
+            self.__arre.astype(Planta)
             self.__arre[self.__cantidad] = unEmpleado
             self.__cantidad += 1
         elif type(unEmpleado) == Contratado:
