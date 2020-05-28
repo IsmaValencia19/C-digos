@@ -1,4 +1,5 @@
 from ClaseEmpleado import Empleado
+import abc
 
 class Planta(Empleado):
     __sueldoBasico = 0
@@ -9,6 +10,7 @@ class Planta(Empleado):
         self.__sueldoBasico = sueldobasico
         self.__antiguedad = anti
 
+    @abc.abstractmethod
     def getTarea(self):
         pass
 
