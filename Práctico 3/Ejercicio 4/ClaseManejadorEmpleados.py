@@ -51,36 +51,30 @@ class ManejaEmpleados:
         archivoexterno.close()
 
     def validaEmpleado(self, dni):
-        band = False
+        empleado = None
         i = 0
         while i < len(self.__arre):
             if dni == self.__arre[i].getDni():
-                band = True
+                empleado = self.__arre[i]
                 i = len(self.__arre)
             else:
                 i += 1
-        return band
+        return empleado
 
     def item1(self):
         band = False
+        empleado = None
         while not band:
             dni = int(input('Ingrese DNI de empleado contratado: '))
-            if self.validaEmpleado(dni) == True:
+            empleado = self.validaEmpleado(dni)
+            if empleado != None:
+                fecha = datetime.now()
+                print('Ingrese horas trabajadas el dia de hoy {}/{}/{}: '.format(fecha.day, fecha.month, fecha.year))
+                horas = int(input())
+                empleado.modificaHoras(horas)
                 band = True
             else:
-                print('El DNI no pertenece a ningún empleado.')
-                dni = int(input('Ingrese DNI de empleado contratado: '))
-
-        fecha = datetime.now()
-        print('Ingrese horas trabajadas el dia de hoy {}/{}/{}: '.format(fecha.day, fecha.month, fecha.year))
-        horas = int(input())
-        i = 0
-        while i < len(self.__arre):
-            if dni == self.__arre[i].getDni():
-                self.__arre[i].modificaHoras(horas)
-                i = len(self.__arre)
-            else:
-                i += 1
+                print('DNI incorrecto.')
     
     def validaTarea(self, tarea):
         band = False
@@ -107,8 +101,7 @@ class ManejaEmpleados:
         while i < len(self.__arre):
             if tarea == self.__arre[i].getTarea():
                 precioObra += self.__arre[i].getObra()
-                #print('\nTarea de %s - Monto a pagar: $%s.' % (self.__arre[i].getTarea(), self.__arre[i].getObra()))
-            i += 1
+                i += 1
         print('\nTarea de %s - Monto a pagar: $%s.' % (tarea, precioObra))
             
 
