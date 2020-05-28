@@ -101,7 +101,7 @@ class ManejaEmpleados:
         while i < len(self.__arre):
             if tarea == self.__arre[i].getTarea():
                 precioObra += self.__arre[i].getObra()
-                i += 1
+            i += 1
         print('\nTarea de %s - Monto a pagar: $%s.' % (tarea, precioObra))
             
 
