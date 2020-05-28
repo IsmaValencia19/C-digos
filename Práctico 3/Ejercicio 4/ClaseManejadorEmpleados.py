@@ -96,14 +96,13 @@ class ManejaEmpleados:
             else:
                 print('ERROR: Tarea no encontrada.')
         
-        precioObra = 0
+        montoObra = 0
         i = 0
         while i < len(self.__arre):
             if tarea == self.__arre[i].getTarea():
-                precioObra += self.__arre[i].getObra()
+                montoObra += self.__arre[i].getSueldoExterno()
             i += 1
-        print('\nTarea de %s - Monto a pagar: $%s.' % (tarea, precioObra))
-            
+        print('\nTarea de %s - Monto a pagar: $%s.' % (tarea, montoObra))
 
     def item3(self):
         sueldo = 25000
