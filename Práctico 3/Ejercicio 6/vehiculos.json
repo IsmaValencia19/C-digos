@@ -1,69 +1,97 @@
 {
-  "__class__": "Lista",
-  "autos": [
-    {
-      "__class__": "AutoNuevo",
-      "__atributos__": 
-      {
-        "modelo": "Siena",
-        "puertas": 5,
-        "color": "Negro",
-        "precio": 800000,
-        "version": "Full"
-      }
-    },
-    {
-      "__class__": "AutoNuevo",
-      "__atributos__": 
-      {
-        "modelo": "Toro",
-        "puertas": 5,
-        "color": "Blanco",
-        "precio": 650000,
-        "version": "Base"
-      }
-    },
-    {
-      "__class__": "AutoUsado",
-      "__atributos__":
-      {
-        "modelo": "Palio",
-        "puertas": 5,
-        "color": "Rojo",
-        "precio": 200000,
-        "marca": "Fiat",
-        "patente": "123ABC",
-        "año": "2000",
-        "kilometraje": 100000
-      }
-    },
-    {
-      "__class__": "AutoUsado",
-      "__atributos__": 
-      {
-        "modelo": "306",
-        "puertas": "5",
-        "color": "Dorado",
-        "precio": 700000,
-        "marca": "Peugeot",
-        "patente": "312CAK",
-        "año": "2011",
-        "kilometraje": 80000
-      }
-    },
-    {
-      "__class__": "AutoUsado",
-      "__atributos__":
-      {
-        "modelo": "Ka",
-        "puertas": "3",
-        "color": "Morado",
-        "precio": 150000,
-        "marca": "Ford",
-        "patente": "430KFO",
-        "año": "2007",
-        "kilometraje": 140000
-      }
-    }
-  ]
+    "__class__": "Lista",
+    "autos": [
+        {
+            "__class__": "AutoUsado",
+            "__atributos__": {
+                "modelo": "Megane",
+                "puertas": 5,
+                "color": "Dorado",
+                "precio": 700000,
+                "marca": "Renault",
+                "patente": "341DHR",
+                "a\u00f1o": 2015,
+                "kilometraje": 0
+            }
+        },
+        {
+            "__class__": "AutoNuevo",
+            "__atributos__": {
+                "modelo": "Siena",
+                "puertas": 5,
+                "color": "Negro",
+                "precio": 800000,
+                "version": "Full"
+            }
+        },
+        {
+            "__class__": "AutoNuevo",
+            "__atributos__": {
+                "modelo": "Toro",
+                "puertas": 5,
+                "color": "Blanco",
+                "precio": 650000,
+                "version": "Base"
+            }
+        },
+        {
+            "__class__": "AutoUsado",
+            "__atributos__": {
+                "modelo": "Palio",
+                "puertas": 5,
+                "color": "Rojo",
+                "precio": 500000,
+                "marca": "Fiat",
+                "patente": "123ABC",
+                "a\u00f1o": "2000",
+                "kilometraje": 0
+            }
+        },
+        {
+            "__class__": "AutoUsado",
+            "__atributos__": {
+                "modelo": "306",
+                "puertas": "5",
+                "color": "Dorado",
+                "precio": 700000,
+                "marca": "Peugeot",
+                "patente": "312CAK",
+                "a\u00f1o": "2011",
+                "kilometraje": 0
+            }
+        },
+        {
+            "__class__": "AutoNuevo",
+            "__atributos__": {
+                "modelo": "Qubo",
+                "puertas": 4,
+                "color": "Gris",
+                "precio": 1000000,
+                "version": "Full"
+            }
+        },
+        {
+            "__class__": "AutoUsado",
+            "__atributos__": {
+                "modelo": "Ka",
+                "puertas": "3",
+                "color": "Morado",
+                "precio": 150000,
+                "marca": "Ford",
+                "patente": "430KFO",
+                "a\u00f1o": "2007",
+                "kilometraje": 0
+            }
+        },
+        {
+            "__class__": "AutoNuevo",
+            "__atributos__": {
+                "modelo": "Punto",
+                "puertas": 5,
+                "color": "Negro",
+                "precio": 850000,
+                "version": "Full"
+            }
+        }
+    ]
 }

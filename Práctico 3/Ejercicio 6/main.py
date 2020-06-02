@@ -5,7 +5,7 @@ import os
 
 if __name__ == '__main__':
     obj = ObjectEncoder()
-    autos = obj.Decoder(obj.Leer('vehiculos.json'))
+    autos = obj.Decoder(obj.Leer())
 
     cad = ' MENÚ '
     menu = Menu()
@@ -22,5 +22,5 @@ if __name__ == '__main__':
         print('6 - Mostrar todos los vehículos.')
         print('7 - Almacenar en el archivo los vehículos.')
         op = int(input('Ingrese una opcion: '))
-        menu.opcion(op, autos)
+        menu.opcion(op, autos, obj)
         salir = op == 0

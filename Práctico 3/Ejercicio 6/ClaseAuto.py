@@ -22,5 +22,8 @@ class Auto:
     def getPrecio(self):
         return self.__precio
 
+    def setPrecio(self, precio):
+        self.__precio = precio
+
     def mostrar(self):
-        print('MODELO: %s - CANTIDAD DE PUERTAS: %s - COLOR: %s' % (self.__modelo, self.__puertas, self.__color))
+        print('MODELO: %s - CANTIDAD DE PUERTAS: %s - COLOR: %s - PRECIO BASE: %s' % (self.__modelo, self.__puertas, self.__color, self.getPrecio()))

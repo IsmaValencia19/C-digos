@@ -64,24 +64,74 @@ class Lista:
         encontrado = None
         while actual != None and encontrado == None:
             if i == posicion:
-                encontrado = actual
+                auto = actual.getDato()
+                encontrado = auto
             else:
                 actual = actual.getSiguiente()
                 i += 1
         return type(encontrado)
 
-    def toJSON(self):
-        autos = []
-        for a in self:
-            autos.append(a.toJSON())
+    def buscavehiculo(self, pat):
+        actual = self.__comienzo
+        encontrado = None
+        while actual != None and encontrado == None:
+            auto = actual.getDato()
+            if pat == auto.getPat():
+                encontrado = auto
+            else:
+                actual = actual.getSiguiente()
+        return encontrado
 
-        d = dict(__class__ = self.__class__.__name__, datos = autos)
+    def item4(self): 
+        band = False
+        vehiculo = None
+        while not band:
+            pat = input('Ingrese patente de vehículo para modificar el precio base: ')
+            vehiculo = self.buscavehiculo(pat)
+            if vehiculo != None:
+                precio = int(input('Ingrese precio nuevo: '))
+                vehiculo.modificaprecio(precio)
+                print('\nPrecio de venta: %d' % (vehiculo.getImporte()))
+                print()
+                band = True
+            else:
+                print('ERROR, vehículo no encontrado.')
+
+    def buscaminimo(self):
+        min = 999999999
+        actual = self.__comienzo
+        while actual != None:
+            auto = actual.getDato()
+            if min > auto.getPrecio():
+                min = auto.getPrecio()
+            else:
+                actual = actual.getSiguiente()
+        return min
+
+    def item5(self):
+        actual = self.__comienzo
+        while actual != None:
+            auto = actual.getDato()
+            if self.buscaminimo() == auto.getPrecio():
+                print(auto)
+                actual = None
+            else:
+                actual = actual.getSiguiente()
+
+    def toJSON(self):
+        listaautos = []
+        for a in self:
+            listaautos.append(a.toJSON())
+
+        d = dict(__class__ = self.__class__.__name__, autos = listaautos)
         return d
 
     def mostrar(self):
-        for a in self:
-            print(a)
-            print()
+        actual = self.__comienzo
+        while actual != None:
+            auto = actual.getDato()
+            print('Modelo: %s - Cantidad de Puertas: %s - Importe de Venta: %s' % (auto.getModelo(), auto.getPuertas(), auto.getImporte()))
+            actual = actual.getSiguiente()
 
     def __len__(self):
         return self.__tope

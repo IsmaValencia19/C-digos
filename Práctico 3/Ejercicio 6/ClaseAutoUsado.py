@@ -1,4 +1,5 @@
 from ClaseAuto import Auto
+from datetime import datetime
 
 class AutoUsado(Auto):
     __marca = ''
@@ -15,6 +16,20 @@ class AutoUsado(Auto):
 
     def getPat(self):
         return self.__patente
+
+    def getImporte(self):
+        fecha = datetime.now()
+        porcentaje = 0.01
+        p = (porcentaje * self.getPrecio()) / 100
+        años = fecha.year - int(self.__año)
+        if self.__kilometraje > 100000:
+            k = (0.02 * self.getPrecio()) / 100
+        else:
+            k = 0
+        return (self.getPrecio() - (p * años) - k)
+
+    def modificaprecio(self, precio):
+        self.setPrecio(precio)
 
     def toJSON(self):
         return dict(
@@ -33,4 +48,4 @@ class AutoUsado(Auto):
 
     def __str__(self):
         super().mostrar()
-        return 'MARCA: %s - PATENTE: %s - AÑO: %s - KILOMETRAJE: %s' % (self.__marca, self.__patente, self.__año, self.__km)
+        return 'MARCA: %s - PATENTE: %s - AÑO: %s - KILOMETRAJE: %s - IMPORTE DE VENTA: %s' % (self.__marca, self.__patente, self.__año, self.__kilometraje, self.getImporte())

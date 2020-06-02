@@ -4,12 +4,14 @@ from ClaseAutoUsado import AutoUsado
 import json
 
 class ObjectEncoder(object):
-    def Guardar(self, elementos, archivo):
+    def Guardar(self, elementos):
+        archivo = 'vehiculos.json'
         with open(archivo, "w", encoding = "UTF-8") as destino:
             json.dump(elementos, destino, indent = 4)
             destino.close()
 
-    def Leer(self, archivo):
+    def Leer(self):
+        archivo = 'vehiculos.json'
         with open(archivo, encoding = "UTF-8") as fuente:
             diccionario = json.load(fuente)
             fuente.close()
