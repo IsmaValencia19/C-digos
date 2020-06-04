@@ -1,0 +1,252 @@
+from ClaseDocenteInvestigador import DocenteInvestigador
+from ClasePersonaldeApoyo import PersonaldeApoyo
+from ClaseInvestigador import Investigador
+from ClaseDocente import Docente
+from ObjectEncoder import ObjectEncoder
+from ClaseNodo import Nodo
+import os
+
+class Menu:
+    __switcher = None
+    
+    def __init__(self):
+        self.__switcher = { 0:self.salir,
+                            1:self.opcion1,
+                            2:self.opcion2,
+                            3:self.opcion3,
+                            4:self.opcion4,
+                            5:self.opcion5,
+                            6:self.opcion6,
+                            7:self.opcion7,
+                            8:self.opcion8
+                          }
+
+    def getSwitcher(self):
+        return self.__switcher
+
+    def opcion(self, op, personal, obj):
+        func = self.__switcher.get(op, lambda: print("Opción no válida"))
+        func(personal, obj)
+
+    def salir(self, p, obj):
+        os.system("cls")
+        cad = ' SALIÓ DEL PROGRAMA '
+        print(cad.center(50, '='))
+        print()
+
+    def opcion1(self, p, obj):
+        os.system("cls")
+        band = False
+        while not band:
+            print('=== INSERTAR AGENTES EN LA COLECCIÓN ===')
+            print('1 - Personal de Apoyo')
+            print('2 - Docente')
+            print('3 - Investigador')
+            print('4 - Docente Investigador.')
+            op = int(input('Ingrese tipo de agente para insertar: '))
+            if op == 1:
+                print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                bande = False
+                while not bande:
+                    print('=== CATEGORÍAS: I | II | III | IV | V ===')
+                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    encontrada = p.validacategoria(categoria)
+                    if encontrada != None:
+                        categoria = encontrada
+                        bande = True
+                    else:
+                        print('ERROR, categoría incorrecta.')
+                posicion = int(input('Ingrese posición para insertar: '))
+                unPersonaldeApoyo = PersonaldeApoyo(cuil, apellido, nombre, sueldobasico, antiguedad, categoria)
+                p.insertarElemento(unPersonaldeApoyo, posicion - 1)
+                print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 2:
+                print('>>>>>REGISTRANDO DOCENTE<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+                cargo = input('Ingrese cargo que ocupa: ').capitalize()
+                catedra = input('Ingrese cátedra: ').capitalize()
+                posicion = int(input('Ingrese posición para insertar: '))
+                unDocente = Docente(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra)
+                p.insertarElemento(unDocente, posicion - 1)
+                print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 3:
+                print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+                tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+                posicion = int(input('Ingrese posición para insertar: '))
+                unInvestigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
+                p.insertarElemento(unInvestigador, posicion - 1)
+                print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 4:
+                print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+                cargo = input('Ingrese cargo que ocupa: ').capitalize()
+                catedra = input('Ingrese cátedra: ').capitalize()
+                areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+                tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+                bande = False
+                while not bande:
+                    print('=== CATEGORÍAS: I | II | III | IV | V ===')
+                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    encontrada = p.validacategoria(categoria)
+                    if encontrada != None:
+                        categoria = encontrada
+                        bande = True
+                    else:
+                        print('ERROR, categoría incorrecta.')
+                importeextra = int(input('Ingrese importe extra por docencia e investigación: '))
+                posicion = int(input('Ingrese posición para insertar: '))
+                unDocenteInvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
+                p.insertarElemento(unDocenteInvestigador, posicion - 1)
+                print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            else:
+                print('ERROR, opción de agente incorrecta.')
+        os.system("pause")
+    
+    def opcion2(self, p, obj):
+        os.system("cls")
+        band = False
+        while not band:
+            print('=== AGREGAR AGENTES A LA COLECCIÓN ===')
+            print('1 - Personal de Apoyo')
+            print('2 - Docente')
+            print('3 - Investigador')
+            print('4 - Docente Investigador.')
+            op = int(input('Ingrese tipo de agente para agregar: '))
+            if op == 1:
+                print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                bande = False
+                while not bande:
+                    print('=== CATEGORÍAS: I | II | III | IV | V ===')
+                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    encontrada = p.validacategoria(categoria)
+                    if encontrada != None:
+                        categoria = encontrada
+                        bande = True
+                    else:
+                        print('ERROR, categoría incorrecta.')
+                unPersonaldeApoyo = PersonaldeApoyo(cuil, apellido, nombre, sueldobasico, antiguedad, categoria)
+                p.agregarElemento(unPersonaldeApoyo)
+                print('\nAGENTE AGREGADO A LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 2:
+                print('>>>>>REGISTRANDO DOCENTE<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+                cargo = input('Ingrese cargo que ocupa: ').capitalize()
+                catedra = input('Ingrese cátedra: ').capitalize()
+                unDocente = Docente(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra)
+                p.agregarElemento(unDocente)
+                print('\nAGENTE AGREGADO A LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 3:
+                print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+                tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+                unInvestigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
+                p.agregarElemento(unInvestigador)
+                print('\nAGENTE AGREGADO A LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            elif op == 4:
+                print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
+                cuil = input('Ingrese cuil: ')
+                apellido = input('Ingrese apellido: ').capitalize()
+                nombre = input('Ingrese nombre: ').capitalize()
+                sueldobasico = int(input('Ingrese sueldo básico: '))
+                antiguedad = int(input('Ingrese años de antiguedad: '))
+                carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+                cargo = input('Ingrese cargo que ocupa: ').capitalize()
+                catedra = input('Ingrese cátedra: ').capitalize()
+                areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+                tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+                bande = False
+                while not bande:
+                    print('=== CATEGORÍAS: I | II | III | IV | V ===')
+                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    encontrada = p.validacategoria(categoria)
+                    if encontrada != None:
+                        categoria = encontrada
+                        bande = True
+                    else:
+                        print('ERROR, categoría incorrecta.')
+                importeextra = int(input('Ingrese importe extra por docencia e investigación: '))
+                unDocenteInvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
+                p.agregarElemento(unDocenteInvestigador)
+                print('\nAGENTE AGREGADO A LA COLECCIÓN CON ÉXITO.\n')
+                band = True
+            else:
+                print('ERROR, opción de agente incorrecta.')
+        os.system("pause")
+
+    def opcion3(self, p, obj):
+        os.system("cls")
+        pos = int(input('Ingrese posición de la lista para ver el tipo de objeto: '))
+        auto = p.mostrarElemento(pos - 1)
+        print('\nEl objeto de la posición %s es de tipo %s.\n' % (pos, auto))
+        os.system("pause")
+
+    def opcion4(self, p, obj):
+        os.system("cls")
+        p.item4()
+        os.system("pause")
+
+    def opcion5(self, p, obj):
+        os.system("cls")
+        
+        os.system("pause")
+
+    def opcion6(self, p, obj):
+        os.system("cls")
+        
+        os.system("pause")
+
+    def opcion7(self, p, obj):
+        os.system("cls")
+
+        os.system("pause")
+
+    def opcion8(self, p, obj):
+        os.system("cls")
+        personal = p.toJSON()
+        obj.Guardar(personal)
+        print('Archivo guardado con éxito.')
+        print()
+        os.system("pause")

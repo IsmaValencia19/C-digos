@@ -1,3 +1,4 @@
+from zope.interface import implementer
 from ClaseAutoNuevo import AutoNuevo
 from ClaseAutoUsado import AutoUsado
 from archivodeinterface import inter
@@ -5,7 +6,7 @@ from ClaseNodo import Nodo
 import json
 import zope
 
-@zope.interface.implementer(inter)
+@implementer(inter)
 class Lista:
     __comienzo = None
     __actual = None
