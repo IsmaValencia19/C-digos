@@ -1,4 +1,9 @@
+from ClaseDocenteInvestigador import DocenteInvestigador
+from ClaseInvestigador import Investigador
 from archivodeinterface import inter
+from ClasePersonal import Personal
+from ClaseDocente import Docente
+from ClasePersonaldeApoyo import PersonaldeApoyo
 from ClaseNodo import Nodo
 import zope
 
@@ -65,7 +70,7 @@ class Lista:
             else:
                 actual = actual.getSiguiente()
                 i += 1
-        return type(encontrado)
+        return encontrado
 
     def validacategoria(self, categoria):
         categorias = ['I', 'II', 'III', 'IV', 'V']
@@ -79,12 +84,120 @@ class Lista:
                 i += 1
         return encontrada 
 
+    def validacarrera(self, carrera):
+        actual = self.__comienzo
+        band = False
+        while actual != None and band == False:
+            personal = actual.getDato()
+            if carrera == personal.getCarrera():
+                band = True
+            else:
+                actual = actual.getSiguiente()
+        return band
+
     def item4(self):
+        band = False
+        while not band:
+            carrera = input('Ingrese nombre de carrera: ').capitalize()
+            if self.validacarrera(carrera) == True:
+                band = True
+            else:
+                print('ERROR, nombre de carrera incorrecta.')
+        
+        listadocenteinvestiga = [] #creo una lista para ordenar los objetos de la clase docente investigador
         actual = self.__comienzo
         while actual != None:
             personal = actual.getDato()
-            
+            if personal.getCarrera() == carrera:
+                if isinstance(personal, DocenteInvestigador):
+                    listadocenteinvestiga.append(personal) #agrego los docentes investigadores
             actual = actual.getSiguiente()
+
+        print()
+        sorted(listadocenteinvestiga)
+        for doc in listadocenteinvestiga: 
+            print(doc)
+
+    def validaarea(self, area):
+        band = False
+        actual = self.__comienzo
+        while actual != None and band == False:
+            personal = actual.getDato()
+            if area == personal.getArea():
+                band = True
+            else:
+                actual = actual.getSiguiente()
+        return band
+
+    def item5(self):
+        band = False
+        while not band:
+            areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+            if self.validaarea(areadeinvestigacion) == True:
+                band = True
+            else:
+                print('ERROR, área de investigación incorrecta.')
+
+        actual = self.__comienzo
+        cont_investigador = 0
+        cont_docinvestigador = 0
+        while actual != None:
+            personal = actual.getDato()
+            if areadeinvestigacion == personal.getArea():
+                if isinstance(personal, DocenteInvestigador):
+                    cont_docinvestigador += 1
+                elif isinstance(personal, Investigador):
+                    cont_investigador += 1
+            actual = actual.getSiguiente()
+        
+        print('\nEn el área de investigacion %s trabajan %s investigador/es y %s Docente/s Investigador/es.\n' % (areadeinvestigacion, cont_investigador, cont_docinvestigador))
+
+    def item6(self):
+        lista = []
+        actual = self.__comienzo
+        while actual != None:
+            personal = actual.getDato()
+            tipo = ''
+            if isinstance(personal, Docente):
+                tipo = 'Docente'
+            elif isinstance(personal, PersonaldeApoyo):
+                tipo = 'Personal de Apoyo'
+            elif isinstance(personal, Investigador):
+                tipo = 'Investigador'
+            elif isinstance(personal, DocenteInvestigador):
+                tipo = 'Docente Investigador'
+            listapersonal = [personal.getNombre(), personal.getApellido(), tipo, personal.getSueldo()]
+            lista.append(listapersonal)
+            actual = actual.getSiguiente()
+
+        lista.sort(key = lambda x:x[1], reverse = False)
+        print('  Nombre    Apellido    Tipo de Agente     Sueldo')
+        for per in lista:
+            print(per)
+        print()
+
+    def item7(self):
+        bande = False
+        while not bande:
+            print('=== CATEGORÍAS: I | II | III | IV | V ===')
+            categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+            encontrada = self.validacategoria(categoria)
+            if encontrada != None:
+                categoria = encontrada
+                bande = True
+            else:
+                print('ERROR, categoría incorrecta.')
+        print()
+        acum_importe = 0
+        actual = self.__comienzo
+        while actual != None:
+            personal = actual.getDato()
+            if isinstance(personal, DocenteInvestigador):
+                if categoria == personal.getCategoria():
+                    print('Apellido: %s | Nombre: %s | Importe extra por Docencia e Investigación: $%s' % (personal.getApellido(), personal.getNombre(), personal.getImporteextra())) 
+                    acum_importe += personal.getImporteextra()
+            actual = actual.getSiguiente()
+        print('Importe total a pagar por el extra de Docencia e Investigación es: $%s.\n' % (acum_importe))
 
     def toJSON(self):
         listapersonal = []

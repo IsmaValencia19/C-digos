@@ -18,7 +18,8 @@ class Menu:
                             5:self.opcion5,
                             6:self.opcion6,
                             7:self.opcion7,
-                            8:self.opcion8
+                            8:self.opcion8,
+                            9:self.opcion9
                           }
 
     def getSwitcher(self):
@@ -219,8 +220,17 @@ class Menu:
     def opcion3(self, p, obj):
         os.system("cls")
         pos = int(input('Ingrese posición de la lista para ver el tipo de objeto: '))
-        auto = p.mostrarElemento(pos - 1)
-        print('\nEl objeto de la posición %s es de tipo %s.\n' % (pos, auto))
+        personal = p.mostrarElemento(pos - 1)
+        tipo = ''
+        if isinstance(personal, Docente):
+            tipo = 'Docente'
+        elif isinstance(personal, PersonaldeApoyo):
+            tipo = 'Personal de Apoyo'
+        elif isinstance(personal, Investigador):
+            tipo = 'Investigador'
+        elif isinstance(personal, DocenteInvestigador):
+            tipo = 'Docente Investigador'
+        print('\nEl objeto de la posición %s es de tipo %s.\n' % (pos, tipo))
         os.system("pause")
 
     def opcion4(self, p, obj):
@@ -230,17 +240,17 @@ class Menu:
 
     def opcion5(self, p, obj):
         os.system("cls")
-        
+        p.item5()
         os.system("pause")
 
     def opcion6(self, p, obj):
         os.system("cls")
-        
+        p.item6()
         os.system("pause")
 
     def opcion7(self, p, obj):
         os.system("cls")
-
+        p.item7()
         os.system("pause")
 
     def opcion8(self, p, obj):
@@ -249,4 +259,9 @@ class Menu:
         obj.Guardar(personal)
         print('Archivo guardado con éxito.')
         print()
+        os.system("pause")
+
+    def opcion9(self, p, obj):
+        os.system("cls")
+        p.mostrar()
         os.system("pause")

@@ -19,6 +19,35 @@ class DocenteInvestigador(Personal):
         self.__categoria = categoria
         self.__importeextra = importeextra
 
+    def getSueldo(self):
+        porcentaje = self.getAntiguedad() / 100
+
+        porcentajecargo = 0
+        if self.__cargo == 'Simple':
+            porcentajecargo = 0.10
+        elif self.__cargo == 'Semi-Exclusivo':
+            porcentajecargo = 0.20
+        elif self.__cargo == 'Exclusivo':
+            porcentajecargo = 0.50
+
+        sueldo = (self.getSueldobasico() + (porcentaje * self.getSueldobasico()) / 100 + (porcentajecargo * self.getSueldobasico()) / 100) + self.__importeextra
+        return sueldo
+
+    def getCarrera(self):
+        return self.__carrera
+
+    def getArea(self):
+        return self.__areadeinvestigacion
+
+    def getCategoria(self):
+        return self.__categoria
+
+    def getImporteextra(self):
+        return self.__importeextra
+
+    def __gt__(self, personal):
+        return self.getNombre() > personal.getNombre()
+
     def toJSON(self):
         return dict(
                     __class__ = self.__class__.__name__,
@@ -40,4 +69,4 @@ class DocenteInvestigador(Personal):
 
     def __str__(self):
         super().mostrar()
-        return 'CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s | ÁREA DE INVESTIGACIÓN: %s | TIPO DE INVESTIGACIÓN: %s | CATEGORÍA EN EL PROGRAMA DE INCENTIVOS DE INVESTIGACIÓN: %s | IMPORTE EXTRA POR DOCENCIA E INVESTIGACIÓN: %s\n' % (self.__carrera, self.__cargo, self.__catedra, self.__areadeinvestigacion, self.__tipodeinvestigacion, self.__categoria, self.__importeextra)
+        return 'CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s | ÁREA DE INVESTIGACIÓN: %s | TIPO DE INVESTIGACIÓN: %s | CATEGORÍA EN EL PROGRAMA DE INCENTIVOS DE INVESTIGACIÓN: %s | IMPORTE EXTRA POR DOCENCIA E INVESTIGACIÓN: %s | SUELDO: %s\n' % (self.__carrera, self.__cargo, self.__catedra, self.__areadeinvestigacion, self.__tipodeinvestigacion, self.__categoria, self.__importeextra, self.getSueldo())
