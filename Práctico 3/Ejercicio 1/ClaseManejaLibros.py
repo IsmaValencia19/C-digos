@@ -4,11 +4,11 @@ import csv
 
 class ManejaLibro:
     __lista = []        #lista de los libros
-    __listapag = []     #lista de las páginas de cada libro
+    #__listapag = []     #lista de las páginas de cada libro
 
     def __init__(self):
         self.__lista = []
-        self.__listapag = []
+        #self.__listapag = []
 
     def agregar(self, libro):
         self.__lista.append(libro)
@@ -17,22 +17,22 @@ class ManejaLibro:
     def cargarLista(self):
         archivo = open('libros.csv')
         reader = csv.reader(archivo, delimiter = ',')
-        compa = 0   #esta variable la use para que cada componente de la "listapag" sea la cantidad de páginas de un libro
-        cont = 0    #contador de páginas
+        #compa = 0   #esta variable la use para que cada componente de la "listapag" sea la cantidad de páginas de un libro
+        #cont = 0    #contador de páginas
         for fila in reader:
             if len(fila) == 6:
                 unLibro = Libro(int(fila[0]), fila[1], fila[2], fila[3], int(fila[4]), int(fila[5]))
                 self.agregar(unLibro)
-                compa += 1
-                if cont != 0:
-                    self.__listapag.append(cont)
-                    cont -= cont
+                #compa += 1
+                #if cont != 0:
+                    #self.__listapag.append(cont)
+                    #cont -= cont
             else:
                 cap = Capitulo(fila[0], int(fila[1]))
                 unLibro.agregarCapitulo(cap)
-                cont += cap.getPag()
-        if compa > 1:
-            self.__listapag.append(cont)
+                #cont += cap.getPag()
+        #if compa > 1:
+        #    self.__listapag.append(cont)
         archivo.close()
 
     def getLista(self):
@@ -40,7 +40,7 @@ class ManejaLibro:
 
     #busca id, si lo encuentra retorna True y si no False
     def buscarId(self, id):
-        i = 0
+        '''i = 0
         band = False
         while i < len(self.__lista):
             if id == self.__lista[i].getId():
@@ -48,11 +48,21 @@ class ManejaLibro:
                 band = True
             else:
                 i += 1
-        return band
+        return band'''
+
+        i = 0
+        libro = None
+        while i < len(self.__lista) and libro == None:
+            if id == self.__lista[i].getId():
+                libro = self.__lista[i]
+            else:
+                i += 1
+        return libro
 
     #retorna la cantidad de páginas de un libro
-    def getCantPaginas(self, id):
-        i = 0
+    '''def getCantPaginas(self, id):'''
+    def getCantPaginas(self, libro):
+        '''i = 0
         cantpag = 0
         while i < len(self.__listapag):
             if (id - 10001) == i:
@@ -60,6 +70,16 @@ class ManejaLibro:
                 i = len(self.__listapag)
             else:
                 i += 1
+        return cantpag'''
+
+        cantpag = 0
+        lista_capitulos = libro.getCapitulos()
+        cada_capitulo = None
+        i = 0
+        while i < len(lista_capitulos):
+            cada_capitulo = lista_capitulos[i]
+            cantpag += cada_capitulo.getPag()
+            i += 1
         return cantpag
 
     #retorna el titulo del ID ingresado

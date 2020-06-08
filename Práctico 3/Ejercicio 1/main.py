@@ -8,8 +8,6 @@ if __name__ == '__main__':
     os.system("cls")
     ml = ManejaLibro()
     ml.cargarLista()
-    #print(ml)
-    #os.system("pause")
     menu = Menu()
     cad = ' MENÚ '
     salir = False

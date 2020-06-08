@@ -26,18 +26,22 @@ class Menu:
    
     def opcion1(self, ml):
         os.system("cls")
+        libro = None
         band = False
         while not band:
             id = int(input('Ingrese ID: '))
-            if ml.buscarId(id) == True:
+            libro = ml.buscarId(id)
+            if libro != None:
                 #print('El ID es correcto.')
                 band = True
             else:
                 print('ERROR: El ID es incorrecto.')
-        titulo = ml.buscaTitulo(id)
-        print('\nTÍTULO DEL LIBRO: %s' % titulo)
+        #titulo = ml.buscaTitulo(id)
+        #print('\nTÍTULO DEL LIBRO: %s' % titulo)
+        print('\nTÍTULO DEL LIBRO: %s' % libro.getTitulo())
         ml.mostrarCapi(id)
-        paginas = ml.getCantPaginas(id)
+        #paginas = ml.getCantPaginas(id)
+        paginas = ml.getCantPaginas(libro)
         print('CANTIDAD DE PÁGINAS DEL LIBRO: %s' % paginas)
         print()
         os.system("pause")
