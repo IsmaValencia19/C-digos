@@ -1,5 +1,3 @@
-from ClaseLibro import Libro
-from ClaseCapitulo import Capitulo
 from ClaseManejaLibros import ManejaLibro
 from ClaseMenu import Menu
 import os

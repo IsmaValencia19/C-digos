@@ -32,15 +32,11 @@ class Menu:
             id = int(input('Ingrese ID: '))
             libro = ml.buscarId(id)
             if libro != None:
-                #print('El ID es correcto.')
                 band = True
             else:
-                print('ERROR: El ID es incorrecto.')
-        #titulo = ml.buscaTitulo(id)
-        #print('\nTÍTULO DEL LIBRO: %s' % titulo)
+                print('ERROR: El ID es incorrecto.\n')
         print('\nTÍTULO DEL LIBRO: %s' % libro.getTitulo())
-        ml.mostrarCapi(id)
-        #paginas = ml.getCantPaginas(id)
+        ml.mostrarCapi(libro)
         paginas = ml.getCantPaginas(libro)
         print('CANTIDAD DE PÁGINAS DEL LIBRO: %s' % paginas)
         print()
