@@ -10,17 +10,15 @@ class ManejaInscripcion:
     def agregaInscripcion(self, inscrip):
         self.__arre = np.append(self.__arre, inscrip)
 
-    #busca una persona por el dni y muestro si debe dinero o no
-    def buscapersona(self, dni, mt):
+    #busca una persona y muestra si debe dinero o no
+    def buscapersona(self, persona, mt):
         i = 0
         while i < len(self.__arre):
-            persona = self.__arre[i].getPersona()
-            if persona.getDni() == dni:
+            if persona == self.__arre[i].getPersona():
                 taller = self.__arre[i].getTaller()
-                print('Esta inscripto/a en el taller de: %s.' % (taller))
-                p = self.__arre[i].getPago()
-                if p == False:
-                    debe = mt.getPago(taller)
+                print('Esta inscripto/a en el taller de: %s.' % (taller.getNom()))
+                if self.__arre[i].getPago() == False:
+                    debe = taller.getPago()
                     print('Debe pagar: $%s.' % (debe))
                 else:
                     print('No adeuda dinero de inscripción.')
@@ -29,19 +27,8 @@ class ManejaInscripcion:
                 i += 1
 
     #muestra los inscriptos en un taller ingresado por teclado
-    def consultaInscriptos(self, mt):
-        print(mt)
-        band = False
-        while not band:
-            id = int(input('Ingrese ID de taller para listar inscriptos: '))
-            if mt.validataller(id) == True:
-                band = True
-            else:
-                print('ID incorrecto.')
-                id = int(input('Ingrese ID de taller para listar inscriptos: '))
-        
+    def consultaInscriptos(self, taller):
         print()
-        taller = mt.getTaller(id)
         i = 0
         while i < len(self.__arre):
             if taller == self.__arre[i].getTaller():
@@ -50,28 +37,22 @@ class ManejaInscripcion:
             i +=1
 
     #ingresa dni de algún inscripto para pagar si adeuda
-    def buscaparapagar(self, dni, mt):
+    def buscaparapagar(self, persona):
         i = 0
         while i < len(self.__arre):
-            persona = self.__arre[i].getPersona()
-            if dni == persona.getDni():
+            if persona == self.__arre[i].getPersona():
                 taller = self.__arre[i].getTaller()
-                p = self.__arre[i].getPago()
-                if p == False:
-                    debe = mt.getPago(taller)
-                    print('Debe pagar: $%s.' % (debe))
-
+                if self.__arre[i].getPago() == False:
+                    print('\nDebe pagar: $%s.\n' % (taller.getPago()))
                     band = False
                     while not band:
-                        pag = int(input('Ingrese su pago: '))
-                        if pag == debe:
+                        pago = int(input('Ingrese su pago: '))
+                        if pago == taller.getPago():
                             self.__arre[i].modificapago()
-                            print()
-                            print('Pago realizado con exito!')
+                            print('\nPago realizado con exito!\n')
                             band = True
                         else:
-                            print('Pago incorrecto.')
-                            pag = int(input('Ingrese su pago: '))
+                            print('Pago incorrecto.\n')
                 else:
                     print('No adeuda dinero.')
                 i = len(self.__arre)

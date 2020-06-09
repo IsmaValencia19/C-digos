@@ -1,3 +1,10 @@
+from ClaseManejadorInscripcion import ManejaInscripcion
+from ClaseTallerCapacitacion import TallerCapacitacion
+from ClaseManejadorPersona import ManejaPersona
+from ClaseManejadorTaller import ManejaTaller
+from ClaseInscripcion import Inscripcion
+from ClasePersona import Persona
+from datetime import datetime
 import os
 
 class Menu:
@@ -29,26 +36,87 @@ class Menu:
 
     def opcion1(self, mt, mp, mi):
         os.system("cls")
-        mp.registrar(mt, mi)
+        cad = ' FORMULARIO DE REGISTRO '
+        print(cad.center(81, '='))
         print()
+        band = False
+        taller = None
+        print(mt)
+        while not band:
+            id = int(input('Ingrese ID de taller para inscribirse: '))
+            taller = mt.validataller(id)
+            if taller != None:
+                if taller.verificarVacante() == False:
+                    print('Taller sin vacantes.\n')
+                    band = False
+                else:
+                    band = True
+            else:
+                print('ID de taller incorrecto.\n')
+        fecha = datetime.now()
+        os.system("cls")
+        print('Se esta inscribiendo el dia {}/{}/{} al taller de {}.'.format(fecha.day, fecha.month, fecha.year, taller.getNom()))
+        nom = input('Ingrese nombre y apellido: ')
+        dir = input('Ingrese domicilio: ')
+        dni = input('Ingrese DNI: ')
+        unapersona = Persona(nom, dir, dni)
+
+        pago = False
+        unainscripcion = Inscripcion(fecha, pago, taller, unapersona)
+
+        unapersona.agregar(unainscripcion)
+        mp.agregar(unapersona)
+        taller.modificavacante()
+
+        mi.agregaInscripcion(unainscripcion)
+
+        print('\nInscripto exitosamente.\n')
         os.system("pause")
     
     def opcion2(self, mt, mp, mi):
         os.system("cls")
-        mp.consultaInscripcion(mi, mt)
+        persona = None
+        band = False
+        while not band:
+            dni = input('Ingrese DNI: ')
+            persona = mp.buscapersona(dni)
+            if persona != None:
+                band = True
+            else:
+                print('Persona no inscripta.')
+        print()
+        mi.buscapersona(persona, mt)
         print()
         os.system("pause")
     
     def opcion3(self, mt, mp, mi):
         os.system("cls")
-        mi.consultaInscriptos(mt)
+        print(mt)
+        taller = None
+        band = False
+        while not band:
+            id = int(input('Ingrese ID de taller para listar inscriptos: '))
+            taller = mt.validataller(id)
+            if  taller != None:
+                band = True
+            else:
+                print('ERROR, ID incorrecto.')
+        mi.consultaInscriptos(taller)
         print()
         os.system("pause")
     
     def opcion4(self, mt, mp, mi):
         os.system("cls")
-        mp.registrapago(mi, mt)
-        print()
+        persona = None
+        band = False
+        while not band:
+            dni = input('Ingrese DNI: ')
+            persona = mp.buscapersona(dni)
+            if persona != None:
+                band = True
+            else:
+                print('DNI incorrecto.')
+        mi.buscaparapagar(persona)
         os.system("pause")
     
     def opcion5(self, mt, mp, mi):

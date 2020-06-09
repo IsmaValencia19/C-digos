@@ -4,14 +4,10 @@ class Inscripcion:
     __taller = None
     __persona = None
 
-    def __init__(self, fecha = '', pago = None, taller = None):
+    def __init__(self, fecha = '', pago = None, taller = None, persona = None):
         self.__fechainscrip = fecha
         self.__pago = pago
         self.__taller = taller
-        self.__persona = None
-
-    #agrega una persona por inscripción
-    def agregar(self, persona):
         self.__persona = persona
 
     def getPersona(self):
@@ -35,4 +31,4 @@ class Inscripcion:
             s = 'Si'
         else:
             s = 'No'
-        return '\nFECHA DE INSCRIPCIÓN: %s - PAGÓ: %s - TALLER: %s - INSCRIPTO: %s' % (self.__fechainscrip, s, self.__taller, self.__persona)
+        return '\nFECHA DE INSCRIPCIÓN: {}/{}/{} - PAGÓ: {} - TALLER: {} - INSCRIPTO: {}'.format(self.__fechainscrip.day, self.__fechainscrip.month, self.__fechainscrip.year, s, self.__taller.getNom(), self.__persona)

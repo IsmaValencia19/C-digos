@@ -22,50 +22,19 @@ class ManejaTaller:
                 self.__arre = np.append(self.__arre, unTaller)
         archivo.close()
 
+    def getArre(self):
+        return self.__arre
+
     #valida si existe el taller
     def validataller(self, id):
-        band = False
+        taller = None
         i = 0
-        while i < len(self.__arre):
+        while i < len(self.__arre) and taller == None:
             if id == self.__arre[i].getId():
-                band = True
-                i = len(self.__arre)
-            else:
-                i += 1
-        return band
-
-    #devuelve el nombre del taller según su id
-    def getTaller(self, id):
-        taller = ''
-        i = 0
-        while i < len(self.__arre):
-            if id == self.__arre[i].getId():
-                taller = self.__arre[i].getNom()
-                i = len(self.__arre)
+                taller = self.__arre[i]
             else:
                 i += 1
         return taller
-
-    #envia el precio de cada taller
-    def getPago(self, taller):
-        i = 0
-        while i < len(self.__arre):
-            if taller == self.__arre[i].getNom():
-                pago = self.__arre[i].getPago()
-                i = len(self.__arre)
-            else:
-                i += 1
-        return pago
-
-    #se modifica la vacante de cada taller al inscribirse una persona, osea se va restando a medida que ingresa gente
-    def modificavacante(self, id):
-        i = 0
-        while i < len(self.__arre):
-            if id == self.__arre[i].getId():
-                self.__arre[i].modificavacante()
-                i = len(self.__arre)
-            else:
-                i += 1
 
     #retorna el id de un taller según su nombre
     def getId(self, taller):

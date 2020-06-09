@@ -19,6 +19,12 @@ class TallerCapacitacion:
     def getPago(self):
         return self.__montoInscripcion
 
+    def verificarVacante(self):
+        band = False
+        if self.__vacantes > 0:
+            band = True
+        return band
+
     def modificavacante(self):
         self.__vacantes -= 1
 

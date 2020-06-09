@@ -2,6 +2,7 @@ from ClasePersona import Persona
 from ClaseInscripcion import Inscripcion
 from ClaseManejadorTaller import ManejaTaller
 from ClaseManejadorInscripcion import ManejaInscripcion
+from datetime import datetime
 
 class ManejaPersona:
     __lista = []
@@ -12,70 +13,23 @@ class ManejaPersona:
     def agregar(self, persona):
         self.__lista.append(persona)
 
-    #función para registrar personas
-    def registrar(self, mt, mi):
-        cad = ' FORMULARIO DE REGISTRO '
-        print(cad.center(81, '='))
-        print()
-        band = False
-        print(mt)
-        while not band:
-            id = int(input('Ingrese ID de taller para inscribirse: '))
-            if mt.validataller(id) == True:
-                band = True
-            else:
-                print('ID de taller incorrecto.')
-                id = int(input('Ingrese ID de taller para inscribirse: '))
-        nom = input('Ingrese nombre y apellido: ')
-        dir = input('Ingrese domicilio: ')
-        dni = input('Ingrese DNI: ')
-        unapersona = Persona(nom, dir, dni)
-
-        fecha = input('Ingrese fecha de inscripción: ')
-        pago = False
-        taller = mt.getTaller(id)
-        unainscripcion = Inscripcion(fecha, pago, taller)
-        unainscripcion.agregar(unapersona)
-        mt.modificavacante(id)
-
-        self.agregar(unapersona)
-
-        mi.agregaInscripcion(unainscripcion)
-        print()
-        print('Inscripto exitosamente.')
-
     #busca una persona por dni
-    def busca(self, dni):
-        band = False
+    def buscapersona(self, dni):
+        persona = None
         i = 0
-        while i < len(self.__lista):
+        while i < len(self.__lista) and persona == None:
             if dni == self.__lista[i].getDni():
-                band = True
-                i = len(self.__lista)
+                persona = self.__lista[i]
             else:
                 i += 1
-        return band
-
-    #consulta la inscripción, si debe o no dinero, para eso llama a la funcion del manejador de inscripciones
-    def consultaInscripcion(self, mi, mt):
-        band = False
-        while not band:
-            dni = input('Ingrese DNI: ')
-            if self.busca(dni) == True:
-                band = True
-            else:
-                print('Persona no inscripta.')
-                dni = input('Ingrese DNI: ')
-
-        print()
-        mi.buscapersona(dni, mt)
+        return persona
 
     #se registra el pago si el inscripto debe o no
     def registrapago(self, mi, mt):
         band = False
         while not band:
             dni = input('Ingrese DNI: ')
-            if self.busca(dni) == True:
+            if self.buscapersona(dni) == True:
                 band = True
             else:
                 print('DNI incorrecto.')
@@ -89,15 +43,14 @@ class ManejaPersona:
         persona2 = Persona('Julieta Martinez', 'Juan Jofre 304', '40129321')
         persona3 = Persona('Martina Lopez', 'Urquiza 123', '42932094')
 
-        insc1 = Inscripcion('21/05/2020', False, 'Python')
-        insc1.agregar(persona1)
-        mt.modificavacante(1)
-        insc2 = Inscripcion('21/05/2020', False, 'HTML5')
-        insc2.agregar(persona2)
-        mt.modificavacante(3)
-        insc3 = Inscripcion('22/05/2020', True, 'CSS3')
-        insc3.agregar(persona3)
-        mt.modificavacante(4)
+        arre = mt.getArre()     #retorne la lista para poder hacer el testing
+        fecha = datetime.now()
+        insc1 = Inscripcion(fecha, False, arre[0], persona1)
+        arre[0].modificavacante()
+        insc2 = Inscripcion(fecha, False, arre[2], persona2)
+        arre[2].modificavacante()
+        insc3 = Inscripcion(fecha, True, arre[3], persona3)
+        arre[3].modificavacante()
 
         persona1.agregar(insc1)
         persona2.agregar(insc2)
