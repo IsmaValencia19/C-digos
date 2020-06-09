@@ -77,7 +77,7 @@ class Lista:
         encontrado = None
         while actual != None and encontrado == None:
             auto = actual.getDato()
-            if pat == auto.getPat():
+            if isinstance(auto, AutoUsado) and pat == auto.getPat():
                 encontrado = auto
             else:
                 actual = actual.getSiguiente()
