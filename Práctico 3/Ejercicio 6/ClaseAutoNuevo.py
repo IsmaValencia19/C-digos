@@ -1,17 +1,16 @@
 from ClaseAuto import Auto
-import abc
 
 class AutoNuevo(Auto):
-    __marca = 'Fiat'
+    marca = 'Fiat'
     __version = ''
 
     def __init__(self, modelo, puertas, color, precio, version):
         super().__init__(modelo, puertas, color, precio)
         self.__version = version
 
-    @abc.abstractmethod
-    def getPat(self):
-        pass
+    @classmethod
+    def getMarca(cls):
+        return cls.marca
 
     def getImporte(self):
         porcentaje = 0.1
@@ -36,4 +35,4 @@ class AutoNuevo(Auto):
 
     def __str__(self):
         super().mostrar()
-        return 'MARCA: %s - VERSIÓN: %s - IMPORTE DE VENTA: %s' % (self.__marca, self.__version, self.getImporte())
+        return 'MARCA: %s - VERSIÓN: %s - IMPORTE DE VENTA: %s' % (AutoNuevo.marca, self.__version, self.getImporte())
