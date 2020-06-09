@@ -88,21 +88,20 @@ class ManejaEmpleados:
         return band
 
     def item2(self):
-        band = False
-        while not band:
-            tarea = input('Ingrese tarea: ')
-            if self.validaTarea(tarea.capitalize()) == True:
-                band = True
-            else:
-                print('ERROR: Tarea no encontrada.')
-        
+        tarea = input('Ingrese tarea: ')
         montoObra = 0
         i = 0
         while i < len(self.__arre):
-            if tarea.capitalize() == self.__arre[i].getTarea():
-                montoObra += self.__arre[i].getSueldoExterno()
-            i += 1
-        print('\nTarea de %s - Monto a pagar: $%s.' % (tarea.capitalize(), montoObra))
+            if isinstance(self.__arre[i], Externo):
+                if tarea.capitalize() == self.__arre[i].getTarea():
+                    montoObra += self.__arre[i].getSueldoExterno()
+                i += 1
+            else:
+                i += 1
+        if montoObra != 0:
+            print('\nTarea de %s - Monto a pagar: $%s.' % (tarea.capitalize(), montoObra))
+        else:
+            print('\nNo hay tarea o fue mal ingresada.')
 
     def item3(self):
         sueldo = 25000

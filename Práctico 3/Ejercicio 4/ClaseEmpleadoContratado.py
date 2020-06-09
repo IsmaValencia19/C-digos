@@ -1,5 +1,4 @@
 from ClaseEmpleado import Empleado
-import abc
 
 class Contratado(Empleado):
     __fechaInicio = ''
@@ -17,10 +16,6 @@ class Contratado(Empleado):
     def getValorHora(cls):
         return cls.valorHora
 
-    @abc.abstractmethod
-    def getTarea(self):
-        pass
-
     def getCantHoras(self):
         return self.__cantHorasTrabajadas
 
@@ -31,8 +26,8 @@ class Contratado(Empleado):
         sueldo = self.__cantHorasTrabajadas * Contratado.getValorHora()
         return sueldo
 
-    def __lt__(self, sueld):
-        return self.getSueldo() < sueld
+    #def __lt__(self, sueld):
+    #    return self.getSueldo() < sueld
 
     def __str__(self):
         super().mostrar()

@@ -1,3 +1,5 @@
+import abc
+
 class Empleado:
     __dni = 0
     __nom = ''
@@ -21,6 +23,13 @@ class Empleado:
 
     def getTel(self):
         return self.__tel
+
+    @abc.abstractmethod
+    def getTarea(self):
+        pass
+
+    def __lt__(self, sueld):
+        return self.getSueldo() < sueld
 
     def mostrar(self):
         print('DNI: %d - NOMBRE Y APELLIDO: %s - DIRECCIÓN: %s - CELULAR: %d' % (self.__dni, self.__nom, self.__dir, self.__tel))
