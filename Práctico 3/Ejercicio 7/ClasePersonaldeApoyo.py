@@ -1,5 +1,4 @@
 from ClasePersonal import Personal
-import abc
 
 class PersonaldeApoyo(Personal):
     __categoria = 0
@@ -21,14 +20,6 @@ class PersonaldeApoyo(Personal):
 
         return (self.getSueldobasico() + (porcentaje * self.getSueldobasico()) / 100 + (porcentajecategoria * self.getSueldobasico()) / 100)
 
-    @abc.abstractmethod
-    def getCarrera(self):
-        pass
-
-    @abc.abstractmethod
-    def getArea(self):
-        pass
-
     def toJSON(self):
         return dict(
                     __class__ = self.__class__.__name__,
@@ -42,6 +33,6 @@ class PersonaldeApoyo(Personal):
                                         )
                     )
 
-    def __str__(self):
-        super().mostrar()
-        return 'CATEGORÍA: %s\n' % (self.__categoria)
+    def mostrar(self):
+        super().mostrarP()
+        print('CATEGORÍA: %s' % (self.__categoria))

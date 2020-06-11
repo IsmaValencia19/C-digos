@@ -65,7 +65,7 @@
                 "carrera": "Ciencias de la computaci\u00f3n",
                 "cargo": "Semi-Exclusivo",
                 "catedra": "Estructuras de Datos y Algoritmos",
-                "areadeinvestigacion": "Inteligencia Artificial",
+                "areadeinvestigacion": "Inteligencia artificial",
                 "tipodeinvestigacion": "Experimental",
                 "categoria": "I",
                 "importeextra": 15000
@@ -79,7 +79,7 @@
                 "nombre": "Paula",
                 "sueldobasico": 15000,
                 "antiguedad": 4,
-                "carrera": "Ciencias de la Computaci\u00f3n",
+                "carrera": "Programación Web",
                 "cargo": "Exclusivo",
                 "catedra": "Dise\u00f1o Web 1"
             }

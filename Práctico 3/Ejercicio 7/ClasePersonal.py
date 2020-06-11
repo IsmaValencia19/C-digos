@@ -27,5 +27,5 @@ class Personal:
     def getAntiguedad(self):
         return self.__antiguedad
 
-    def mostrar(self):
+    def mostrarP(self):
         print('CUIL: %s | APELLIDO: %s | NOMBRE: %s | SUELDO BÁSICO: %s | ANTIGÜEDAD: %s' % (self.__cuil, self.__apellido, self.__nombre, self.__sueldobasico, self.__antiguedad))

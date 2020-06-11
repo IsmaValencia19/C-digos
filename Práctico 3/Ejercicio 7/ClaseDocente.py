@@ -1,12 +1,11 @@
 from ClasePersonal import Personal
-import abc
 
 class Docente(Personal):
     __carrera = ''
     __cargo = ''
     __catedra = ''
 
-    def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra):
+    def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion = '', tipodeinvestigacion = '', categoria = '', importeextra = 0):
         super().__init__(cuil, apellido, nombre, sueldobasico, antiguedad)
         self.__carrera = carrera
         self.__cargo = cargo
@@ -28,9 +27,11 @@ class Docente(Personal):
     def getCarrera(self):
         return self.__carrera
 
-    @abc.abstractmethod
-    def getArea(self):
-        pass
+    def getCargo(self):
+        return self.__cargo
+
+    def getCatedra(self):
+        return self.__catedra
 
     def toJSON(self):
         return dict(
@@ -47,6 +48,11 @@ class Docente(Personal):
                                         )
                     )
 
-    def __str__(self):
-        super().mostrar()
-        return 'CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s\n' % (self.__carrera, self.__cargo, self.__catedra)
+    def mostrar(self):
+        super().mostrarP()
+        print('CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s' % (self.__carrera, self.__cargo, self.__catedra))
+    
+    #este mostrar lo hice para que en la clase DocenteInvestigador solo muestre los atributos de docente, porque con el mostrar de arriba trae el mostrar de personal, junto con
+    #el método de mostrar de la clase Investigador me sale dos veces el mismo nombre, por eso cree este "mostra"
+    def mostra(self):
+        print('CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s' % (self.__carrera, self.__cargo, self.__catedra))

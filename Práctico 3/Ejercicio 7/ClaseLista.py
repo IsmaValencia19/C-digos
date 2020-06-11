@@ -123,8 +123,11 @@ class Lista:
         actual = self.__comienzo
         while actual != None and band == False:
             personal = actual.getDato()
-            if area == personal.getArea():
-                band = True
+            if isinstance(personal, Investigador) or isinstance(personal, DocenteInvestigador):
+                if area == personal.getArea():
+                    band = True
+                else:
+                    actual = actual.getSiguiente()
             else:
                 actual = actual.getSiguiente()
         return band
@@ -143,12 +146,15 @@ class Lista:
         cont_docinvestigador = 0
         while actual != None:
             personal = actual.getDato()
-            if areadeinvestigacion == personal.getArea():
-                if isinstance(personal, DocenteInvestigador):
-                    cont_docinvestigador += 1
-                elif isinstance(personal, Investigador):
-                    cont_investigador += 1
-            actual = actual.getSiguiente()
+            if isinstance(personal, DocenteInvestigador) or isinstance(personal, Investigador):
+                if areadeinvestigacion == personal.getArea():
+                    if isinstance(personal, DocenteInvestigador):
+                        cont_docinvestigador += 1
+                    elif isinstance(personal, Investigador):
+                        cont_investigador += 1
+                actual = actual.getSiguiente()
+            else:
+                actual = actual.getSiguiente()
         
         print('\nEn el área de investigacion %s trabajan %s investigador/es y %s Docente/s Investigador/es.\n' % (areadeinvestigacion, cont_investigador, cont_docinvestigador))
 
@@ -158,14 +164,14 @@ class Lista:
         while actual != None:
             personal = actual.getDato()
             tipo = ''
-            if isinstance(personal, Docente):
-                tipo = 'Docente'
+            if type(personal) == DocenteInvestigador:
+                tipo = 'Docente Investigador'
             elif isinstance(personal, PersonaldeApoyo):
                 tipo = 'Personal de Apoyo'
             elif isinstance(personal, Investigador):
                 tipo = 'Investigador'
-            elif isinstance(personal, DocenteInvestigador):
-                tipo = 'Docente Investigador'
+            elif isinstance(personal, Docente):
+                tipo = 'Docente'
             listapersonal = [personal.getNombre(), personal.getApellido(), tipo, personal.getSueldo()]
             lista.append(listapersonal)
             actual = actual.getSiguiente()
@@ -209,7 +215,7 @@ class Lista:
 
     def mostrar(self):
         for personal in self:
-            print(personal)
+            print(personal.mostrar())
 
     def __len__(self):
         return self.__tope

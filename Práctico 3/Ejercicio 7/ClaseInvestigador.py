@@ -1,11 +1,10 @@
 from ClasePersonal import Personal
-import abc
 
 class Investigador(Personal):
     __areadeinvestigacion = ''
     __tipodeinvestigacion = ''
 
-    def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion):
+    def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera = '', cargo = '', catedra = '', areadeinvestigacion = '', tipodeinvestigacion = '', categoria = '', importeextra = 0):
         super().__init__(cuil, apellido, nombre, sueldobasico, antiguedad)
         self.__areadeinvestigacion = areadeinvestigacion
         self.__tipodeinvestigacion = tipodeinvestigacion
@@ -14,12 +13,11 @@ class Investigador(Personal):
         porcentaje = self.getAntiguedad() / 100
         return (self.getSueldobasico() + (porcentaje * self.getSueldobasico()) / 100)
 
-    @abc.abstractmethod
-    def getCarrera(self):
-        pass
-
     def getArea(self):
         return self.__areadeinvestigacion
+
+    def getTipo(self):
+        return self.__tipodeinvestigacion
 
     def toJSON(self):
         return dict(
@@ -35,6 +33,6 @@ class Investigador(Personal):
                                         )
                     )
 
-    def __str__(self):
-        super().mostrar()
-        return 'ÁREA DE INVESTIGACIÓN: %s | TIPO DE INVESTIGACIÓN: %s\n' % (self.__areadeinvestigacion, self.__tipodeinvestigacion)
+    def mostrar(self):
+        super().mostrarP()
+        print('ÁREA DE INVESTIGACIÓN: %s | TIPO DE INVESTIGACIÓN: %s' % (self.__areadeinvestigacion, self.__tipodeinvestigacion))
