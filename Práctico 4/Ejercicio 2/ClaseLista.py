@@ -44,11 +44,11 @@ class Lista:
         return precio
 
     def toJSON(self):
-        listaautos = []
+        listacasas = []
         for a in self:
-            listaautos.append(a.toJSON())
+            listacasas.append(a.toJSON())
 
-        d = dict(__class__ = self.__class__.__name__, autos = listaautos)
+        d = dict(__class__ = self.__class__.__name__, casas = listacasas)
         return d
 
     def mostrar(self):

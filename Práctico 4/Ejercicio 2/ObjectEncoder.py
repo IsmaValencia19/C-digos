@@ -30,6 +30,6 @@ class ObjectEncoder(object):
                     class_name = delemento.pop("__class__")
                     class_ = eval(class_name)
                     atributos = delemento["__atributos__"]
-                    unAuto = class_(**atributos)
-                    lista.agregarElemento(unAuto)
+                    unaCasa = class_(**atributos)
+                    lista.agregarElemento(unaCasa)
                 return lista
