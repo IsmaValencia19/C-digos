@@ -1,0 +1,55 @@
+{
+    "__class__": "ManejadorPacientes",
+    "pacientes": [
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
+                "nombre": "Martin",
+                "apellido": "Martinez",
+                "telefono": "(264)5364758",
+                "altura": 180,
+                "peso": 70
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
+                "nombre": "Juana",
+                "apellido": "Mart\u00ed",
+                "telefono": "(264)4365343",
+                "altura": 150,
+                "peso": 60
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
+                "nombre": "Martina",
+                "apellido": "Martinez",
+                "telefono": "(264)56854575",
+                "altura": 165,
+                "peso": 70
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
+                "nombre": "Norma",
+                "apellido": "Marquez",
+                "telefono": "(264)7875796",
+                "altura": 180,
+                "peso": 80
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
+                "nombre": "Fernando",
+                "apellido": "Torres",
+                "telefono": "(264)6321478",
+                "altura": "190",
+                "peso": "85"
+            }
+        }
+    ]
+}

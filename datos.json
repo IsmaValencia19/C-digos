@@ -1,0 +1,50 @@
+{
+    "__class__": "ManejadorProvincias",
+    "provincias": [
+        {
+            "__class__": "Provincia",
+            "__atributos__": {
+                "nombre": "San Juan",
+                "capital": "San Juan",
+                "cantidaddehabitantes": 781217,
+                "cantidaddedepartamentos": 19
+            }
+        },
+        {
+            "__class__": "Provincia",
+            "__atributos__": {
+                "nombre": "Buenos Aires",
+                "capital": "La Plata",
+                "cantidaddehabitantes": "34140319",
+                "cantidaddedepartamentos": "24"
+            }
+        },
+        {
+            "__class__": "Provincia",
+            "__atributos__": {
+                "nombre": "Catamarca",
+                "capital": "San Fernando del Valle de Catamarca",
+                "cantidaddehabitantes": "367828",
+                "cantidaddedepartamentos": "16"
+            }
+        },
+        {
+            "__class__": "Provincia",
+            "__atributos__": {
+                "nombre": "C\u00f3rdoba",
+                "capital": "C\u00f3rdoba",
+                "cantidaddehabitantes": "3308876",
+                "cantidaddedepartamentos": "26"
+            }
+        },
+        {
+            "__class__": "Provincia",
+            "__atributos__": {
+                "nombre": "Santa Fe",
+                "capital": "Santa Fe",
+                "cantidaddehabitantes": "3194537",
+                "cantidaddedepartamentos": "19"
+            }
+        }
+    ]
+}
