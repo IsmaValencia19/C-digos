@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk, messagebox
-from ClaseLista import Lista
-from ObjectEncoder import ObjectEncoder
+import requests
+import json
 
 class Aplicacion():
     __ventana = None
@@ -36,16 +36,26 @@ class Aplicacion():
         self.__ventana.mainloop()
 
     def calcular(self, *args):
-        obj = ObjectEncoder()
-        casas = obj.Decoder(obj.Leer())
-        precioVenta = casas.getDolar()
+        url = 'https://www.dolarsi.com/api/api.php?type=dolar'
+        r = requests.get(url)
+        re = r.json()
+
+        for i in range(len(re)):
+            if re[i]['casa']['nombre'] == 'Oficial':
+                precioVenta = re[i]['casa']['venta']
+
+        venta = float(precioVenta.replace(',', '.'))
+
         if self.dolarEntry.get() != '':
             try:
                 valor = float(self.dolarEntry.get())
-                self.__peso.set(precioVenta * valor)
+                self.__peso.set(venta * valor)
             except ValueError:
                 messagebox.showerror(title = 'Error de tipo', message = 'Debe ingresar un valor numérico')
                 self.__dolar.set('')
                 self.dolarEntry.focus()
         else:
             self.__peso.set('')
+            
+if __name__ == '__main__':
+    app = Aplicacion()
