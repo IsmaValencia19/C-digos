@@ -41,11 +41,12 @@ class ControladorPacientes:
         self.seleccion = -1
 #show
     def ver_imc(self):
-        imc_pac = IMC(self.vista).show()
+        imc_pac = IMC(self.vista)
         if self.seleccion == -1:
             return
         paciente = self.pacientes[self.seleccion]
         imc_pac.resolver_imc(paciente)
+        imc_pac.show()
         self.seleccion = -1
 
     def start(self):

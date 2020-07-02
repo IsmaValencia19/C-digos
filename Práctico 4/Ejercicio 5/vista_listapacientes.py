@@ -104,9 +104,9 @@ class IMC(tk.Toplevel):
         for entry, value in zip(self.entries, values):
             entry.delete(0, tk.END)
             entry.insert(0, value)
-
+    
     def resolver_imc(self, paciente):
-        resultado = paciente.getPeso() / (paciente.getAlt / 100)**2
+        resultado = int(paciente.getPeso()) / (int(paciente.getAlt()) / 100)**2
         if resultado < 18.5:
             composicion_corporal = 'Peso inferior al normal'
         elif 18.5 <= resultado <= 24.9:
@@ -115,7 +115,6 @@ class IMC(tk.Toplevel):
             composicion_corporal = 'Peso superior al normal'
         elif resultado >= 30:
             composicion_corporal = 'Obesidad'
-        return composicion_corporal
         self.mostrarEstadoPacienteEnFormulario(resultado, composicion_corporal)
 
     def crearCampo(self, field):

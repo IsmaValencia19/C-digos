@@ -4,16 +4,6 @@
         {
             "__class__": "Paciente",
             "__atributos__": {
-                "nombre": "Martin",
-                "apellido": "Martinez",
-                "telefono": "(264)5364758",
-                "altura": 180,
-                "peso": 70
-            }
-        },
-        {
-            "__class__": "Paciente",
-            "__atributos__": {
                 "nombre": "Juana",
                 "apellido": "Mart\u00ed",
                 "telefono": "(264)4365343",
