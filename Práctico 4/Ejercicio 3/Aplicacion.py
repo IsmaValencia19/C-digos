@@ -11,22 +11,28 @@ class Aplicacion():
 
     def __init__(self):
         self.__ventana = Tk()
-        self.__ventana.geometry('315x500')
+        self.__ventana.geometry('290x200')
         self.__actualizacion = StringVar()
 
-        mainframe = ttk.Frame(self.__ventana, padding = '5 5 12 5')
+        mainframe = ttk.Frame(self.__ventana, padding = '5')
         mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
         mainframe.columnconfigure(0, weight = 1)
         mainframe.rowconfigure(0, weight = 1)
         mainframe['borderwidth'] = 2
         mainframe['relief'] = 'sunken'
 
-        text1 = Label(mainframe, text = 'Moneda', anchor = 'w', width = 20)
+        frame = ttk.Frame(mainframe, padding = '5 5 12 5')
+        frame.grid(column = 0, row = 0, columnspan = 3, sticky = (N, W, E, S))
+        frame.columnconfigure(0, weight = 1)
+        frame.rowconfigure(0, weight = 1)
+        frame['borderwidth'] = 2
+
+        text1 = Label(frame, text = 'Moneda', anchor = 'w', width = 19)
         text1.grid(column = 0, row = 0, sticky = W)
-        text2 = Label(mainframe, text = 'Compra')
-        text2.grid(column = 1, row = 0, sticky = N)
-        text3 = Label(mainframe, text = 'Venta')
-        text3.grid(column = 2, row = 0, sticky = N)
+        text2 = Label(frame, text = 'Compra', anchor = 'e', width = 6)
+        text2.grid(column = 1, row = 0, sticky = E)
+        text3 = Label(frame, text = 'Venta', anchor = 'e', width = 8)
+        text3.grid(column = 2, row = 0, sticky = E)
 
         self.cargadolar()
 
@@ -79,6 +85,3 @@ class Aplicacion():
         self.cargadolar()
         fecha = datetime.now()
         self.__actualizacion.set('Actualizado {}/{}/{} {}:{}'.format(fecha.day, fecha.month, fecha.year, fecha.hour, fecha.minute))
-
-if __name__ == '__main__':
-    app = Aplicacion()

@@ -56,6 +56,3 @@ class Aplicacion():
                 self.dolarEntry.focus()
         else:
             self.__peso.set('')
-            
-if __name__ == '__main__':
-    app = Aplicacion()

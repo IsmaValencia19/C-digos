@@ -78,6 +78,3 @@ class Aplicacion():
         self.__peso.set('')
         self.resultado.set('')
         self.composicion_corporal.set('')
-
-if __name__ == '__main__':
-    app = Aplicacion()
