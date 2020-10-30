@@ -1,5 +1,7 @@
-from Clases import claseEmail
+from ClaseEmail import Email
 import csv
+import re
+
 class contador:
     __lista = []
     
@@ -9,22 +11,34 @@ class contador:
     def agregar(self, correo):
         self.__lista.append(correo)
 
-    def dominios():
-        archivo = open('correosparacontardominio.csv')
+    def testing(self):
+        archivo = open('10correos.csv')
         reader = csv.reader(archivo, delimiter = ',')
+        i = 0
         for fila in reader:
-            id = fila[0]
-            dom = fila[1]
-            tipdom = fila[2]
-            contra = fila[3]
-            uncorreo = claseEmail(id, dom, tipdom, contra)
-            self.agregar(uncorreo)
+            while i < len(fila):
+                fila[i].find('@')
+                nuevo_email = fila[i].split('@')
+                usuario = nuevo_email[0]
+                resto = nuevo_email[1]
+                continuacion = resto.split('.')
+                dominio = continuacion[0]
+                tipodominio = continuacion[1]
+                uncorreo = Email(usuario, dominio, tipodominio)
+                self.agregar(uncorreo)
+                i += 1
+        archivo.close()
 
     def buscardominio(self, domi):
-        i = 0
         cont = 0
-        while i < len(lista):
-            if(self.__lista[i].getDominio == dominio):
+        for elemento in self.__lista:
+            dominio = elemento.getDominio()
+            if domi == dominio:
                 cont += 1
-            i += 1
         return cont
+
+    def __str__(self):
+        s = ''
+        for correos in self.__lista:
+            s += str(correos) + '\n'
+        return s
