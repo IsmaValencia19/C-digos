@@ -1,4 +1,4 @@
-class claseViajero:
+class ViajeroFrecuente:
     __id = 0
     __dni = 0
     __nom = ''

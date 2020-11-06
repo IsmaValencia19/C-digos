@@ -1,4 +1,4 @@
-from Clases import claseViajero
+from ClaseViajeroFrecuente import ViajeroFrecuente
 import csv
 
 class clasemanejadorViajero:
@@ -9,24 +9,6 @@ class clasemanejadorViajero:
     
     def agregarViajero(self, viajero):
         self.__listaViajero.append(viajero)
-    
-    def buscarViajero(self, id):
-        i = 0
-        while i < len(self.__listaViajero):
-            if self.__listaViajero[i].getId() == id:
-                indice = self.__listaViajero[i].getId() - 1
-            i += 1
-        return indice
-
-        #for indice, viajero in enumerate(self.__listaViajero):
-        #    if viajero.getId() == id:
-        #        return indice
-    
-    def __str__(self):
-        s = ''
-        for viajero in self.__listaViajero:
-            s += str(viajero) + '\n'
-        return s
 
     def testViajeros(self):
         archivo = open('viajeros.csv')
@@ -42,9 +24,25 @@ class clasemanejadorViajero:
                 nom = fila[2]
                 ape = fila[3]
                 millas = int(fila[4])
-                unViajero = claseViajero(id, dni, nom, ape, millas)
+                unViajero = ViajeroFrecuente(id, dni, nom, ape, millas)
                 self.agregarViajero(unViajero)
         archivo.close()
+    
+    def buscarViajero(self, id):
+        i = 0
+        while i < len(self.__listaViajero):
+            if self.__listaViajero[i].getId() == id:
+                indice = self.__listaViajero[i].getId() - 1
+                i = len(self.__listaViajero)
+            else:
+                i += 1
+        return indice
 
     def getId(self, indice):
         return self.__listaViajero[indice]
+    
+    def __str__(self):
+        s = ''
+        for viajero in self.__listaViajero:
+            s += str(viajero) + '\n'
+        return s
