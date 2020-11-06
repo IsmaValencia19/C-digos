@@ -1,17 +1,18 @@
 from ClaseEmail import Email
 from dominios import contador
+from Validador import ValidaFlotante, ValidaEntero, ValidaEmail, ValidaCadenaAlfanumerica, ValidaCadenaAlfabetica
 import os
 
 if __name__ == '__main__':
     os.system("cls")
 
-    nom = input('Ingrese su nombre: ') 
-    id = input('Ingrese id de cuenta: ')
-    dom = input('Ingrese dominio: ')
-    tipdom = input('Ingrese el tipo de dominio: ')
-    contra = input('Ingrese su contraseña: ')
+    nom = ValidaCadenaAlfabetica('Ingrese su nombre: ')
+    id = str(input('Ingrese id de cuenta: '))
+    dom = ValidaCadenaAlfabetica('Ingrese el dominio: ')
+    tipdom = ValidaCadenaAlfabetica('Ingrese el tipo de dominio: ')
+    contra = str(input('Ingrese su contraseña: '))
     mail = Email(id, dom, tipdom, contra)
-    print('\nEstimado', nom, 'te enviaremos tus mensajes a la dirección', mail)
+    print('\nEstimado', nom, 'te enviaremos tus mensajes a la dirección %s.'% (mail))
 
     print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM.')
     os.system("pause")
@@ -33,25 +34,9 @@ if __name__ == '__main__':
     os.system("pause")
 
     os.system("cls")
-    band = False
-    while band == False:
-        correo = input('\nIngrese correo para generar un objeto: ')
-        if correo.find('@') != -1:
-            nuevo_email = correo.split('@')
-            usuario = nuevo_email[0]
-            resto = nuevo_email[1]
-            if resto.find('.') != -1:
-                continuacion = resto.split('.')
-                dominio = continuacion[0]
-                tipodominio = continuacion[1]
-                uncorreo = Email(usuario, dominio, tipodominio)
-                email = mail.crearCuenta(correo)
-                print('\nObjeto generado:', email)
-                band = True
-            else:
-                print('ERROR, falta el PUNTO separador del dominio y tipo de dominio.')
-        else:
-            print('ERROR, falta el @ en el correo ingresado.')
+    correo = ValidaEmail('Ingrese cuenta de email para generar un objeto: ')
+    email = mail.crearCuenta(correo)
+    print('\nObjeto generado:', email)
 
     print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM.')
     os.system("pause")
@@ -61,7 +46,7 @@ if __name__ == '__main__':
     dominios = contador()
     dominios.testing()
     print(dominios)
-    dominio = input('Ingrese dominio: ')
+    dominio = ValidaCadenaAlfabetica('Ingrese un dominio: ')
     cant = dominios.buscardominio(dominio)
     print('Hay', cant, 'cuenta\s con el dominio %s.' % (dominio))
 
