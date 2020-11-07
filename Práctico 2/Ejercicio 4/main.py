@@ -1,4 +1,5 @@
 from claseFechaHora import claseFechaHora
+from Validador import ValidaEntero
 import os
 os.system("cls")
 
@@ -79,12 +80,12 @@ def validar(d, mes, año, h, m, s):
                     return False
 
 if __name__ == '__main__':
-    d = int(input('Ingrese dia: '))
-    mes = int(input('Ingrese mes: '))
-    a = int(input('Ingrese año: '))
-    h = int(input('Ingrese hora: '))
-    m = int(input('Ingrese minutos: '))
-    s = int(input('Ingrese segundos: '))
+    d = ValidaEntero('Ingrese dia: ')
+    mes = ValidaEntero('Ingrese mes: ')
+    a = ValidaEntero('Ingrese año: ')
+    h = ValidaEntero('Ingrese hora: ')
+    m = ValidaEntero('Ingrese minutos: ')
+    s = ValidaEntero('Ingrese segundos: ')
     if validar(d, mes, a, h, m, s):
         r = claseFechaHora()
         r1 = claseFechaHora(d, mes, a)

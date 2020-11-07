@@ -1,4 +1,5 @@
 from claseFechaHora import claseFechaHora
+from Validador import ValidaEntero
 import os
 
 def opcion1():
@@ -53,7 +54,7 @@ def menu():
         print('2 - Restar hora.')
         print('3 - Distinguir entre dos horas cuál es la mayor.')
         print('4 - Salir.')
-        op = int(input('Ingrese opción: '))
+        op = ValidaEntero('Ingrese opción: ')
         if op == 1:
             opcion1()
         elif op == 2:

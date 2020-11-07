@@ -1,0 +1,51 @@
+import re
+
+def ValidaEntero(mensaje):
+    band = False
+    while not band:
+        try:
+            numero = int(input(mensaje))
+            band = True
+        except ValueError:
+            print('ERROR: debes ingresar un número entero.')
+    return numero
+
+def ValidaFlotante(mensaje):
+    band = False
+    while not band:
+        try:
+            numero = float(input(mensaje))
+            band = True
+        except ValueError:
+            print('ERROR: debes ingresar un número real.')
+    return numero
+
+def ValidaCadenaAlfabetica(mensaje):
+    band = False
+    while not band:
+        vari = str(input(mensaje))
+        if vari.isalpha() == True:
+            band = True
+        else:
+            print('ERROR: debes ingresar sólo letras.')
+    return vari
+
+def ValidaCadenaAlfanumerica(mensaje):
+    band = False
+    while not band:
+        vari = str(input(mensaje))
+        if vari.isalnum() == True:
+            band = True
+        else:
+            print('ERROR: debes ingresar letras y números sin espacios ni caracteres especiales.')
+    return vari
+
+def ValidaEmail(mensaje):
+    band = False
+    while not band:
+        correo = str(input(mensaje))
+        if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}$',correo.lower()):
+            band = True
+        else:
+            print("ERROR: la estructura del correo ingresada es incorrecta.\n")
+    return correo

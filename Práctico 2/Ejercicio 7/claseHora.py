@@ -60,26 +60,26 @@ class claseHora:
             h = h - 24
             d = hora.getDia() + 1
 
-        if(self.__mes == 4 or self.__mes == 6 or self.__mes == 9 or self.__mes == 11):
-            if(self.__dia > 30):
-                self.__dia -= 30
-                self.__mes += 1
-        elif(self.__mes == 1 or self.__mes == 3 or self.__mes == 5 or self.__mes == 7 or self.__mes == 8 or self.__mes == 10 or self.__mes == 12):
-            if(self.__dia > 31):
-                if(self.__mes == 12):
-                    self.__año += 1
-                    self.__mes = 1
+        if(hora.getMes() == 4 or hora.getMes() == 6 or hora.getMes() == 9 or hora.getMes() == 11):
+            if(hora.getDia() > 30):
+                hora.setDia(30)
+                hora.aumentaMes()
+        elif(hora.getMes() == 1 or hora.getMes() == 3 or hora.getMes() == 5 or hora.getMes() == 7 or hora.getMes() == 8 or hora.getMes() == 10 or hora.getMes() == 12):
+            if(hora.getDia() > 31):
+                if(hora.getMes() == 12):
+                    hora.aumentaAño()
+                    hora.setMes()
                 else:
-                    self.__mes += 1
-                    self.__dia -= 31
+                    hora.aumentaMes()
+                    hora.setDia(31) 
         else:
             if(((año % 4) == 0 and (año % 100) != 0) or (año % 400) == 0):
-                if(self.__dia > 29):
-                    self.__dia -= 29
+                if(hora.getDia() > 29):
+                    hora.setDia(29)
                 else:
-                    if(self.__dia > 28):
-                        self.__dia -= 28
-                self.__mes += 1
+                    if(hora.getDia() > 28):
+                        hora.setDia(28)
+                hora.aumentaMes()
 
         aux = claseFechaHora(d, hora.getMes(), hora.getAño(), h, min, s)
         return aux

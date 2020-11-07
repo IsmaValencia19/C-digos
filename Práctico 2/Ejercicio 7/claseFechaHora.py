@@ -17,11 +17,23 @@ class claseFechaHora:
     def getDia(self):
         return self.__dia
 
+    def setDia(self, num):
+        self.__dia = num
+
     def getMes(self):
         return self.__mes
 
+    def aumentaMes(self):
+        self.__mes += 1
+
+    def setMes(self):
+        self.__mes = 1
+
     def getAño(self):
         return self.__año
+
+    def aumentaAño(self):
+        self.__año += 1
 
     def getHora(self):
         return self.__hora
