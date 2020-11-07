@@ -1,4 +1,4 @@
-from claseAlumno import claseAlumno
+from ClaseAlumno import Alumno
 import csv
 
 class manejadorAlumno:
@@ -21,17 +21,18 @@ class manejadorAlumno:
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
             nom = fila[0]
-            año = fila[1]
-            div = fila[2]
-            cant_inas = fila[3]
-            unAlumno = claseAlumno(nom, año, div, cant_inas)
+            año = int(fila[1])
+            div = int(fila[2])
+            cant_inas = int(fila[3])
+            unAlumno = Alumno(nom, año, div, cant_inas)
             self.agregarAlumno(unAlumno)
         archivo.close()
 
     def porcentAlum(self, añ, di):
-        for i in self.__listaAlumno:
-            año = i.getAño()
-            div = i.getDiv()
-            inasis = i.getInasis()
-            if(año == añ) and (div == di) and (inasis > claseAlumno.getMaxInas()):
-                print('{:<25}{}%'.format(i.getNom(), i.porcen_inasis()))
+        i = 0
+        while i < len(self.__listaAlumno):
+            año = self.__listaAlumno[i].getAño()
+            div = self.__listaAlumno[i].getDiv()
+            if (año == añ) and (div == di) and (self.__listaAlumno[i].getInasis() > Alumno.getMaxInas()):
+                print('{:<25}{}%'.format(self.__listaAlumno[i].getNom(), self.__listaAlumno[i].porcen_inasis()))
+            i += 1

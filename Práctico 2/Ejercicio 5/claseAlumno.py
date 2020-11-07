@@ -1,11 +1,11 @@
-class claseAlumno:
+class Alumno:
     #variables de clase
     cant_max_inasis = 21
     cant_totalClases = 100
     #variables de instancia
     __nom = ''
     __año = 0
-    __div = ''
+    __div = 0
     __cant_inasistencia = 0
     
     def __init__(self, nom = '', año = 0, div = 0, cant_inasis = 0):
@@ -27,7 +27,7 @@ class claseAlumno:
         return self.__cant_inasistencia
 
     def  porcen_inasis(self):
-        return (self.__cant_inasistencia * 100 ) / claseAlumno.getCantClases()
+        return (self.__cant_inasistencia * 100 ) / Alumno.getCantClases()
 
     def __str__(self):
         return 'Nombre: %s - Año:%s - División: %s - Inasistencias: %s' % (self.__nom, self.__año, self.__div, self.__cant_inasistencia)

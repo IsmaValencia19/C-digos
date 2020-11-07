@@ -1,12 +1,13 @@
+from Validador import ValidaEntero
 from manejadorAlumnos import manejadorAlumno
-from claseAlumno import claseAlumno
+from ClaseAlumno import Alumno
 import os
 os.system("cls")
 
 def opcion1():
     print()
-    año = int(input('Ingrese año: '))
-    div = int(input('Ingrese división: '))
+    año = ValidaEntero('Ingrese año: ')
+    div = ValidaEntero('Ingrese división: ')
     print()
     print('{:25}{}'.format('Alumno', 'Porcentaje') + '\n')
     ma.porcentAlum(año, div)
@@ -14,10 +15,10 @@ def opcion1():
 
 def opcion2():
     print()
-    max_inasis = int(input('Ingrese la nueva cantidad máxima de inasistencias: '))
+    max_inasis = ValidaEntero('Ingrese la nueva cantidad máxima de inasistencias : ')
     print()
     print('Asistencia antes de actualizar:')
-    alumno = claseAlumno()
+    alumno = Alumno()
     alumno.verAsistencias()
     alumno.actualizarMaxInas(max_inasis)
     print()
@@ -39,7 +40,7 @@ def menu():
         print('1 - Ingrese año y división para listar alumnos en malas condiciones.')
         print('2 - Modificar la cantidad máxima de inasistencias permitidas.')
         print('3 - Salir.')
-        op = int(input('Ingrese opción: '))
+        op = ValidaEntero('Ingrese opción: ')
 
         if(op == 1):
             opcion1()
