@@ -5,7 +5,7 @@ import os
 
 if __name__ == '__main__':
     os.system("cls")
-    
+
     d = 5#ValidaEntero('Ingrese dia: ')
     mes = 5#ValidaEntero('Ingrese mes: ')
     a = 2020#ValidaEntero('Ingrese año: ')

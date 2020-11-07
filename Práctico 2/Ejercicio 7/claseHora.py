@@ -22,14 +22,14 @@ class claseHora:
     def Mostrar(self):
         print('          {}:{}:{}'.format(self.__hora, self.__min, self.__seg)) 
 
-    def __radd__(self, hora):
-        h = self.getHora() + hora.getHora()
-        min = self.getMin() + hora.getMin()
-        s = self.getSeg() + hora.getSeg()
+    def __radd__(self, fechahora):
+        h = self.getHora() + fechahora.getHora()
+        min = self.getMin() + fechahora.getMin()
+        s = self.getSeg() + fechahora.getSeg()
 
         if(h > 23):
             h = h - 24
-            d = hora.getDia() + 1
+            d = fechahora.getDia() + 1
         
         if(min >= 60):
             h += 1
@@ -39,14 +39,14 @@ class claseHora:
             min += 1
             s = s - 60
             
-        aux = claseFechaHora(d, hora.getMes(), hora.getAño(), h, min, s)
+        aux = claseFechaHora(d, fechahora.getMes(), fechahora.getAño(), h, min, s)
         return aux
 
-    def __add__(self, hora):
+    def __add__(self, fechahora):
         aux = self
-        h = self.__hora + hora.getHora()
-        min = self.__min + hora.getMin()
-        s = self.__seg + hora.getSeg()
+        h = self.__hora + fechahora.getHora()
+        min = self.__min + fechahora.getMin()
+        s = self.__seg + fechahora.getSeg()
 
         if(s >= 60):
             min += 1
@@ -58,28 +58,28 @@ class claseHora:
 
         if(h > 23):
             h = h - 24
-            d = hora.getDia() + 1
+            d = fechahora.getDia() + 1
 
-        if(hora.getMes() == 4 or hora.getMes() == 6 or hora.getMes() == 9 or hora.getMes() == 11):
-            if(hora.getDia() > 30):
-                hora.setDia(30)
-                hora.aumentaMes()
-        elif(hora.getMes() == 1 or hora.getMes() == 3 or hora.getMes() == 5 or hora.getMes() == 7 or hora.getMes() == 8 or hora.getMes() == 10 or hora.getMes() == 12):
-            if(hora.getDia() > 31):
-                if(hora.getMes() == 12):
-                    hora.aumentaAño()
-                    hora.setMes()
+        if(fechahora.getMes() == 4 or fechahora.getMes() == 6 or fechahora.getMes() == 9 or fechahora.getMes() == 11):
+            if(fechahora.getDia() > 30):
+                fechahora.setDia(30)
+                fechahora.aumentaMes()
+        elif(fechahora.getMes() == 1 or fechahora.getMes() == 3 or fechahora.getMes() == 5 or fechahora.getMes() == 7 or fechahora.getMes() == 8 or fechahora.getMes() == 10 or fechahora.getMes() == 12):
+            if(fechahora.getDia() > 31):
+                if(fechahora.getMes() == 12):
+                    fechahora.aumentaAño()
+                    fechahora.setMes()
                 else:
-                    hora.aumentaMes()
-                    hora.setDia(31) 
+                    fechahora.aumentaMes()
+                    fechahora.setDia(31) 
         else:
             if(((año % 4) == 0 and (año % 100) != 0) or (año % 400) == 0):
-                if(hora.getDia() > 29):
-                    hora.setDia(29)
+                if(fechahora.getDia() > 29):
+                    fechahora.setDia(29)
                 else:
-                    if(hora.getDia() > 28):
-                        hora.setDia(28)
-                hora.aumentaMes()
+                    if(fechahora.getDia() > 28):
+                        fechahora.setDia(28)
+                fechahora.aumentaMes()
 
-        aux = claseFechaHora(d, hora.getMes(), hora.getAño(), h, min, s)
+        aux = claseFechaHora(d, fechahora.getMes(), fechahora.getAño(), h, min, s)
         return aux
