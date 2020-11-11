@@ -1,5 +1,6 @@
 from ClaseManejadorInscripcion import ManejaInscripcion
 from ClaseTallerCapacitacion import TallerCapacitacion
+from Validador import ValidaEntero, ValidaCadena
 from ClaseManejadorPersona import ManejaPersona
 from ClaseManejadorTaller import ManejaTaller
 from ClaseInscripcion import Inscripcion
@@ -43,7 +44,7 @@ class Menu:
         taller = None
         print(mt)
         while not band:
-            id = int(input('Ingrese ID de taller para inscribirse: '))
+            id = ValidaEntero('Ingrese ID de taller para inscribirse: ')
             taller = mt.validataller(id)
             if taller != None:
                 if taller.verificarVacante() == False:
@@ -56,9 +57,9 @@ class Menu:
         fecha = datetime.now()
         os.system("cls")
         print('Se esta inscribiendo el dia {}/{}/{} al taller de {}.'.format(fecha.day, fecha.month, fecha.year, taller.getNom()))
-        nom = input('Ingrese nombre y apellido: ')
-        dir = input('Ingrese domicilio: ')
-        dni = input('Ingrese DNI: ')
+        nom = ValidaCadena('Ingrese nombre y apellido: ')
+        dir = ValidaCadena('Ingrese domicilio: ')
+        dni = ValidaEntero('Ingrese DNI: ')
         unapersona = Persona(nom, dir, dni)
 
         pago = False
@@ -78,7 +79,7 @@ class Menu:
         persona = None
         band = False
         while not band:
-            dni = input('Ingrese DNI: ')
+            dni = ValidaEntero('Ingrese DNI: ')
             persona = mp.buscapersona(dni)
             if persona != None:
                 band = True
@@ -95,7 +96,7 @@ class Menu:
         taller = None
         band = False
         while not band:
-            id = int(input('Ingrese ID de taller para listar inscriptos: '))
+            id = ValidaEntero('Ingrese ID de taller para listar inscriptos: ')
             taller = mt.validataller(id)
             if  taller != None:
                 band = True
@@ -110,7 +111,7 @@ class Menu:
         persona = None
         band = False
         while not band:
-            dni = input('Ingrese DNI: ')
+            dni = ValidaEntero('Ingrese DNI: ')
             persona = mp.buscapersona(dni)
             if persona != None:
                 band = True

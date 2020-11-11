@@ -23,7 +23,7 @@ class Inscripcion:
         self.__pago = True
 
     def getFecha(self):
-        return self.__fechainscrip
+        return self.__fechainscrip 
 
     def __str__(self):
         s = ''

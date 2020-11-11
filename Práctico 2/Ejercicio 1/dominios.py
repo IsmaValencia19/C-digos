@@ -6,7 +6,7 @@ class contador:
     __lista = []
     
     def __init__(self):
-        self.__lista = []
+        self.__lista =[]
 
     def agregar(self, correo):
         self.__lista.append(correo)

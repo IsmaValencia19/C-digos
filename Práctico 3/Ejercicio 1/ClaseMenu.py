@@ -1,6 +1,7 @@
 from ClaseLibro import Libro
 from ClaseCapitulo import Capitulo
 from ClaseManejaLibros import ManejaLibro
+from Validador import ValidaEntero
 import os
 
 class Menu:
@@ -20,6 +21,7 @@ class Menu:
         func(ml)
     
     def salir(self, ml):
+        os.system('cls')
         print()
         print('>>>>>Salio del programa<<<<<')
         print()
@@ -29,7 +31,7 @@ class Menu:
         libro = None
         band = False
         while not band:
-            id = int(input('Ingrese ID: '))
+            id = ValidaEntero('Ingrese ID: ')
             libro = ml.buscarId(id)
             if libro != None:
                 band = True
@@ -46,7 +48,7 @@ class Menu:
         os.system("cls")
         band = False
         while not band:
-            palabra = input('Ingrese palabra a buscar: ')
+            palabra = str(input('Ingrese palabra a buscar: '))
             if ml.buscaPalabraenTitu(palabra) == True:
                 print('\nLa palabra esta en el título de un libro.')
                 band = True

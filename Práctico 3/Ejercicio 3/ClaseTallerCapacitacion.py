@@ -1,7 +1,7 @@
 class TallerCapacitacion:
     __id = 0
     __nom = ''
-    __vacantes = 0
+    __vacantes =0
     __montoInscripcion = 0
 
     def __init__(self, id = 0, nom = '', vac = 0, monto = 0):

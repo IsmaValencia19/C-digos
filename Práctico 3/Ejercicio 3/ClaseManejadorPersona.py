@@ -1,6 +1,7 @@
 from ClasePersona import Persona
 from ClaseInscripcion import Inscripcion
 from ClaseManejadorTaller import ManejaTaller
+from Validador import ValidaEntero
 from ClaseManejadorInscripcion import ManejaInscripcion
 from datetime import datetime
 
@@ -20,6 +21,7 @@ class ManejaPersona:
         while i < len(self.__lista) and persona == None:
             if dni == self.__lista[i].getDni():
                 persona = self.__lista[i]
+                i = len(self.__lista)
             else:
                 i += 1
         return persona
@@ -28,12 +30,11 @@ class ManejaPersona:
     def registrapago(self, mi, mt):
         band = False
         while not band:
-            dni = input('Ingrese DNI: ')
+            dni = ValidaEntero('Ingrese DNI: ')
             if self.buscapersona(dni) == True:
                 band = True
             else:
                 print('DNI incorrecto.')
-                dni = input('Ingrese DNI: ')
 
         print()
         mi.buscaparapagar(dni, mt)

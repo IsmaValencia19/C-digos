@@ -1,6 +1,8 @@
 from ClaseHelado import Helado
 from ClaseManejaSabores import ManejaSabores
+from Validador import ValidaEntero
 import numpy as np
+import os
 
 class ManejaHelados:
     __lista = []
@@ -69,7 +71,7 @@ class ManejaHelados:
 
         band = False
         while not band:
-            tipohelado = int(input('Ingrese tipo de helado: '))
+            tipohelado = ValidaEntero('Ingrese tipo de helado: ')
             if self.validaPeso(tipohelado - 1) == True:
                 #print('Peso de helado correcto.')
                 band = True
@@ -80,9 +82,11 @@ class ManejaHelados:
         listadeids = []
         print()
         t = 0
+        os.system('cls')
+        print('Eligió el tipo de helado de {}gs.\n'.format(self.__tipoHelado[tipohelado - 1]))
         print(ms)   #muestra los sabores disponibles
-        print('Una venta de helado incluye de 1...4 sabores.')
-        idSabor = int(input('Ingrese ID de sabor(Finalice con 0): '))
+        print('Una venta de helado incluye de 1 a 4 sabores.')
+        idSabor = ValidaEntero('Ingrese ID de sabor(Finalice con 0): ')
         while (idSabor != 0) and (0 <= t < 4):
             bande = False
             while not bande:
@@ -94,7 +98,6 @@ class ManejaHelados:
                     bande = True
                 else:
                     print('ID de sabor incorrecto.')
-                    idSabor = int(input('Ingrese ID de sabor: '))
 
             sabores.append(sabor)
             t += 1
@@ -118,13 +121,12 @@ class ManejaHelados:
     def item4(self):
         band = False
         while not band:
-            tipo = int(input('Ingrese un tipo de helado(1...5): '))
+            tipo = ValidaEntero('Ingrese un tipo de helado(1...5): ')
             if self.validaPeso(tipo - 1) == True:
                 #print('Tipo de helado valido.')
                 band = True
             else:
                 print('Tipo de helado incorrecto.')
-                tipo = int(input('Ingrese un tipo de helado(1...5): '))
         
         i = 0
         while i < 5:

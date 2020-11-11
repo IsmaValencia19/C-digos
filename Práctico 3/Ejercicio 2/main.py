@@ -1,5 +1,6 @@
 from ClaseManejaSabores import ManejaSabores
 from ClaseManejaHelados import ManejaHelados
+from Validador import ValidaEntero
 from ClaseMenu import Menu
 import os
 
@@ -19,6 +20,6 @@ if __name__ == '__main__':
         print('2 - Ver 5 sabores más vendidos.')
         print('3 - Ingresar ID de un sabor para ver el total de gramos vendidos.')
         print('4 - Ingresar Tipo de Helado para ver los sabores más vendidos en dicho tipo.')
-        op = int(input('Ingrese una opcion: '))
+        op = ValidaEntero('Ingrese una opción: ')
         menu.opcion(op, ms, mh)
         salir = op == 0

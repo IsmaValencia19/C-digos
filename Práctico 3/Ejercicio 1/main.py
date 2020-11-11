@@ -1,4 +1,5 @@
 from ClaseManejaLibros import ManejaLibro
+from Validador import ValidaEntero
 from ClaseMenu import Menu
 import os
 
@@ -15,6 +16,6 @@ if __name__ == '__main__':
         print('0 - Salir.')
         print('1 - Ingresar ID para mostrar detalles de un libro.')
         print('2 - Ingresar una palabra para ver en que parte se encuentra.')
-        op = int(input('Ingrese una opcion: '))
+        op = ValidaEntero('Ingrese una opción: ')
         menu.opcion(op, ml)
         salir = op == 0

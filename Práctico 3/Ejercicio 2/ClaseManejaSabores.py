@@ -1,3 +1,4 @@
+from Validador import ValidaEntero
 from ClaseSabor import Sabor
 import csv
 import numpy as np
@@ -59,13 +60,12 @@ class ManejaSabores:
     def gramosabor(self, acum):
         band = False
         while not band:
-            idSabor = int(input('Ingrese ID de sabor: '))
+            idSabor = ValidaEntero('Ingrese ID de sabor: ')
             if self.validaSabor(idSabor) == True:
                 #print('ID de sabor correcto.')
                 band = True
             else:
                 print('ID de sabor incorrecto.')
-                idSabor = int(input('Ingrese ID de sabor: '))
 
         i = 0
         while i < len(acum):

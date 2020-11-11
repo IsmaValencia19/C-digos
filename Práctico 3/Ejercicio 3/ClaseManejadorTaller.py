@@ -48,7 +48,7 @@ class ManejaTaller:
         return id
 
     def __str__(self):
-        s = ''
+        s=''
         for taller in self.__arre:
             s += str(taller) + '\n'
         return s

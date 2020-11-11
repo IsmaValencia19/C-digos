@@ -11,7 +11,7 @@ class ManejaLibro:
     def agregar(self, libro):
         self.__lista.append(libro)
 
-   def cargarLista(self):
+    def cargarLista(self):
         archivo = open('libros.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
@@ -29,6 +29,7 @@ class ManejaLibro:
         while i < len(self.__lista) and libro == None:
             if id == self.__lista[i].getId():
                 libro = self.__lista[i]
+                i = len(self.__lista)
             else:
                 i += 1
         return libro

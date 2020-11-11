@@ -25,7 +25,7 @@ class Menu:
 
     def salir(self, ms, mh):
         os.system("cls")
-        cad = ' SALIÓ DEL PROGRAMA '
+        cad =' SALIÓ DEL PROGRAMA '
         print(cad.center(70, '='))
         print()
 

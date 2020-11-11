@@ -4,6 +4,7 @@ from ClaseTallerCapacitacion import TallerCapacitacion
 from ClaseManejadorTaller import ManejaTaller
 from ClaseManejadorPersona import ManejaPersona
 from ClaseManejadorInscripcion import ManejaInscripcion
+from Validador import ValidaEntero
 from ClaseMenu import Menu
 import os
 
@@ -26,6 +27,6 @@ if __name__ == '__main__':
         print('3 - Consultar Inscriptos.')
         print('4 - Registrar pago.')
         print('5 - Guardar inscripciones.')
-        op = int(input('Ingrese una opcion: '))
+        op = ValidaEntero('Ingrese una opción: ')
         menu.opcion(op, mt, mp, mi)
         salir = op == 0 

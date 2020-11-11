@@ -1,3 +1,4 @@
+from Validador import ValidaEntero
 import numpy as np
 import csv
 
@@ -46,7 +47,7 @@ class ManejaInscripcion:
                     print('\nDebe pagar: $%s.\n' % (taller.getPago()))
                     band = False
                     while not band:
-                        pago = int(input('Ingrese su pago: '))
+                        pago = ValidaEntero('Ingrese su pago: ')
                         if pago == taller.getPago():
                             self.__arre[i].modificapago()
                             print('\nPago realizado con exito!\n')
@@ -59,7 +60,6 @@ class ManejaInscripcion:
             else:
                 i += 1
 
-    #genera el archivo con los inscriptos
     def guardarArchivo(self, mp, mt):
         archivo = open('inscriptos.csv', 'w')
         i = 0

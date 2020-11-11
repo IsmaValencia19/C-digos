@@ -1,6 +1,6 @@
 class Persona:
-    __nom = ''
-    __dir = ''
+    __nom =''
+    __dir =''
     __dni = ''
     __insc = None
 

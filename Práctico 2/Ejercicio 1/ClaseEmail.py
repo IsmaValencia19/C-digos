@@ -2,7 +2,7 @@ class Email:
     __idCuenta = ''
     __dominio = ''
     __tipoDominio = ''
-    __contraseña = ''
+    __contraseña =''
 
     def __init__(self, id = '', dom = '', tipdom = '', contra = ''):
         self.__idCuenta = id
