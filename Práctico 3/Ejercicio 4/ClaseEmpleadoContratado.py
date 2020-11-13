@@ -26,9 +26,6 @@ class Contratado(Empleado):
         sueldo = self.__cantHorasTrabajadas * Contratado.getValorHora()
         return sueldo
 
-    #def __lt__(self, sueld):
-    #    return self.getSueldo() < sueld
-
     def __str__(self):
         super().mostrar()
         return 'CONTRATO: %s a %s - CANTIDAD DE HORAS TRABAJADAS: %d - SUELDO: %d\n' % (self.__fechaInicio, self.__fechaFinalizacion, self.__cantHorasTrabajadas, self.getSueldo())

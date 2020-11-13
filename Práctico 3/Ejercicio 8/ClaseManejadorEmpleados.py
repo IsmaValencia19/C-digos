@@ -1,5 +1,6 @@
 from ClaseEmpleadoContratado import Contratado
 from ClaseEmpleadoExterno import Externo
+from Validador import ValidaEntero
 from interfaceTesorero import ITesorero
 from ClaseEmpleadoPlanta import Planta
 from zope.interface import implementer
@@ -140,7 +141,7 @@ def tesorero(manejarTesorero):
     print(tesorero.center(50, '='))
     band = False
     while not band:
-        dni = int(input('Ingrese DNI de un empleado para verificar sueldo: '))
+        dni = ValidaEntero('Ingrese DNI de un empleado para verificar el sueldo: ')
         if manejarTesorero.gastosSueldoPorEmpleado(dni) != -1:
             band = True
         else:
@@ -157,34 +158,34 @@ def gerente(manejarGerente):
     print('2 - Mofidicar valor por hora de un Empleado Contratado.')
     print('3 - Modificar monto del viático de un Empleado Externo.')
     print(cade.center(55, '='))
-    op = int(input('Ingrese una opcion: '))
+    op = ValidaEntero('Ingrese una opción: ')
     print()
     if op == 1:
         band = False
         while not band:
-            dni = int(input('Ingrese DNI de un Empleado Planta: '))
-            sueldo = int(input('Ingrese nuevo sueldo básico: '))
+            dni = ValidaEntero('Ingrese DNI de un Empleado Planta: ')
+            sueldo = ValidaEntero('Ingrese nuevo sueldo básico: ')
             if manejarGerente.modificarBasicoEPlanta(dni, sueldo) != -1:
                 band = True
             else:
-                print('ERROR, DNI incorrecto.\n')
+                print('ERROR, el DNI no pertenece a un Empleado Planta.\n')
     elif op == 2:
         band = False
         while not band:
-            dni = int(input('Ingrese DNI de un Empleado Contratado: '))
-            nuevovalor = int(input('Ingrese nuevo valor por hora: '))
+            dni = ValidaEntero('Ingrese DNI de un Empleado Contratado: ')
+            nuevovalor = ValidaEntero('Ingrese nuevo valor por hora: ')
             if manejarGerente.modificarValorEPorHora(dni, nuevovalor) != -1:
                 band = True
             else:
-                print('ERROR, DNI incorrecto.\n')
+                print('ERROR, el DNI no pertenece a un Empleado Contratado.\n')
     elif op == 3:
         band = False
         while not band:
-            dni = int(input('Ingrese DNI de un Empleado Externo: '))
-            nuevovalor = int(input('Ingrese nuevo valor de viático: '))
+            dni = ValidaEntero('Ingrese DNI de un Empleado Externo: ')
+            nuevovalor = ValidaEntero('Ingrese nuevo valor de viático: ')
             if manejarGerente.modificarViaticoEExterno(dni, nuevovalor) != -1:
                 band = True
             else:
-                print('ERROR, DNI incorrecto.\n')
+                print('ERROR, el DNI no pertenece a un Empleado Externo.\n')
     else:
         print('=== OPCIÓN INCORRECTA ===')

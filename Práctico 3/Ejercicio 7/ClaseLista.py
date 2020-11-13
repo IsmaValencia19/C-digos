@@ -1,4 +1,5 @@
 from ClaseDocenteInvestigador import DocenteInvestigador
+from Validador import ValidaCadenaAlfabetica
 from ClaseInvestigador import Investigador
 from archivodeinterface import inter
 from ClasePersonal import Personal
@@ -186,7 +187,8 @@ class Lista:
         bande = False
         while not bande:
             print('=== CATEGORÍAS: I | II | III | IV | V ===')
-            categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+            categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+            categoria.upper()
             encontrada = self.validacategoria(categoria)
             if encontrada != None:
                 categoria = encontrada

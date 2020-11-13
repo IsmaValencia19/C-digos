@@ -27,9 +27,6 @@ class Externo(Empleado):
         sueldo = self.__costoObra - self.__montoViatico - self.__montoSeguroVida
         return sueldo
 
-    #def __lt__(self, sueld):
-    #    return self.getSueldoExterno() < sueld
-
     def __str__(self):
         super().mostrar()
         return 'TAREA: %s - CONTRATO: %s a %s - MONTO DEL VIÁTICO: %d - COSTO DE LA OBRA: %d - MONTO DEL SEGURO DE VIDA: %d - SUELDO: %d\n' % (self.__tarea, self.__fechaInicio, self.__fechaFinalizacion, self.__montoViatico, self.__costoObra, self.__montoSeguroVida, self.getSueldo())       

@@ -2,6 +2,7 @@ from zope.interface import implementer
 from ClaseAutoNuevo import AutoNuevo
 from ClaseAutoUsado import AutoUsado
 from archivodeinterface import inter
+from Validador import ValidaEntero, ValidaCadena
 from ClaseNodo import Nodo
 import json
 import zope
@@ -87,10 +88,10 @@ class Lista:
         band = False
         vehiculo = None
         while not band:
-            pat = input('Ingrese patente de vehículo para modificar el precio base: ')
+            pat = ValidaCadena('Ingrese patente de vehículo para modificiar el precio base: ')
             vehiculo = self.buscavehiculo(pat)
             if vehiculo != None:
-                precio = int(input('Ingrese precio nuevo: '))
+                precio = ValidaEntero('Ingrese precio nuevo: ')
                 vehiculo.modificaprecio(precio)
                 print('\nPrecio de venta: %d' % (vehiculo.getImporte()))
                 print()

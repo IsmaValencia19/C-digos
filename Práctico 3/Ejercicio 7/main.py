@@ -1,4 +1,5 @@
 from ObjectEncoder import ObjectEncoder
+from Validador import ValidaEntero
 from ClaseLista import Lista
 from ClaseMenu import Menu
 import os
@@ -22,6 +23,6 @@ if __name__ == '__main__':
         print('6 - Mostrar agente/s.')
         print('7 - Mostrar docentes investigadores de una categoria.')
         print('8 - Guardar en el archivo.')
-        op = int(input('Ingrese una opcion: '))
+        op = ValidaEntero('Ingrese una opción: ')
         menu.opcion(op, personal, obj)
         salir = op == 0

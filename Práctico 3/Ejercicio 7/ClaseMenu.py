@@ -1,4 +1,5 @@
 from ClaseDocenteInvestigador import DocenteInvestigador
+from Validador import ValidaEntero, ValidaCadenaAlfabetica, ValidaCadenaAlfanumerica
 from ClasePersonaldeApoyo import PersonaldeApoyo
 from ClaseInvestigador import Investigador
 from ClaseDocente import Docente
@@ -44,65 +45,74 @@ class Menu:
             print('2 - Docente')
             print('3 - Investigador')
             print('4 - Docente Investigador.')
-            op = int(input('Ingrese tipo de agente para insertar: '))
+            op = ValidaEntero('Ingrese tipo de agente para insertar en la colección: ')
             if op == 1:
                 print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 bande = False
                 while not bande:
                     print('=== CATEGORÍAS: I | II | III | IV | V ===')
-                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+                    categoria.upper()
                     encontrada = p.validacategoria(categoria)
                     if encontrada != None:
                         categoria = encontrada
                         bande = True
                     else:
                         print('ERROR, categoría incorrecta.')
-                posicion = int(input('Ingrese posición para insertar: '))
+                posicion = ValidaEntero('Ingrese posición para insertar en la lista: ')
                 unPersonaldeApoyo = PersonaldeApoyo(cuil, apellido, nombre, sueldobasico, antiguedad, categoria)
                 p.insertarElemento(unPersonaldeApoyo, posicion - 1)
                 print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
                 band = True
             elif op == 2:
                 print('>>>>>REGISTRANDO DOCENTE<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
                 cargo = input('Ingrese cargo que ocupa: ').capitalize()
                 catedra = input('Ingrese cátedra: ').capitalize()
-                posicion = int(input('Ingrese posición para insertar: '))
+                posicion = ValidaEntero('Ingrese posición para insertar en la lista: ')
                 unDocente = Docente(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra)
                 p.insertarElemento(unDocente, posicion - 1)
                 print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
                 band = True
             elif op == 3:
                 print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
                 tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
-                posicion = int(input('Ingrese posición para insertar: '))
+                posicion = ValidaEntero('Ingrese posición para insertar en la lista: ')
                 unInvestigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
                 p.insertarElemento(unInvestigador, posicion - 1)
                 print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
                 band = True
             elif op == 4:
                 print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
                 cargo = input('Ingrese cargo que ocupa: ').capitalize()
                 catedra = input('Ingrese cátedra: ').capitalize()
@@ -111,15 +121,16 @@ class Menu:
                 bande = False
                 while not bande:
                     print('=== CATEGORÍAS: I | II | III | IV | V ===')
-                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+                    categoria.upper()
                     encontrada = p.validacategoria(categoria)
                     if encontrada != None:
                         categoria = encontrada
                         bande = True
                     else:
                         print('ERROR, categoría incorrecta.')
-                importeextra = int(input('Ingrese importe extra por docencia e investigación: '))
-                posicion = int(input('Ingrese posición para insertar: '))
+                importeextra = ValidaEntero('Ingrese importe extra por docencia e investigación: ')
+                posicion = ValidaEntero('Ingrese posición para insertar en la lista: ')
                 unDocenteInvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
                 p.insertarElemento(unDocenteInvestigador, posicion - 1)
                 print('\nAGENTE INSERTADO EN LA COLECCIÓN CON ÉXITO.\n')
@@ -140,15 +151,18 @@ class Menu:
             op = int(input('Ingrese tipo de agente para agregar: '))
             if op == 1:
                 print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 bande = False
                 while not bande:
                     print('=== CATEGORÍAS: I | II | III | IV | V ===')
-                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+                    categoria.upper()
                     encontrada = p.validacategoria(categoria)
                     if encontrada != None:
                         categoria = encontrada
@@ -161,11 +175,13 @@ class Menu:
                 band = True
             elif op == 2:
                 print('>>>>>REGISTRANDO DOCENTE<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
                 cargo = input('Ingrese cargo que ocupa: ').capitalize()
                 catedra = input('Ingrese cátedra: ').capitalize()
@@ -175,11 +191,13 @@ class Menu:
                 band = True
             elif op == 3:
                 print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
                 tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
                 unInvestigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
@@ -188,11 +206,13 @@ class Menu:
                 band = True
             elif op == 4:
                 print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
-                cuil = input('Ingrese cuil: ')
-                apellido = input('Ingrese apellido: ').capitalize()
-                nombre = input('Ingrese nombre: ').capitalize()
-                sueldobasico = int(input('Ingrese sueldo básico: '))
-                antiguedad = int(input('Ingrese años de antiguedad: '))
+                cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+                apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+                apellido.capitalize()
+                nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nombre.capitalize()
+                sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+                antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
                 carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
                 cargo = input('Ingrese cargo que ocupa: ').capitalize()
                 catedra = input('Ingrese cátedra: ').capitalize()
@@ -201,14 +221,15 @@ class Menu:
                 bande = False
                 while not bande:
                     print('=== CATEGORÍAS: I | II | III | IV | V ===')
-                    categoria = input('Ingrese categoría(i = I | v = V): ').upper()
+                    categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+                    categoria.upper()
                     encontrada = p.validacategoria(categoria)
                     if encontrada != None:
                         categoria = encontrada
                         bande = True
                     else:
                         print('ERROR, categoría incorrecta.')
-                importeextra = int(input('Ingrese importe extra por docencia e investigación: '))
+                importeextra = ValidaEntero('Ingrese importe extra por docencia e investigación: ')
                 unDocenteInvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
                 p.agregarElemento(unDocenteInvestigador)
                 print('\nAGENTE AGREGADO A LA COLECCIÓN CON ÉXITO.\n')
@@ -219,7 +240,7 @@ class Menu:
 
     def opcion3(self, p, obj):
         os.system("cls")
-        pos = int(input('Ingrese posición de la lista para ver el tipo de objeto: '))
+        pos = ValidaEntero('Ingrese posición de la lista para ver el tipo de objeto: ')
         personal = p.mostrarElemento(pos - 1)
         tipo = ''
         if isinstance(personal, Docente):

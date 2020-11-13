@@ -1,4 +1,5 @@
 from ClaseManejadorEmpleados import ManejaEmpleados 
+from Validador import ValidaEntero
 from ClaseMenu import Menu
 import os
 
@@ -18,6 +19,6 @@ if __name__ == '__main__':
         print('3 - Ayuda para empleados.')
         print('4 - Calcular sueldo.')
         print(cade.center(25, '='))
-        op = int(input('Ingrese una opcion: '))
+        op = ValidaEntero('Ingrese una opción: ')
         menu.opcion(op, me)
         salir = op == 0

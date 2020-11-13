@@ -1,6 +1,7 @@
 from ClaseEmpleado import Empleado
 from ClaseEmpleadoPlanta import Planta
 from ClaseEmpleadoContratado import Contratado
+from Validador import ValidaEntero, ValidaCadena
 from ClaseEmpleadoExterno import Externo
 from datetime import datetime
 import numpy as np
@@ -65,12 +66,12 @@ class ManejaEmpleados:
         band = False
         empleado = None
         while not band:
-            dni = int(input('Ingrese DNI de empleado contratado: '))
+            dni = ValidaEntero('Ingrese DNI de empleado contratado: ')
             empleado = self.validaEmpleado(dni)
-            if empleado != None:
+            if empleado != None and isinstance(empleado, Contratado):
                 fecha = datetime.now()
                 print('Ingrese horas trabajadas el dia de hoy {}/{}/{}: '.format(fecha.day, fecha.month, fecha.year))
-                horas = int(input())
+                horas = ValidaEntero('')
                 empleado.modificaHoras(horas)
                 band = True
             else:
@@ -88,13 +89,13 @@ class ManejaEmpleados:
         return band
 
     def item2(self):
-        tarea = input('Ingrese tarea: ')
+        tarea = ValidaCadena('Ingrese tarea: ')
         montoObra = 0
         i = 0
         while i < len(self.__arre):
             if isinstance(self.__arre[i], Externo):
                 if tarea.capitalize() == self.__arre[i].getTarea():
-                    montoObra += self.__arre[i].getSueldoExterno()
+                    montoObra += self.__arre[i].getSueldo()
                 i += 1
             else:
                 i += 1
