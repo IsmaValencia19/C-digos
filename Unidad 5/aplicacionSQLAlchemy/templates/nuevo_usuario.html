@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <h3>Registro de Usuario</h3>
+      <hr/>        
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class=flashes>
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+		{% endwith %}
+      <form action = "{{ request.path }}" method = "post">
+         <label for = "nombre">Nombre</label><br>
+         <input type = "text" name = "nombre" placeholder = "Nombre" /><br>
+		 
+         <label for = "email">Correo Electrónico</label><br>
+         <input type = "text" name = "email" placeholder = "email" /><br>
+		 
+         <label for = "password">Contraseña</label><br>
+         <input type = "password" name = "password" placeholder = "password"/><br>
+		 <br>
+         <input type = "submit" value = "Guardar" />
+		 <br><br>
+		 <a href = "{{ url_for('inicio') }}"> Inicio </a>
+      </form>
+   </body>
+</html>

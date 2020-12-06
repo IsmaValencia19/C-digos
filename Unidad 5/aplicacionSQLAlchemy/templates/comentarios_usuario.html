@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+   
+      <h3>Comentarios registrados </h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>Usuario</th>
+               <th>Comentario</th>              
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for comentario in usuario_comentario %}
+               <tr>
+                  <td>{{ comentario.usuario.nombre }}</td>
+                  <td>{{ comentario.contenido }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+	  <br><a href = "{{ url_for('inicio', mifuncion = saludo) }}"> Inicio </a>
+   </body>
+</html>

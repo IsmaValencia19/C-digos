@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+   
+      <h3>Usuarios registrados </h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>Nombre</th>
+               <th>Correo</th>              
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for usuario in usuarios %}
+               <tr>                  
+				  <td><a href="{{ url_for('comentarios_usuario', usuario_id=usuario.id) }}">{{ usuario.nombre }}</a></td>
+                  <td>{{ usuario.correo }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+	  <br><a href = "{{ url_for('inicio') }}"> Inicio </a>
+   </body>
+</html>
+
