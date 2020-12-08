@@ -15,7 +15,6 @@ class Usuario(db.Model):
 	clave = db.Column(db.String(120), nullable=False)    
 	comentario = db.relationship('Comentario', backref='usuario', cascade="all, delete-orphan", lazy='dynamic')
     
-	
 class Comentario(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	fecha = db.Column(db.DateTime)

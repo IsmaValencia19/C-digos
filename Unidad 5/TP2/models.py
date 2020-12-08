@@ -5,15 +5,13 @@ from sqlalchemy.orm import relationship
 db = SQLAlchemy(app)
 
 class Usuarios(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    DNI = db.Column(db.Integer, nullable = False, unique = True)
+    DNI = db.Column(db.Integer, primary_key = True, unique = True)
     Clave = db.Column(db.String(120), nullable = False)
-    Tipo = db.Column(db.String(8), nullable = False)
+    Tipo = db.Column(db.String(10), nullable = False)
     pedido = db.relationship('Pedidos', backref = 'usuarios', cascade="all, delete-orphan", lazy='dynamic')
 
 class Pedidos(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    NumPedido = db.Column(db.Integer)
+    NumPedido = db.Column(db.Integer, primary_key = True)
     Fecha = db.Column(db.DateTime)
     Total = db.Column(db.Float)
     Cobrado = db.Column(db.Boolean)
@@ -23,16 +21,14 @@ class Pedidos(db.Model):
     item = db.relationship('ItemsPedidos', backref = 'itemspedidos', cascade = "all, delete-orphan", lazy = 'dynamic')
 
 class ItemsPedidos(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    NumItem = db.Column(db.Integer, unique = True)
+    NumItem = db.Column(db.Integer, primary_key = True, unique = True)
     NumPedido = db.Column(db.Integer, db.ForeignKey('pedidos.NumPedido'))
     NumProducto = db.Column(db.Integer, db.ForeignKey('productos.NumProducto'))
-    Precio = db.column(db.Integer, db.ForeignKey('productos.PrecioUnitario'))
+    Precio = db.column(db.Integer)
     Estado = db.column(db.String(30))
 
 class Productos(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    NumProducto = db.Column(db.Integer, nullable = False, unique = True)
+    NumProducto = db.Column(db.Integer, primary_key = True, unique = True)
     Nombre = db.Column(db.String(120), nullable = False)
-    PrecioUnitario = db.Column(db.Float, nullable = False)
-    item = db.relationship('ItemsPedidos', backref = 'itemspedidos', cascade = "all, delete-orphan", lazy = 'dynamic')
+    PrecioUnitario = db.Column(db.Integer, nullable = False)
+    item = db.relationship('ItemsPedidos', backref = 'items', cascade = "all, delete-orphan", lazy = 'dynamic')

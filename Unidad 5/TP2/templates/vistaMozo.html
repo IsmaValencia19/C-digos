@@ -1,0 +1,12 @@
+{% extends "base_template.html" %}
+{% block title %} Bienvenida {% endblock %}
+{% block content %}
+    <h1> Bienvenido {{ datos.DNI }}</h1>
+    <h1>Menu de Opciones</h1>
+    <ul>
+        <li><a href="{{ url_for('registrarPedido') }}">REGISTRAR UN PEDIDO</a></li>
+        <li><a href="{{ url_for('consultarPedidosCobrados') }}">CONSULTAR PEDIDOS COBRADOS</a></li>
+        <li><a href="{{ url_for('registrarCobroPedido') }}">REGISTRAR EL COBRO DE UN PEDIDO</a></li>
+        <li><a href="{{ url_for('listadoPedidosVigentes') }}">PEDIDOS VIGENTES</a></li>
+    </ul>
+{% endblock %}
