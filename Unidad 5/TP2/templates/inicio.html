@@ -1,16 +1,22 @@
 {% extends "base_template.html" %}
 {% block title %} PÁGINA PRINCIPAL {% endblock %}
 {% block content %}
-    <div class="container">
-        <h1>Iniciar Sesión</h1>
-        <form action="http://localhost:5000/Aplicacion" method="post">
-            <label for="dni">DNI</label><br>
-            <input type="dni" name="dni" id=""><br>
-            <br>
-            <label for="password">CLAVE</label><br>
-            <input type="password" name = "password"><br>
-            <br>
-            <input type="submit" value="Ingresar">
-        </form>
-    </div>
+    <center>
+        <div class="inicio">
+            <h1 class="title">RESTAURANTE</h1>
+            <div class="alMedio iniciar">
+                <h2 class="title">INICIAR SESIÓN</h2>
+                <hr width="300px">
+                <form action="http://localhost:5000/Aplicacion" method="post">
+                    <label for="dni"><b>DNI</b></label><br>
+                    <input class="entrada" type="dni" name="dni" id=""><br>
+                    <br>
+                    <label for="password"><b>CLAVE</b></label><br>
+                    <input class="entrada" type="password" name = "password"><br>
+                    <br>
+                    <input class="btn1" type="submit" value="Ingresar">
+                </form>
+            </div>
+        </div>
+    </center>
 {% endblock %}

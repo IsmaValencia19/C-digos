@@ -1,5 +1,11 @@
 {% extends "base_template.html" %}
 {% block title %} Bienvenida {% endblock %}
 {% block content %}
-    <h1> Bienvenido {{ datos.DNI }}</h1>
+    <center>
+        <div class="alMedio">
+            <h1 class="title"> Bienvenido Cocinero</h1>
+            <hr width="300px">
+            <a class="btn1 boton" href=" {{url_for('estadoListo')}} ">INDICAR UN ITEM EN ESTADO "LISTO"</a>
+        </div>
+    </center>
 {% endblock %}

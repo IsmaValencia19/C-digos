@@ -1,13 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
 from datetime import datetime
+from pprint import pprint
+
+import hashlib
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 from models import db
 from models import Usuarios, Pedidos, Productos, ItemsPedidos
+
+listaNOM=[]
+listaPRE=[]
 
 @app.route('/')
 def inicio():
@@ -19,25 +25,112 @@ def aplicacion():
         if not request.form['dni'] or not request.form['password']:
             return render_template('error.html', error = 'Por favor ingrese los datos requeridos.')
         else:
-            usuario_actual = Usuarios.query.filter_by(DNI = request.form['dni']).first()
-            if usuario_actual is None:
-                return render_template('error.html', error = 'El DNI no esta registrado.')
+            if (request.form['dni']).isdigit() != True:
+                return render_template('error.html', error = 'Ingrese en el DNI solo números.')
             else:
-                if usuario_actual.Clave == request.form['password']:
-                    if usuario_actual.Tipo == 'Mozo':
-                        return render_template('vistaMozo.html', datos = usuario_actual)
-                    elif usuario_actual.Tipo == 'Cocinero':
-                        return render_template('vistaCocinero.html', datos = usuario_actual)
-                    else:
-                        return render_template('error.html', error = 'ERROR DE TIPO, no coincide con los registrados.')
+                usuario_actual = Usuarios.query.filter_by(DNI = request.form['dni']).first()
+                if usuario_actual is None:
+                    return render_template('error.html', error = 'El DNI no esta registrado.')
                 else:
-                    return render_template('error.html', error = 'La contraseña no es valida.')
+                    conEncriptada = hashlib.md5(bytes(request.form['password'], encoding='utf-8'))
+                    clave = conEncriptada.hexdigest()
+                    if usuario_actual.Clave == clave:
+                        if usuario_actual.Tipo == 'Mozo':
+                            return render_template('vistaMozo.html')
+                        elif usuario_actual.Tipo == 'Cocinero':
+                            return render_template('vistaCocinero.html', datos = usuario_actual)
+                        else:
+                            return render_template('error.html', error = 'ERROR DE TIPO, no coincide con los registrados.')
+                    else:
+                        return render_template('error.html', error = 'La contraseña no es valida.')
     else:
         return render_template('inicio.html')
 
-@app.route('/RegistrarPedido', methods = ['POST', 'GET'])
-def registrarPedido():
-    pass
+@app.route('/Mesa')
+def numeroMesa():
+    return render_template('Mesa.html')
+
+@app.route('/RegistroPedido', methods = ['POST', 'GET'])
+@app.route('/RegistroPedido/<nombre>/<float:precio>/ <int:numMesa>/<int:Pedido>/ <int:numProducto>', methods = ['POST', 'GET'])
+def Pedido(nombre = '', precio = 0, numMesa = 0, Pedido = 0, numProducto = 0):
+    if nombre == '':
+        if request.method == 'POST':
+            if (request.form['mesa']).isdigit() == True:
+                if request.form['mesa']:
+                    mesa = request.form['mesa']
+                    pedidos = Pedidos.query.all()
+                    cant = len(pedidos)
+                    total = 0
+                    numpedido = int(pedidos[cant - 1].NumPedido) + 1
+                    return render_template('pedido.html', productos = Productos.query.all(), xmesa = mesa, numPedido = numpedido, band = 0, xtotal = total)
+            else:
+                return render_template('vistaMozo.html', Mensaje = 'La mesa se identifica solamente con números.')
+    else:
+        listaNOM.append(nombre)
+        listaPRE.append(precio)
+        xband = len(listaPRE)
+        total=0
+        listaItems = ItemsPedidos.query.all()
+        cantitems = len(listaItems)
+        xnumItem = int(listaItems[cantitems-1].NumItem) + 1
+        Item = ItemsPedidos(NumItem = xnumItem, NumPedido = Pedido, NumProducto = numProducto, Precio = precio, Estado = 'Pendiente')
+        db.session.add(Item)
+        db.session.commit()
+        for i in range(len(listaPRE)):
+            total += listaPRE[i]
+        return render_template('pedido.html', productos = Productos.query.all(), xnombre = listaNOM, xprecio = listaPRE, xmesa = numMesa, numPedido = Pedido, xtotal = total, band = xband)
+
+@app.route('/cargaPedidos/<xnom>/<xpre>/<float:xtot>/<int:xmes>/<int:numPed>/', methods = ['POST', 'GET'])
+def cargaPedidos(xnom, xpre, xtot, xmes, numPed):
+    if request.method == 'GET':
+        usuario_actual = Usuarios.query.filter_by(DNI = '38459309').first()
+        pedido = Pedidos(NumPedido = numPed, Fecha = datetime.now(), Total = xtot, Cobrado = 'False', Observacion = request.args.get('observacion'), DNIMozo = usuario_actual.DNI, Mesa = xmes)
+        db.session.add(pedido)
+        db.session.commit()
+        listaNOM[:] = []
+        listaPRE[:] = []
+        mensaje = 'Pedido registrado con exito!'
+        return render_template('vistaMozo.html', Mensaje = mensaje)
+    else:
+        return render_template('inicio.html')
+
+@app.route('/ConsultaPedidoVigente', methods = ['POST', 'GET'])
+def consultaPedidoVigente():
+    listaPED = Pedidos.query.all()
+    listaITE = ItemsPedidos.query.all()
+    cant_pedi = len(listaPED)
+    cant_item = len(listaITE)
+    return render_template('listadoPedidosVigentes.html', listaPedis = listaPED, listaItems = listaITE, items = cant_item, pedis = cant_pedi)
+
+@app.route('/ConsultaPedidoCobrado', methods = ['POST', 'GET'])
+def consultaPedidoCobrado():
+    listaPED = Pedidos.query.all()
+    listaITE = ItemsPedidos.query.all()
+    cant_pedi = len(listaPED)
+    cant_item = len(listaITE)
+    return render_template('consultarPedidosCobrados.html', listaPedis = listaPED, listaItems = listaITE, items = cant_item, pedis = cant_pedi)
+
+@app.route('/ItemListo', methods = ['POST', 'GET'])
+@app.route('/ItemListo/<int:numItem>', methods = ['POST', 'GET'])
+def estadoListo(numItem = 0):
+    if numItem == 0:
+        listaPED = Pedidos.query.all()
+        listaITE = ItemsPedidos.query.all()
+        listaPRO = Productos.query.all()
+        cant_pedi = len(listaPED)
+        cant_item = len(listaITE)
+        cant_prod = len(listaPRO)
+        return render_template('indicarItemListo.html', listaPedis = listaPED, listaItems = listaITE, productos = listaPRO, pedis = cant_pedi, items = cant_item, produc = cant_prod)
+    else:
+        item = ItemsPedidos.query.filter_by(NumItem = numItem).first()
+        item.Estado = 'Listo'
+        db.session.add(item)
+        db.session.commit()
+        return render_template('indicarItemListo.html')
+
+@app.errorhandler(404)
+def page_not_found(error):
+	return render_template("error.html",error="Página no encontrada..."), 404
 
 if __name__ == '__main__':
     db.create_all()

@@ -1,12 +1,24 @@
 {% extends "base_template.html" %}
 {% block title %} Bienvenida {% endblock %}
 {% block content %}
-    <h1> Bienvenido {{ datos.DNI }}</h1>
-    <h1>Menu de Opciones</h1>
-    <ul>
-        <li><a href="{{ url_for('registrarPedido') }}">REGISTRAR UN PEDIDO</a></li>
-        <li><a href="{{ url_for('consultarPedidosCobrados') }}">CONSULTAR PEDIDOS COBRADOS</a></li>
-        <li><a href="{{ url_for('registrarCobroPedido') }}">REGISTRAR EL COBRO DE UN PEDIDO</a></li>
-        <li><a href="{{ url_for('listadoPedidosVigentes') }}">PEDIDOS VIGENTES</a></li>
-    </ul>
+    <center>
+        <div class="alMedio">
+            <center>
+                <h1 class="title">Bienvenido Mozo</h1>
+                <hr width="300px">
+                <h1 class="title">Menu de Opciones</h1>
+                <ul class="lista">
+                    <li class="boton btn1" ><a href=" {{url_for('numeroMesa')}} ">REGISTRAR UN PEDIDO</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('consultaPedidoVigente')}} ">PEDIDOS VIGENTES</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('consultaPedidoCobrado')}} ">CONSULTAR PEDIDOS COBRADOS</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('inicio')}} ">INICIO</a></li>
+                </ul>
+                <div>
+                    {% if Mensaje != '' %}
+                        <p class="negro">{{Mensaje}}</p>
+                    {% endif %}
+                </div>
+            </center>
+        </div>
+    </center>
 {% endblock %}

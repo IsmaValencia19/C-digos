@@ -1,0 +1,35 @@
+{% extends 'base_template.html' %}
+{% block title %} Items en estado listo {% endblock %}
+{% block content %}
+    <center>
+        <div class="alMedio">
+            <h1 class="title">Pedidos Pendientes</h1>
+            <hr width="300px">
+            <center>
+                {% for i in range(pedis) %}
+                    {% if listaPedis[i].Cobrado == 'False' %}
+                        <table>
+                            <tr>
+                                {% if listaPedis[i].Observacion != '' %}
+                                    <td colspan="3"><b>Pedido N°{{listaPedis[i].NumPedido}} - </b><b>Observación:</b> {{listaPedis[i].Observacion}}</td>
+                                    {% else %}
+                                        <th colspan="3">Pedido N°{{listaPedis[i].NumPedido}}</th>
+                                {% endif %}
+                            </tr>
+                            <tr><th>Item</th><th>Nombre</th><th>Estado</th></tr>
+                            {% for j in range(items) %}
+                                {% if listaItems[j].NumPedido == listaPedis[i].NumPedido %}
+                                    {% for e in range(produc) %}
+                                        {% if listaItems[j].NumProducto == productos[e].NumProducto %}
+                                            <tr><td class=" btn11 enelmedio"><a href=" {{url_for('estadoListo', numItem = listaItems[j].NumItem)}} ">{{listaItems[j].NumItem}}</a></td><td>{{productos[e].Nombre}}</td><td>{{listaItems[j].Estado}}</td></tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                {% endfor %}
+            </center>
+        </div>
+    </center>
+{% endblock %}

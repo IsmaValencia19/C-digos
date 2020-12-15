@@ -1,0 +1,13 @@
+{% extends "base_template.html" %}
+{% block title %} MESA {% endblock %}
+{% block content %}
+    <center>
+        <div class="alMedio">
+            <form class="mesa" action="{{url_for('Pedido')}}" method="POST">
+                <label for=mesa><b>Ingrese numero de mesa</b></label><br><br>
+                <input type="text" name="mesa"></input>
+                <input class="btn1" type="submit"  value="Listo">
+            </form>
+        </div>
+    </center>
+{% endblock %}
