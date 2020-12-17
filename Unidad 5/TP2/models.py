@@ -29,6 +29,8 @@ class ItemsPedidos(db.Model):
     NumProducto = db.Column(db.Integer, db.ForeignKey('Productos.NumProducto'))
     Precio = db.Column(db.Float)
     Estado = db.Column(db.String(30))
+    Producto = db.relationship('Productos')
+    Pedido = db.relationship('Pedidos')
 
 class Productos(db.Model):
     __tablename__ = 'Productos'

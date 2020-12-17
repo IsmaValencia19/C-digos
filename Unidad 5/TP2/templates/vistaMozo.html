@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% block title %} Bienvenida {% endblock %}
+{% block title %} Mozo/a {% endblock %}
 {% block content %}
     <center>
         <div class="alMedio">
@@ -8,10 +8,10 @@
                 <hr width="300px">
                 <h1 class="title">Menu de Opciones</h1>
                 <ul class="lista">
-                    <li class="boton btn1" ><a href=" {{url_for('numeroMesa')}} ">REGISTRAR UN PEDIDO</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('mesa')}} ">REGISTRAR UN PEDIDO</a></li>
                     <li class="boton btn1" ><a href=" {{url_for('consultaPedidoVigente')}} ">PEDIDOS VIGENTES</a></li>
-                    <li class="boton btn1" ><a href=" {{url_for('consultaPedidoCobrado')}} ">CONSULTAR PEDIDOS COBRADOS</a></li>
-                    <li class="boton btn1" ><a href=" {{url_for('inicio')}} ">INICIO</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('consultaPedidoCobrado')}} ">PEDIDOS COBRADOS</a></li>
+                    <li class="boton btn1" ><a href=" {{url_for('inicio')}} ">CERRAR SESIÓN</a></li>
                 </ul>
                 <div>
                     {% if Mensaje != '' %}

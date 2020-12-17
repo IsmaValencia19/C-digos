@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import check_password_hash
 from datetime import datetime
 from pprint import pprint
 
@@ -12,6 +11,7 @@ app.config.from_pyfile('config.py')
 from models import db
 from models import Usuarios, Pedidos, Productos, ItemsPedidos
 
+listaPedidosEliminados = []
 listaNOM=[]
 listaPRE=[]
 
@@ -47,7 +47,7 @@ def aplicacion():
         return render_template('inicio.html')
 
 @app.route('/Mesa')
-def numeroMesa():
+def mesa():
     return render_template('Mesa.html')
 
 @app.route('/RegistroPedido', methods = ['POST', 'GET'])
@@ -73,7 +73,7 @@ def Pedido(nombre = '', precio = 0, numMesa = 0, Pedido = 0, numProducto = 0):
         listaItems = ItemsPedidos.query.all()
         cantitems = len(listaItems)
         xnumItem = int(listaItems[cantitems-1].NumItem) + 1
-        Item = ItemsPedidos(NumItem = xnumItem, NumPedido = Pedido, NumProducto = numProducto, Precio = precio, Estado = 'Pendiente')
+        Item = ItemsPedidos(NumItem = xnumItem, NumPedido = Pedido, NumProducto = str(numProducto), Precio = precio, Estado = 'Pendiente')
         db.session.add(Item)
         db.session.commit()
         for i in range(len(listaPRE)):
@@ -111,22 +111,48 @@ def consultaPedidoCobrado():
     return render_template('consultarPedidosCobrados.html', listaPedis = listaPED, listaItems = listaITE, items = cant_item, pedis = cant_pedi)
 
 @app.route('/ItemListo', methods = ['POST', 'GET'])
-@app.route('/ItemListo/<int:numItem>', methods = ['POST', 'GET'])
-def estadoListo(numItem = 0):
+@app.route('/ItemListo/<int:numItem>/<int:numPedi>', methods = ['POST', 'GET'])
+def estadoListo(numItem = 0, numPedi = 0):
     if numItem == 0:
-        listaPED = Pedidos.query.all()
-        listaITE = ItemsPedidos.query.all()
-        listaPRO = Productos.query.all()
-        cant_pedi = len(listaPED)
-        cant_item = len(listaITE)
-        cant_prod = len(listaPRO)
-        return render_template('indicarItemListo.html', listaPedis = listaPED, listaItems = listaITE, productos = listaPRO, pedis = cant_pedi, items = cant_item, produc = cant_prod)
+        listaPedi = Pedidos.query.all()
+        prod = Productos.query.all()
+        for pedido in listaPedi:
+            contListos = 0
+            cantItem = 0
+            for item in pedido.item:
+                cantItem += 1
+                if item.Estado == 'Listo':
+                    contListos += 1
+            if cantItem == contListos:
+                listaPedidosEliminados.append(pedido)
+        cantPedList = len(listaPedidosEliminados)
+        for i in range(cantPedList):
+            listaPedi.remove(listaPedidosEliminados[i-i])
+            listaPedidosEliminados.pop(i-i)
+        return render_template('indicarItemListo.html', listaPedis = listaPedi, pedis = len(listaPedi), productos = prod, cantProd = len(prod))
     else:
-        item = ItemsPedidos.query.filter_by(NumItem = numItem).first()
-        item.Estado = 'Listo'
-        db.session.add(item)
+        listaPedi = Pedidos.query.all()
+        prod = Productos.query.all()
+        valor = listaPedi[numPedi - 2].item[0].NumItem
+        ITEM = listaPedi[numPedi - 2].item[numItem - int(valor)]   
+        db.session.delete(ITEM)
+        Nuevoitem = ItemsPedidos(NumItem = ITEM.NumItem, NumPedido = ITEM.NumPedido, NumProducto = ITEM.NumProducto, Precio = ITEM.Precio, Estado = 'Listo')
+        db.session.add(Nuevoitem)
         db.session.commit()
-        return render_template('indicarItemListo.html')
+        for pedido in listaPedi:
+            contListos = 0
+            cantItem = 0
+            for item in pedido.item:
+                cantItem += 1
+                if item.Estado == 'Listo':
+                    contListos += 1
+            if cantItem == contListos:
+                listaPedidosEliminados.append(pedido)
+        cantPedList = len(listaPedidosEliminados)
+        for i in range(cantPedList):
+            listaPedi.remove(listaPedidosEliminados[i-i])
+            listaPedidosEliminados.pop(i-i)
+        return render_template('indicarItemListo.html', listaPedis = listaPedi, pedis = len(listaPedi), productos = prod, cantProd = len(prod))
 
 @app.errorhandler(404)
 def page_not_found(error):

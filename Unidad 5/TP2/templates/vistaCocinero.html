@@ -1,11 +1,12 @@
 {% extends "base_template.html" %}
-{% block title %} Bienvenida {% endblock %}
+{% block title %} Cocinero/a {% endblock %}
 {% block content %}
     <center>
         <div class="alMedio">
             <h1 class="title"> Bienvenido Cocinero</h1>
             <hr width="300px">
             <a class="btn1 boton" href=" {{url_for('estadoListo')}} ">INDICAR UN ITEM EN ESTADO "LISTO"</a>
+            <a class="btn1 boton" href=" {{url_for('inicio')}} ">CERRAR SESIÓN</a>
         </div>
     </center>
 {% endblock %}
