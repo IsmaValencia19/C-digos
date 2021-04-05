@@ -30,6 +30,7 @@ class clasemanejadorViajero:
     
     def buscarViajero(self, id):
         i = 0
+        indice = None
         while i < len(self.__listaViajero):
             if self.__listaViajero[i].getId() == id:
                 indice = self.__listaViajero[i].getId() - 1
@@ -37,7 +38,7 @@ class clasemanejadorViajero:
             else:
                 i += 1
         return indice
-
+ 
     def getId(self, indice):
         return self.__listaViajero[indice]
     
