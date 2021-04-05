@@ -2,7 +2,7 @@ class Email:
     __idCuenta = ''
     __dominio = ''
     __tipoDominio = ''
-    __contraseña =''
+    __contraseña = ''
 
     def __init__(self, id = '', dom = '', tipdom = '', contra = ''):
         self.__idCuenta = id
@@ -25,5 +25,5 @@ class Email:
         mail = Email(a, b, c)
         return mail
 
-    def __str__(self):
+    def retornaEmail(self):
         return '%s@%s.%s' % (self.__idCuenta, self.__dominio, self.__tipoDominio)

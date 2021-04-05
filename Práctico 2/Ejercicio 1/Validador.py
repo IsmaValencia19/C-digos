@@ -8,7 +8,7 @@ def ValidaEntero(mensaje):
             band = True
         except ValueError:
             print('ERROR: debes ingresar un número entero.')
-    return numero
+    return numero 
 
 def ValidaFlotante(mensaje):
     band = False

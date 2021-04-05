@@ -34,11 +34,11 @@ class contador:
         for elemento in self.__lista:
             dominio = elemento.getDominio()
             if domi == dominio:
-                cont += 1
+                cont += 1 
         return cont
 
     def __str__(self):
         s = ''
         for correos in self.__lista:
-            s += str(correos) + '\n'
+            s += str(correos.retornaEmail()) + '\n'
         return s

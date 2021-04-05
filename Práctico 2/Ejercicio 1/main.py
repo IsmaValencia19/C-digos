@@ -12,7 +12,7 @@ if __name__ == '__main__':
     tipdom = ValidaCadenaAlfabetica('Ingrese el tipo de dominio: ')
     contra = str(input('Ingrese su contraseña: '))
     mail = Email(id, dom, tipdom, contra)
-    print('\nEstimado', nom, 'te enviaremos tus mensajes a la dirección %s.'% (mail))
+    print('\nEstimado', nom, 'te enviaremos tus mensajes a la dirección %s'% (mail.retornaEmail()))
 
     print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM.')
     os.system("pause")
@@ -30,13 +30,13 @@ if __name__ == '__main__':
         else:
             print('Contraseña incorrecta.')
     
-    print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM.')
+    print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM. ')
     os.system("pause")
 
     os.system("cls")
     correo = ValidaEmail('Ingrese cuenta de email para generar un objeto: ')
     email = mail.crearCuenta(correo)
-    print('\nObjeto generado:', email)
+    print('\nObjeto generado:', email.retornaEmail())
 
     print('\nSI PRESIONA UNA TECLA SEGUIRA AL SIGUIENTE ITEM.')
     os.system("pause")
