@@ -9,12 +9,6 @@ class manejadorAlumno:
     
     def agregarAlumno(self, alumno):
         self.__listaAlumno.append(alumno)
-    
-    def __str__(self):
-        s = ''
-        for alumno in self.__listaAlumno:
-            s += str(alumno) + '\n'
-        return s
 
     def testAlumnos(self):
         archivo = open('alumnos.csv')
@@ -30,9 +24,17 @@ class manejadorAlumno:
 
     def porcentAlum(self, añ, di):
         i = 0
+        alumnos = []
         while i < len(self.__listaAlumno):
             año = self.__listaAlumno[i].getAño()
             div = self.__listaAlumno[i].getDiv()
             if (año == añ) and (div == di) and (self.__listaAlumno[i].getInasis() > Alumno.getMaxInas()):
-                print('{:<25}{}%'.format(self.__listaAlumno[i].getNom(), self.__listaAlumno[i].porcen_inasis()))
+                alumnos.append(self.__listaAlumno[i])
             i += 1
+        return alumnos
+    
+    def __str__(self):
+        s = ''
+        for alumno in self.__listaAlumno:
+            s += str(alumno) + '\n'
+        return s

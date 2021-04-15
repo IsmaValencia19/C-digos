@@ -1,5 +1,5 @@
 import re
-
+ 
 def ValidaEntero(mensaje):
     band = False
     while band == False:

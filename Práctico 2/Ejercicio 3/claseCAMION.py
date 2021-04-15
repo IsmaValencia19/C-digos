@@ -1,16 +1,28 @@
-class claseCamion:
+class Camion:
     __id = 0
-    __nomconductor = ''
+    __nomConductor = ''
     __patente = ''
-    __marca = ''
+    __marcaCamion = ''
     __tara = 0
 
-    def __init__(self, id, nomc, paten, marc, tara):
+    def __init__(self, id, nom, pat, marca, tara):
         self.__id = id
-        self.__nomconductor = nomc
-        self.__patente = paten
-        self.__marca = marc
+        self.__nomConductor = nom
+        self.__patente = pat
+        self.__marcaCamion = marca
         self.__tara = tara
-    
-    def getDatos(self):
-        return (self.__patente, self.__nomconductor)
+
+    def getId(self):
+        return self.__id
+
+    def getPat(self):
+        return self.__patente
+
+    def getCond(self):
+        return self.__nomConductor
+
+    def getTara(self):
+        return self.__tara
+
+    def __str__(self):
+        return 'ID del camión: %s - Nombre del Conductor: %s - Patente del Camión: %s - Marca del Camión: %s - Peso del Camión: %s' % (self.__id, self.__nomConductor, self.__patente, self.__marcaCamion, self.__tara)

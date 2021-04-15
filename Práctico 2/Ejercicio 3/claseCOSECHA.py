@@ -1,14 +1,16 @@
-class claseCosecha:
-    __listacosechas = []
+import csv
+
+class Cosecha:
+    __lista = []
 
     def __init__(self):
-        self.__listacosechas = [0] * 45
-        for i in range(4):
-            self.__listacosechas[i] = [0] * 20
+        self.__lista = [0] * 20
+        for i in range(20):
+            self.__lista[i] = [0] * 45
 
-    def agregar(self, d = 0, i = 0, kg = 0):
-        if(0 <= d <= 45):
-            self.__listacosechas[d][i] = kg
+    def agregarKG(self, ID = 0, d = 0, kg = 0):
+        if (d >= 0 and d < 45):
+            self.__lista[ID][d] += kg
 
-    def getValor(self, i = 0, j = 0):
-        return self.__listacosechas[i][j]
+    def getValor(self, ID = 0, DIA = 0):
+        return self.__lista[ID][DIA]

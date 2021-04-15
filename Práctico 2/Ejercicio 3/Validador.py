@@ -9,7 +9,7 @@ def ValidaEntero(mensaje):
         except ValueError:
             print('ERROR: debes ingresar un número entero.')
     return numero
-
+ 
 def ValidaFlotante(mensaje):
     band = False
     while band == False:

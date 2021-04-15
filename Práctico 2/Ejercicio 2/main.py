@@ -1,6 +1,7 @@
 from manejadorViajeros import clasemanejadorViajero
 from ClaseViajeroFrecuente import ViajeroFrecuente
 from Validador import ValidaEntero
+from ClaseMenu import Menu
 import csv
 import os
  
@@ -10,46 +11,31 @@ if __name__ == '__main__':
     mv.testViajeros()
     print('>>>>>>>>>>>>>LISTA DE VIAJEROS<<<<<<<<<<<<<\n')
     print(mv)
-    band = False
-    while not band:
-        idViaj = ValidaEntero('Ingrese número de viajero frecuente: ')
-        indice = mv.buscarViajero(idViaj)
-        if indice == None:
-            print('El número de viajero {} no corresponde a un viajero.'.format(idViaj))
+    bandera = False
+    while not bandera:
+        ID = ValidaEntero('Ingrese número de viajero frecuente: ')
+        viajero = mv.buscarViajero(ID)
+        if viajero == None:
+            print('El número de viajero {} no corresponde a un viajero.'.format(viajero.getId()))
         else:
-            band = True
-            viajero = mv.getId(indice)    
-            bandera = False 
-            while not bandera:
-                os.system('cls')
-                print('Has introducido el ID {}.'.format(idViaj))
+            menu = Menu()
+            cad = ' MENÚ '
+            salir = False
+            while not salir:
+                os.system("cls")
+                print(cad.center(58, '='))
+                print('Has introducido el ID: {}'.format(viajero.getId()))
                 print("0 - Salir")
                 print("1 - Consultar cantidad de millas.")
                 print("2 - Acumular millas.")
                 print("3 - Canjear millas.")
-                opcion = ValidaEntero('Ingrese una opción: ')
-                if opcion == 1:
-                    print('\n{} es el ID de {}, que tiene {} millas acumuladas.'.format(idViaj, viajero.getNom(), viajero.cantTotalMillas()))
-                    os.system('pause')
-                elif opcion == 2:
-                    millas = ValidaEntero('Ingrese millas para acumular: ')
-                    viajero.acumMillas(millas)
-                    print('Se actualizaron las millas: ', viajero.cantTotalMillas())
-                    os.system('pause')
-                elif opcion == 3:
-                    print('\nCon quien desea canjear millas:')
-                    print(mv)
-                    idcanjear = ValidaEntero('Ingrese ID de una persona para canjear millas: ')
-                    indiceCanjear = mv.buscarViajero(idcanjear)
-                    if indiceCanjear == None:
-                        print('La persona con el ID: {} no existe.'.format(idcanjear))
+                band = False
+                while not band: 
+                    op = ValidaEntero('Ingrese una opción: ')
+                    if ( 0 <= op <= 3 ):
+                        band = True
                     else:
-                        viajerocanjear = mv.getId(indiceCanjear)
-                        millascanje = ValidaEntero('\nIngrese millas para canje: ')
-                        if millascanje <= viajerocanjear.cantTotalMillas():
-                            viajerocanjear.canjearMillas(millascanje)
-                            viajero.acumMillas(millascanje)
-                        else:
-                            print('\nNo tiene millas suficientes.')
-                    os.system('pause')
-                bandera = opcion == 0
+                        print('\nLa opción ingresada es incorrecta.\n')
+                menu.opcion(op, mv, viajero)
+                salir = op == 0
+            bandera = True

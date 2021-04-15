@@ -2,6 +2,7 @@ class Alumno:
     #variables de clase
     cant_max_inasis = 21
     cant_totalClases = 100
+    
     #variables de instancia
     __nom = ''
     __año = 0
@@ -30,7 +31,7 @@ class Alumno:
         return (self.__cant_inasistencia * 100 ) / Alumno.getCantClases()
 
     def __str__(self):
-        return 'Nombre: %s - Año:%s - División: %s - Inasistencias: %s' % (self.__nom, self.__año, self.__div, self.__cant_inasistencia)
+        return 'Nombre: %s - Año: %s - División: %s - Inasistencias: %s' % (self.__nom, self.__año, self.__div, self.__cant_inasistencia)
 
     #metodos de clase
     @classmethod
