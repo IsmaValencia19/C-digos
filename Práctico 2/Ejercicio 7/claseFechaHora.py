@@ -63,6 +63,7 @@ class FechaHora:
         return self.__seg
 
     def validar(self):
+        band = None
         if(self.__año in range(3000)):
             if(self.__mes in range(13)):
                 if((self.__mes == 4) or (self.__mes == 6) or (self.__mes == 9) or (self.__mes == 11)):
@@ -70,73 +71,74 @@ class FechaHora:
                         if(self.__hora in range(24)):
                             if(self.__min in range(60)):
                                 if(self.__seg in range(60)):
-                                    return True
+                                    band = True
                                 else:
                                     #print('Para los segundos los valores válidos son de 0...59.')
-                                    return False
+                                    band = False
                             else:
                                 #print('Para los minutos los valores válidos son de 0...59.')
-                                return False
+                                band = False
                         else:
                             #print('Para las horas los valores válidos son de 0...23.')
-                            return False
+                            band = False
                     else:
                         #print('Los valores válidos para un dia en el mes', self.__mes,'son de 1...30.')
-                        return False
+                        band = False
                 elif((self.__mes == 1) or (self.__mes ==3) or (self.__mes == 5) or (self.__mes == 7) or (self.__mes == 8) or (self.__mes == 10) or (self.__mes == 12)):
                     if(self.__dia in range(32)):
                         if(self.__hora in range (24)):
                             if(self.__min in range(60)):
                                 if(self.__seg in range(60)):
-                                    return True
+                                    band = True
                                 else:
                                     #print('Para los segundos los valores válidos son de 0...59.')
-                                    return False
+                                    band = False
                             else:
                                 #print('Para los minutos los valores válidos son de 0...59.')
-                                return False
+                                band = False
                         else:
                             #print('Para las horas los valores válidos son de 0...23.')
-                            return False
+                            band = False
                     else:
                         #print('Los valores válidos para un dia en el mes', self.__mes,'son de 1...31.')
-                        return False
+                        band = False
                 elif((self.__mes == 2) and (((self.__año % 4) == 0 and (self.__año % 100) != 0) or (self.__año % 400) == 0)):
                     if(self.__dia in range(30)):
                         if(self.__hora in range (24)):
                             if(self.__min in range(60)):
                                 if(self.__seg in range(60)):
-                                    return True
+                                    band = True
                                 else:
                                     #print('Para los segundos los valores válidos son de 0...59.')
-                                    return False
+                                    band = False
                             else:
                                 #print('Para los minutos los valores válidos son de 0...59.')
-                                return False
+                                band = False
                         else:
                             #print('Para las horas los valores válidos son de 0...23.')
-                            return False
+                            band = False
                     else:
                         #print("Los valores válidos para un dia en el mes", self.__mes, 'son de 1...29.')
-                        return False
+                        band = False
                 else:
                     if(self.__dia in range(29)):
                         if(self.__hora in range (24)):
                             if(self.__min in range(60)):
                                 if(self.__seg in range(60)):
-                                    return True
+                                    band = True
                                 else:
                                     #print('Para los segundos los valores válidos son de 0...59.')
-                                    return False
+                                    band = False
                             else:
                                 #print('Para los minutos los valores válidos son de 0...59.')
-                                return False
+                                band = False
                         else:
                             #print('Para las horas los valores válidos son de 0...23.')
-                            return False
+                            band = False
                     else:
                         #print("Los valores válidos para un dia en el mes", self.__mes, 'son de 1...28.')
-                        return False
+                        band = False
+        return band
 
     def verificarhora(self, d = 0, mes = 0, a = 0, h = 0, m = 0, s = 0):
         self.__dia += d
