@@ -32,7 +32,7 @@ class Menu:
         band = False
         while not band:
             id = ValidaEntero('Ingrese ID: ')
-            libro = ml.buscarId(id)
+            libro = ml.buscarLibro(id)
             if libro != None:
                 band = True
             else:
@@ -53,11 +53,11 @@ class Menu:
                 print('\nLa palabra esta en el título de un libro.')
                 band = True
             else:
-                print('\nLa palabra no esta en el título de un libro.')
+                print('\nLa palabra no esta en el título de un libro.\n')
                 if ml.buscaPalabraenCapi(palabra) == True:
                     print('\nLa palabra esta en el titulo de un capitulo.')
                     band = True
                 else:
-                    print('La palabra no esta en el titulo de un capitulo.')
+                    print('La palabra no esta en el titulo de un capitulo.\n')
         print()
         os.system("pause")

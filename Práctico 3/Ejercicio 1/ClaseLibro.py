@@ -2,7 +2,7 @@ from ClaseCapitulo import Capitulo
 class Libro:
     __idLibro = 0
     __titulo = ''
-    __autor =''
+    __autor = ''
     __editorial = ''
     __isbn = 0
     __cantCapitulos = 0

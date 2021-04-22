@@ -1,5 +1,5 @@
-from ClaseLibro import Libro
 from ClaseCapitulo import Capitulo
+from ClaseLibro import Libro
 import csv
 
 class ManejaLibro:
@@ -11,7 +11,7 @@ class ManejaLibro:
     def agregar(self, libro):
         self.__lista.append(libro)
 
-    def cargarLista(self):
+    def cargar(self):
         archivo = open('libros.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
@@ -23,18 +23,17 @@ class ManejaLibro:
                 unLibro.agregarCapitulo(cap)
         archivo.close()
 
-    def buscarId(self, id):
+    def buscarLibro(self, ID):
         i = 0
         libro = None
         while i < len(self.__lista) and libro == None:
-            if id == self.__lista[i].getId():
+            if ID == self.__lista[i].getId():
                 libro = self.__lista[i]
                 i = len(self.__lista)
             else:
                 i += 1
         return libro
 
-    #retorna la cantidad de páginas de un libro
     def getCantPaginas(self, libro):
         cantpag = 0
         lista_capitulos = libro.getCapitulos()
@@ -46,7 +45,6 @@ class ManejaLibro:
             i += 1
         return cantpag
 
-    #muestra los capitulos de un libro
     def mostrarCapi(self, libro):
         lista_capitulos = libro.getCapitulos()
         for cap in lista_capitulos:

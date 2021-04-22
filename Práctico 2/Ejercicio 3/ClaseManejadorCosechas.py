@@ -8,17 +8,19 @@ class ManejadorCosechas:
     def __init__(self):
         self.__cosecha = Cosecha()
 
-    def Cargar(self):
+    def Cargar(self, camiones):
         archivo = open('cosechas.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
             ID = int(fila[0])
             dia = int(fila[1])
             kg = int(fila[2])
-            self.__cosecha.agregarKG(ID - 1, dia - 1, kg)
+            camion = camiones.buscaCamion(ID)
+            tara = int(camion.getTara())
+            self.__cosecha.agregarKG(ID - 1, dia - 1, kg - tara)
         archivo.close()
 
-    def kilos(self, ID):
+    def kilos(self, ID, tara):
         kilos = 0
         for i in range(45):
             kilos += self.__cosecha.getValor(ID - 1, i)

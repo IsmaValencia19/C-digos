@@ -1,5 +1,5 @@
 class Capitulo:
-    __titulo =''
+    __titulo = ''
     __cantPag = 0
 
     def __init__(self, tit = '', pag = 0):

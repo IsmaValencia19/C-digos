@@ -9,7 +9,7 @@ if __name__ == '__main__':
     Camiones.Cargar()
 
     Cosechas = ManejadorCosechas()
-    Cosechas.Cargar()
+    Cosechas.Cargar(Camiones)
 
     menu = Menu()
     cad = ' MENÚ '
@@ -20,10 +20,11 @@ if __name__ == '__main__':
         print('0 - Salir.')
         print('1 - Ingresar ID de un camión y muestra la cantidad total de kilos descargados.')
         print('2 - Ingrese un dia y muestra un listado de datos.')
+        print('3 - Ingrese nueva carga.')
         band = False
         while not band: 
             op = ValidaEntero('Ingrese una opción: ')
-            if ( 0 <= op <= 2 ):
+            if ( 0 <= op <= 3 ):
                 band = True
             else:
                 print('\nLa opción ingresada es incorrecta.\n')

@@ -7,7 +7,8 @@ class Menu:
     def __init__(self):
         self.__switcher = { 0:self.salir,
                             1:self.opcion1,
-                            2:self.opcion2
+                            2:self.opcion2,
+                            3:self.opcion3
                           }
     
     def getSwitcher(self):
@@ -31,7 +32,7 @@ class Menu:
         while not band:
             camion = cam.buscaCamion(ValidaEntero('Ingrese ID de camión: '))
             if camion != None:
-                cos.kilos(camion.getId())
+                cos.kilos(camion.getId(), camion.getTara())
                 band = True
             else:
                 print('\nEl ID de camión ingresado no existe.\n')
@@ -53,5 +54,27 @@ class Menu:
                 band = True
             else:
                 print('\nEl dia ingresado es incorrecto.\n')
+        print()
+        os.system("pause")
+
+    def opcion3(self, cam, cos):
+        os.system("cls")
+        band = False
+        while not band:
+            ID = ValidaEntero('Ingrese ID de camión: ')
+            if ID > 0 and ID < 21:
+                camion = cam.buscaCamion(ID)
+                dia = ValidaEntero('Ingrese dia: ')
+                if dia > 0 and dia < 46:
+                    kg = ValidaEntero('Ingrese kilos: ')
+                    tara = int(camion.getTara())
+                    cosechas = cos.getLista()
+                    cosechas.agregarKG(ID - 1, dia - 1, kg - tara)
+                    band = True
+                else:
+                    print('\nERROR: El dia ingresado no es valido.\n')
+            else:
+                print('\nERROR: El ID de camión ingresado no es valido.\n')
+        print('\nDatos registrado con éxito!')
         print()
         os.system("pause")
