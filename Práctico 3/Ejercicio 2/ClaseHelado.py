@@ -1,5 +1,5 @@
 class Helado:
-    __gramos =0
+    __gramos = 0
     __sabor = []
 
     def __init__(self, gramos, sabor):

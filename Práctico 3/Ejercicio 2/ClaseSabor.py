@@ -5,7 +5,7 @@ class Sabor:
 
     def __init__(self, num = 0, nom = '', desc = ''):
         self.__num = num
-        self.__nom =nom
+        self.__nom = nom
         self.__descripcion = desc
 
     def getNom(self):

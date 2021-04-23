@@ -1,7 +1,7 @@
 from Validador import ValidaEntero
 from ClaseSabor import Sabor
-import csv
 import numpy as np
+import csv
 
 class ManejaSabores:
     __arre = 0
@@ -12,7 +12,7 @@ class ManejaSabores:
     def agregar(self, sabor):
         self.__arre = np.append(self.__arre, sabor)
 
-    def cargaSabor(self):
+    def carga(self):
         archivo = open('sabor.csv')
         reader = csv.reader(archivo, delimiter = ',')
         for fila in reader:
@@ -20,30 +20,21 @@ class ManejaSabores:
             self.agregar(unSabor)
         archivo.close()
 
-    def validaSabor(self, iDsabor):
-        band = False
+    def buscarSabor(self, idsabor):
         i = 0
-        while i < len(self.__arre):
-            if iDsabor == self.__arre[i].getId():
-                band = True
-                i = len(self.__arre)
-            else:
-                i += 1
-        return band
-
-    def getSabor(self, idsabor):
-        i = 0
+        sabor = None
         while i < len(self.__arre):
             if idsabor == self.__arre[i].getId():
-                sabor = self.__arre[i].getNom()
+                sabor = self.__arre[i]
                 i = len(self.__arre)
             else:
                 i += 1
         return sabor
 
-    def b5sabores(self, cont):
+    def cincoSabores(self, cont):
         listapedido = []
         i = 0
+        print('Sabores más vendidos: \n')
         while i < len(cont):
             if self.__arre[i].getId() == i + 1:
                 #print('Sabor: %s fue pedido %s vez/veces.' % (self.__arre[i].getNom(), cont[i]))
@@ -55,25 +46,23 @@ class ManejaSabores:
         
         listapedido.sort(key = lambda x:x[1], reverse = True)
         for i in range(5):
-            print(listapedido[i])
+            print('Sabor %s fue vendido %s vez/veces.' % (listapedido[i][0], listapedido[i][1]))
 
     def gramosabor(self, acum):
         band = False
         while not band:
-            idSabor = ValidaEntero('Ingrese ID de sabor: ')
-            if self.validaSabor(idSabor) == True:
-                #print('ID de sabor correcto.')
+            sabor = self.buscarSabor(ValidaEntero('Ingrese ID de sabor: '))
+            if sabor != None:
+                i = 0
+                while i < len(acum):
+                    if self.__arre[i].getId() == sabor.getId():
+                        print('\nSabor: %s - Vendido: %s gs.' % (self.__arre[i].getNom(), acum[i]))
+                        i = len(acum)
+                    else:
+                        i += 1
                 band = True
             else:
-                print('ID de sabor incorrecto.')
-
-        i = 0
-        while i < len(acum):
-            if self.__arre[i].getId() == idSabor:
-                print('Sabor: %s - Vendido: %s gs.' % (self.__arre[i].getNom(), acum[i]))
-                i = len(acum)
-            else:
-                i += 1
+                print('\nID de sabor incorrecto.\n')
 
     def __str__(self):
         s = ''

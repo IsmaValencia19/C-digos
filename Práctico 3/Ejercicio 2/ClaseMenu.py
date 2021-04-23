@@ -32,11 +32,13 @@ class Menu:
     def opcion1(self, ms, mh):
         os.system("cls")
         mh.RegistroVenta(ms)
+        print('\nVenta registrada con éxito!\n')
         os.system("pause")
 
     def opcion2(self, ms, mh):
         os.system("cls")
-        mh.most5sab(ms)
+        mh.mostrar5sabores(ms)
+        print()
         os.system("pause")
 
     def opcion3(self, ms, mh):
@@ -51,13 +53,14 @@ class Menu:
         print()
         os.system("pause")
 
+    # opciones agregadas por mi para verificar
     def opcion5(self, ms, mh):
         os.system("cls")
         cad = ' LISTA DE SABORES REGISTRADOS '
         print(cad.center(80, '='))
         print(ms)
         os.system("pause")
-
+ 
     def opcion6(self, ms, mh):
         os.system("cls")
         cad = ' VENTAS '
