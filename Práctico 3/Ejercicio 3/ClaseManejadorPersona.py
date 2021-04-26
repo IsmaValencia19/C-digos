@@ -1,8 +1,6 @@
-from ClasePersona import Persona
 from ClaseInscripcion import Inscripcion
-from ClaseManejadorTaller import ManejaTaller
 from Validador import ValidaEntero
-from ClaseManejadorInscripcion import ManejaInscripcion
+from ClasePersona import Persona
 from datetime import datetime
 
 class ManejaPersona:
@@ -14,44 +12,49 @@ class ManejaPersona:
     def agregar(self, persona):
         self.__lista.append(persona)
 
-    #busca una persona por dni
-    def buscapersona(self, dni):
+    #valida si existe la persona
+    def validapersona(self, dni):
         persona = None
         i = 0
         while i < len(self.__lista) and persona == None:
             if dni == self.__lista[i].getDni():
                 persona = self.__lista[i]
-                i = len(self.__lista)
             else:
                 i += 1
         return persona
 
-    #se registra el pago si el inscripto debe o no
-    def registrapago(self, mi, mt):
+    #busca una persona por dni
+    def buscarpersona(self):
+        persona = None
         band = False
         while not band:
             dni = ValidaEntero('Ingrese DNI: ')
-            if self.buscapersona(dni) == True:
+            persona = self.validapersona(dni)
+            if persona != None:
                 band = True
             else:
-                print('DNI incorrecto.')
+                print('ERROR: El DNI es incorrecto. Persona no inscripta.\n')
+        return persona
 
+    #se registra el pago si el inscripto debe o no
+    def registrapago(self, mi):
+        persona = self.buscarpersona()
         print()
-        mi.buscaparapagar(dni, mt)
+        mi.buscaparapagar(persona)
 
     def testing(self, mt, mi):
-        persona1 = Persona('Martin Gomez', 'Av. Cordoba 5403', '35034523')
-        persona2 = Persona('Julieta Martinez', 'Juan Jofre 304', '40129321')
-        persona3 = Persona('Martina Lopez', 'Urquiza 123', '42932094')
+        persona1 = Persona('Martin Gomez', 'Av. Cordoba 5403', 35034523)
+        persona2 = Persona('Julieta Martinez', 'Juan Jofre 304', 40129321)
+        persona3 = Persona('Martina Lopez', 'Urquiza 123', 42932094)
 
-        arre = mt.getArre()     #retorne la lista para poder hacer el testing
+        talleres = mt.getArre()  #retorné la lista de talleres para poder hacer el testing
         fecha = datetime.now()
-        insc1 = Inscripcion(fecha, False, arre[0], persona1)
-        arre[0].modificavacante()
-        insc2 = Inscripcion(fecha, False, arre[2], persona2)
-        arre[2].modificavacante()
-        insc3 = Inscripcion(fecha, True, arre[3], persona3)
-        arre[3].modificavacante()
+        insc1 = Inscripcion(fecha, False, talleres[0], persona1)
+        talleres[0].restarvacante()
+        insc2 = Inscripcion(fecha, False, talleres[2], persona2)
+        talleres[2].restarvacante()
+        insc3 = Inscripcion(fecha, True, talleres[3], persona3)
+        talleres[3].restarvacante()
 
         persona1.agregar(insc1)
         persona2.agregar(insc2)

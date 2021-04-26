@@ -1,5 +1,5 @@
 import re
- 
+
 def ValidaEntero(mensaje):
     band = False
     while band == False:
@@ -7,9 +7,9 @@ def ValidaEntero(mensaje):
             numero = int(input(mensaje))
             band = True
         except ValueError:
-            print('ERROR: debes ingresar un número entero.')
+            print('ERROR: debes ingresar un número entero.\n')
     return numero
-
+ 
 def ValidaFlotante(mensaje):
     band = False
     while band == False:
@@ -17,7 +17,7 @@ def ValidaFlotante(mensaje):
             numero = float(input(mensaje))
             band = True
         except ValueError:
-            print('ERROR: debes ingresar un número real.')
+            print('ERROR: debes ingresar un número real.\n')
     return numero
 
 def ValidaCadena(mensaje):
@@ -27,7 +27,7 @@ def ValidaCadena(mensaje):
             cad = str(input(mensaje))
             band = True
         except ValueError:
-            print('ERROR: debes ingresar una cadena de caracteres.')
+            print('ERROR: debes ingresar una cadena de caracteres.\n')
     return cad
 
 def ValidaCadenaAlfabetica(mensaje):
@@ -37,7 +37,7 @@ def ValidaCadenaAlfabetica(mensaje):
         if vari.isalpha() == True:
             band = True
         else:
-            print('ERROR: debes ingresar sólo letras.')
+            print('ERROR: debes ingresar sólo letras.\n')
     return vari
 
 def ValidaCadenaAlfanumerica(mensaje):
@@ -47,7 +47,7 @@ def ValidaCadenaAlfanumerica(mensaje):
         if vari.isalnum() == True:
             band = True
         else:
-            print('ERROR: debes ingresar letras y números sin espacios ni caracteres especiales.')
+            print('ERROR: debes ingresar letras y números sin espacios ni caracteres especiales.\n')
     return vari
 
 def ValidaEmail(mensaje):

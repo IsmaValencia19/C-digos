@@ -1,11 +1,11 @@
 class TallerCapacitacion:
     __id = 0
     __nom = ''
-    __vacantes =0
+    __vacantes = 0
     __montoInscripcion = 0
 
-    def __init__(self, id = 0, nom = '', vac = 0, monto = 0):
-        self.__id = id
+    def __init__(self, ID = 0, nom = '', vac = 0, monto = 0):
+        self.__id = ID
         self.__nom = nom
         self.__vacantes = vac
         self.__montoInscripcion = monto
@@ -16,7 +16,10 @@ class TallerCapacitacion:
     def getNom(self):
         return self.__nom
 
-    def getPago(self):
+    def getVacantes(self):
+        return self.__vacantes
+
+    def getMonto(self):
         return self.__montoInscripcion
 
     def verificarVacante(self):
@@ -25,7 +28,7 @@ class TallerCapacitacion:
             band = True
         return band
 
-    def modificavacante(self):
+    def restarvacante(self):
         self.__vacantes -= 1
 
     def __str__(self):

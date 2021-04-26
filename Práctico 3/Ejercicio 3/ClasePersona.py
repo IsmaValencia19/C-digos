@@ -1,12 +1,12 @@
 class Persona:
-    __nom =''
-    __dir =''
-    __dni = ''
+    __nom = ''
+    __dir = ''
+    __dni = 0
     __insc = None
 
-    def __init__(self, nom, dir, dni):
+    def __init__(self, nom = '', DIR = '', dni = 0):
         self.__nom = nom
-        self.__dir = dir
+        self.__dir = DIR
         self.__dni = dni
         self.__insc = None
 

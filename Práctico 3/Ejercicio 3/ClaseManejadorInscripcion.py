@@ -3,7 +3,7 @@ import numpy as np
 import csv
 
 class ManejaInscripcion:
-    __arre = 0
+    __arre = None
 
     def __init__(self):
         self.__arre = np.array([])
@@ -11,15 +11,15 @@ class ManejaInscripcion:
     def agregaInscripcion(self, inscrip):
         self.__arre = np.append(self.__arre, inscrip)
 
-    #busca una persona y muestra si debe dinero o no
-    def buscapersona(self, persona, mt):
+    #verifica si una persona debe dinero o no
+    def verificaDeuda(self, persona):
         i = 0
         while i < len(self.__arre):
             if persona == self.__arre[i].getPersona():
                 taller = self.__arre[i].getTaller()
                 print('Esta inscripto/a en el taller de: %s.' % (taller.getNom()))
                 if self.__arre[i].getPago() == False:
-                    debe = taller.getPago()
+                    debe = taller.getMonto()
                     print('Debe pagar: $%s.' % (debe))
                 else:
                     print('No adeuda dinero de inscripción.')
@@ -28,7 +28,7 @@ class ManejaInscripcion:
                 i += 1
 
     #muestra los inscriptos en un taller ingresado por teclado
-    def consultaInscriptos(self, taller):
+    def mostrarInscriptos(self, taller):
         print()
         i = 0
         while i < len(self.__arre):
@@ -36,6 +36,8 @@ class ManejaInscripcion:
                 persona = self.__arre[i].getPersona()
                 print(persona)
             i +=1
+        if taller.getVacantes() == 50:
+            print('El taller de %s por el momento no registra personas inscriptas.' % (taller.getNom()))
 
     #ingresa dni de algún inscripto para pagar si adeuda
     def buscaparapagar(self, persona):
@@ -44,11 +46,11 @@ class ManejaInscripcion:
             if persona == self.__arre[i].getPersona():
                 taller = self.__arre[i].getTaller()
                 if self.__arre[i].getPago() == False:
-                    print('\nDebe pagar: $%s.\n' % (taller.getPago()))
+                    print('\nDebe pagar: $%s.\n' % (taller.getMonto()))
                     band = False
                     while not band:
                         pago = ValidaEntero('Ingrese su pago: ')
-                        if pago == taller.getPago():
+                        if pago == taller.getMonto():
                             self.__arre[i].modificapago()
                             print('\nPago realizado con exito!\n')
                             band = True
@@ -67,20 +69,23 @@ class ManejaInscripcion:
             persona = self.__arre[i].getPersona()
             dni = str(persona.getDni())
             taller = self.__arre[i].getTaller()
-            id = str(mt.getId(taller))
+
+            ID = str(mt.getId(taller))
             fecha = self.__arre[i].getFecha()
             pago = self.__arre[i].getPago()
+
             archivo.write(dni)
             archivo.write(',')
-            archivo.write(id)
+            archivo.write(ID)
             archivo.write(',')
-            archivo.write(fecha)
+            archivo.write(str(fecha))
             archivo.write(',')
             if pago == True:
                 archivo.write('Si\n')
             else:
                 archivo.write('No\n')
             i += 1
+
         print('Archivo guardado con exito.')
         archivo.close()
 
