@@ -28,8 +28,6 @@ class Menu:
     def opcion1(self):
         os.system("cls")
 
-        cad = ' Unión de Conjuntos '
-        print(cad.center(58, '='))
         print('Datos del primer conjunto')
         conjunto = Conjunto()
         conjunto.generaelconjunto()
@@ -43,6 +41,7 @@ class Menu:
         conjunto2.mostrar()
         print()
         union = conjunto + conjunto2
+        os.system('cls')
         print('Unión de conjuntos:')
         print()
         union.mostrar()
@@ -53,8 +52,6 @@ class Menu:
     def opcion2(self):
         os.system("cls")
 
-        cad = ' Diferencia de Conjuntos '
-        print(cad.center(58, '='))
         print('Datos del primer conjunto')
         conjunto = Conjunto()
         conjunto.generaelconjunto()
@@ -78,8 +75,6 @@ class Menu:
     def opcion3(self):
         os.system("cls")
 
-        cad = ' Igualdad de Conjuntos '
-        print(cad.center(58, '='))
         print('Datos del primer conjunto')
         conjunto = Conjunto()
         conjunto.generaelconjunto()
