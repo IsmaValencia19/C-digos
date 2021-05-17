@@ -1,5 +1,5 @@
-from ClaseAuto import Auto
 from datetime import datetime
+from ClaseAuto import Auto
 
 class AutoUsado(Auto):
     __marca = ''
@@ -16,6 +16,9 @@ class AutoUsado(Auto):
 
     def getPat(self):
         return self.__patente
+
+    def getMarca(self):
+        return self.__marca
 
     def getImporte(self):
         fecha = datetime.now()
@@ -48,4 +51,4 @@ class AutoUsado(Auto):
 
     def __str__(self):
         super().mostrar()
-        return 'MARCA: %s - PATENTE: %s - AÑO: %s - KILOMETRAJE: %s - IMPORTE DE VENTA: %s' % (self.__marca, self.__patente, self.__año, self.__kilometraje, self.getImporte())
+        return 'MARCA: %s - PATENTE: %s - AÑO: %s - KILOMETRAJE: %s - IMPORTE DE VENTA: $%s' % (self.__marca, self.__patente, self.__año, self.__kilometraje, self.getImporte())

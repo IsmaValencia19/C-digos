@@ -7,7 +7,7 @@ class Externo(Empleado):
     __montoViatico = 0
     __costoObra = 0
     __montoSeguroVida = 0
-
+ 
     def __init__(self, dni, nom, dir, tel, tarea, fechaIni, fechafin, montoV, obra, montoSV):
         Empleado.__init__(self, dni, nom, dir, tel)
         self.__tarea = tarea
@@ -22,6 +22,9 @@ class Externo(Empleado):
 
     def getObra(self):
         return self.__costoObra
+
+    def getFechaFin(self):
+        return self.__fechaFinalizacion
 
     def getSueldo(self):
         sueldo = self.__costoObra - self.__montoViatico - self.__montoSeguroVida

@@ -11,7 +11,7 @@ class AutoNuevo(Auto):
     @classmethod
     def getMarca(cls):
         return cls.marca
-
+ 
     def getImporte(self):
         porcentaje = 0.1
         p = (porcentaje * self.getPrecio()) / 100
@@ -35,4 +35,4 @@ class AutoNuevo(Auto):
 
     def __str__(self):
         super().mostrar()
-        return 'MARCA: %s - VERSIÓN: %s - IMPORTE DE VENTA: %s' % (AutoNuevo.marca, self.__version, self.getImporte())
+        return 'MARCA: %s - VERSIÓN: %s - IMPORTE DE VENTA: $%s' % (AutoNuevo.marca, self.__version, self.getImporte())

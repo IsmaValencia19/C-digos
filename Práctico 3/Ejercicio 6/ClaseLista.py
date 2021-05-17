@@ -1,11 +1,12 @@
+from Validador import ValidaEntero, ValidaCadena, ValidaCadenaAlfabetica
 from zope.interface import implementer
 from ClaseAutoNuevo import AutoNuevo
 from ClaseAutoUsado import AutoUsado
 from archivodeinterface import inter
-from Validador import ValidaEntero, ValidaCadena
 from ClaseNodo import Nodo
 import json
 import zope
+import os
 
 @implementer(inter)
 class Lista:
@@ -31,6 +32,36 @@ class Lista:
             dato = self.__actual.getDato()
             self.__actual = self.__actual.getSiguiente()
             return dato
+
+    def RegistroAutoNuevo(self):
+        os.system('cls')
+        print('\n>>>>>>>>>>REGISTRANDO VEHÍCULO NUEVO<<<<<<<<<<')
+        modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Punto, etc): ')
+        puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
+        color = ValidaCadenaAlfabetica('Ingrese color: ')
+        precio = ValidaEntero('Ingrese precio: ')
+        band = False
+        while not band:
+            version = ValidaCadenaAlfabetica('Ingrese versión(Full o Base): ')
+            if (version.capitalize() == 'Full') or (version.capitalize() == 'Base'):
+                band = True
+            else:
+                print('ERROR, versión incorrecta.\n')
+        unAutoNuevo = AutoNuevo(modelo.capitalize(), puertas, color.capitalize(), precio, version.capitalize())
+        return unAutoNuevo
+
+    def RegistroAutoUsado(self):
+        print('\n>>>>>>>>>>REGISTRANDO VEHÍCULO USADO<<<<<<<<<<')
+        modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Focus, etc): ')
+        puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
+        color = ValidaCadenaAlfabetica('Ingrese color: ')
+        precio = ValidaEntero('Ingrese precio: ')
+        marca = ValidaCadena('Ingrese marca: ')
+        patente = ValidaCadena('Ingrese patente: ')
+        año = ValidaEntero('Ingrese año de fabrica: ')
+        kilometraje = ValidaEntero('Ingrese kilometraje: ')
+        unAutoUsado = AutoUsado(modelo.capitalize(), puertas, color.capitalize(), precio, marca.capitalize(), patente, año, kilometraje)
+        return unAutoUsado
 
     #metodos de la interface
     def agregarElemento(self, dato):
@@ -63,15 +94,17 @@ class Lista:
     def mostrarElemento(self, posicion):
         i = 0
         actual = self.__comienzo
-        encontrado = None
-        while actual != None and encontrado == None:
-            if i == posicion:
+        auto = None
+        while actual != None and auto == None:
+            if i == (posicion - 1):
                 auto = actual.getDato()
-                encontrado = auto
             else:
                 actual = actual.getSiguiente()
                 i += 1
-        return type(encontrado)
+        if isinstance(auto, AutoNuevo):
+            print('\nEl objeto de la posición %s es un Auto Nuevo.\n' % (posicion))
+        else:
+            print('\nEl objeto de la posición %s es un Auto Usado.\n' % (posicion))
 
     def buscavehiculo(self, pat):
         actual = self.__comienzo
@@ -91,10 +124,10 @@ class Lista:
             pat = ValidaCadena('Ingrese patente de vehículo para modificiar el precio base: ')
             vehiculo = self.buscavehiculo(pat)
             if vehiculo != None:
+                print('\nPrecio de venta: $%s\n' % (vehiculo.getImporte()))
                 precio = ValidaEntero('Ingrese precio nuevo: ')
                 vehiculo.modificaprecio(precio)
-                print('\nPrecio de venta: %d' % (vehiculo.getImporte()))
-                print()
+                print('\nPrecio de venta actualizado: $%d\n' % (vehiculo.getImporte()))
                 band = True
             else:
                 print('ERROR, vehículo no encontrado.')
@@ -132,7 +165,7 @@ class Lista:
         actual = self.__comienzo
         while actual != None:
             auto = actual.getDato()
-            print('Modelo: %s - Cantidad de Puertas: %s - Importe de Venta: %s' % (auto.getModelo(), auto.getPuertas(), auto.getImporte()))
+            print('Marca: %s - Modelo: %s - Cantidad de Puertas: %s - Importe de Venta: $%s' % (auto.getMarca(), auto.getModelo(), auto.getPuertas(), auto.getImporte()))
             actual = actual.getSiguiente()
 
     def __len__(self):

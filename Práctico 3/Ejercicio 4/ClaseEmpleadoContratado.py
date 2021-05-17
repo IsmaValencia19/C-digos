@@ -5,7 +5,7 @@ class Contratado(Empleado):
     __fechaFinalizacion = ''
     __cantHorasTrabajadas = 0
     valorHora = 200
-
+ 
     def __init__(self, dni, nom, dir, tel, fechaI, fechaF, cantHoras):
         Empleado.__init__(self, dni, nom, dir, tel)
         self.__fechaInicio = fechaI

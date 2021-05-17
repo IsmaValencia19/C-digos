@@ -5,7 +5,7 @@ class Empleado:
     __nom = ''
     __dir = ''
     __tel = 0
-
+ 
     def __init__(self, dni, nom, dir, tel):
         self.__dni = dni
         self.__nom = nom

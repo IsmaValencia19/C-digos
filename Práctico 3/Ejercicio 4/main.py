@@ -1,9 +1,11 @@
 from ClaseManejadorEmpleados import ManejaEmpleados 
+from Testing import ActivaTesting
 from Validador import ValidaEntero
 from ClaseMenu import Menu
 import os
 
 if __name__ == '__main__':
+    #ActivaTesting()
     me = ManejaEmpleados(8)
     me.cargaArre()
     menu = Menu()
@@ -19,6 +21,12 @@ if __name__ == '__main__':
         print('3 - Ayuda para empleados.')
         print('4 - Calcular sueldo.')
         print(cade.center(25, '='))
-        op = ValidaEntero('Ingrese una opción: ')
+        band = False
+        while not band: 
+            op = ValidaEntero('Ingrese una opción: ')
+            if ( op >= 0 and op <= 4 ):
+                band = True
+            else:
+                print('La opción ingresada es incorrecta.\n')
         menu.opcion(op, me)
         salir = op == 0

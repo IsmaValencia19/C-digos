@@ -26,10 +26,6 @@ class ManejaTaller:
                 self.agregar(unTaller)
         archivo.close()
 
-    #retorna el arreglo de talleres
-    def getArre(self):
-        return self.__arre
-
     #valida si existe el taller
     def validataller(self, id):
         taller = None

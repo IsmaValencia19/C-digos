@@ -18,6 +18,9 @@ class Investigador(Personal):
 
     def getTipo(self):
         return self.__tipodeinvestigacion
+    
+    def getType(self):
+        return 'Investigador'
 
     def toJSON(self):
         return dict(

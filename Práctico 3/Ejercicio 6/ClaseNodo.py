@@ -1,4 +1,4 @@
-class Nodo:
+class Nodo: 
     __dato = None
     __siguiente = None
 

@@ -9,7 +9,7 @@ class Auto:
         self.__puertas = puertas
         self.__color = color
         self.__precio = precio
-
+ 
     def getModelo(self):
         return self.__modelo
 
@@ -26,4 +26,4 @@ class Auto:
         self.__precio = precio
 
     def mostrar(self):
-        print('MODELO: %s - CANTIDAD DE PUERTAS: %s - COLOR: %s - PRECIO BASE: %s' % (self.__modelo, self.__puertas, self.__color, self.getPrecio()))
+        print('MODELO: %s - CANTIDAD DE PUERTAS: %s - COLOR: %s - PRECIO BASE: $%s' % (self.__modelo, self.__puertas, self.__color, self.getPrecio()))

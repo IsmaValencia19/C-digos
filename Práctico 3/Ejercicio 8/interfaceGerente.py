@@ -1,5 +1,5 @@
 from zope.interface import Interface
-
+ 
 class IGerente(Interface):
     def modificarBasicoEPlanta(dni, nuevoBasico):
         pass

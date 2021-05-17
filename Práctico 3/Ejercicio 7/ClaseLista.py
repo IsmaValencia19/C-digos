@@ -1,5 +1,5 @@
 from ClaseDocenteInvestigador import DocenteInvestigador
-from Validador import ValidaCadenaAlfabetica
+from Validador import ValidaCadenaAlfabetica, ValidaCadenaAlfanumerica, ValidaEntero
 from ClaseInvestigador import Investigador
 from archivodeinterface import inter
 from ClasePersonal import Personal
@@ -66,8 +66,8 @@ class Lista:
         encontrado = None
         while actual != None and encontrado == None:
             if i == posicion:
-                auto = actual.getDato()
-                encontrado = auto
+                personal = actual.getDato()
+                encontrado = personal
             else:
                 actual = actual.getSiguiente()
                 i += 1
@@ -75,23 +75,103 @@ class Lista:
 
     def validacategoria(self, categoria):
         categorias = ['I', 'II', 'III', 'IV', 'V']
-        encontrada = None
+        encontrada = False
         i = 0
-        while i < len(categorias) and encontrada == None:
+        while i < len(categorias) and encontrada == False:
             if categorias[i] == categoria:
-                encontrada = categorias[i]
-                i = len(categorias)
+                encontrada = True
             else:
                 i += 1
         return encontrada 
+
+    def ingresaCategoria(self):
+        print('=== CATEGORÍAS: | I | II | III | IV | V | ===')
+        bande = False
+        while not bande:
+            categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
+            if self.validacategoria(categoria.upper()):
+                bande = True
+            else:
+                print('ERROR: Categoría ingresada incorrecta.\n')
+        return categoria.upper()
+
+    def RegistroPersonal(self):
+        print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
+        cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+        apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+        apellido.capitalize()
+        nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+        nombre.capitalize()
+        sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+        antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
+        band = False
+        while not band:
+            categoria = ValidaEntero('Ingresa categoría (1...22): ')
+            if categoria >= 1 and categoria <= 22:
+                band = True
+            else:
+                print('ERROR: categoría ingresada incorrecta.\n')
+        personal = PersonaldeApoyo(cuil, apellido, nombre, sueldobasico, antiguedad, categoria)
+        return personal
+
+    def RegistroDocente(self):
+        print('>>>>>REGISTRANDO DOCENTE<<<<<')
+        cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+        apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+        apellido.capitalize()
+        nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+        nombre.capitalize()
+        sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+        antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
+        carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+        cargo = input('Ingrese cargo que ocupa: ').capitalize()
+        catedra = input('Ingrese cátedra: ').capitalize()
+        docente = Docente(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra)
+        return docente
+
+    def RegistroInvestigador(self):
+        print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
+        cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+        apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+        apellido.capitalize()
+        nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+        nombre.capitalize()
+        sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+        antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
+        areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+        tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+        investigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
+        return investigador
+
+    def RegistroDocenteInvestigador(self):
+        print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
+        cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
+        apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
+        apellido.capitalize()
+        nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
+        nombre.capitalize()
+        sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
+        antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
+        carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
+        cargo = input('Ingrese cargo que ocupa: ').capitalize()
+        catedra = input('Ingrese cátedra: ').capitalize()
+        areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
+        tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+        categoria = self.ingresaCategoria()
+        importeextra = ValidaEntero('Ingrese importe extra por docencia e investigación: ')
+        docenteinvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
+        return docenteinvestigador
 
     def validacarrera(self, carrera):
         actual = self.__comienzo
         band = False
         while actual != None and band == False:
             personal = actual.getDato()
-            if carrera == personal.getCarrera():
-                band = True
+            if isinstance(personal, Docente) or isinstance(personal, DocenteInvestigador):                
+                if carrera == personal.getCarrera():
+                    band = True
+                else:
+                    actual = actual.getSiguiente()
             else:
                 actual = actual.getSiguiente()
         return band
@@ -103,21 +183,21 @@ class Lista:
             if self.validacarrera(carrera) == True:
                 band = True
             else:
-                print('ERROR, nombre de carrera incorrecta.')
+                print('ERROR: Nombre de carrera ingresado incorrecto.\n')
         
         listadocenteinvestiga = [] #creo una lista para ordenar los objetos de la clase docente investigador
         actual = self.__comienzo
         while actual != None:
             personal = actual.getDato()
-            if personal.getCarrera() == carrera:
-                if isinstance(personal, DocenteInvestigador):
+            if isinstance(personal, DocenteInvestigador):
+                if personal.getCarrera() == carrera:
                     listadocenteinvestiga.append(personal) #agrego los docentes investigadores
             actual = actual.getSiguiente()
-
         print()
         sorted(listadocenteinvestiga)
         for doc in listadocenteinvestiga: 
-            print(doc)
+            doc.mostrar()
+            print()
 
     def validaarea(self, area):
         band = False
@@ -137,10 +217,10 @@ class Lista:
         band = False
         while not band:
             areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
-            if self.validaarea(areadeinvestigacion) == True:
+            if self.validaarea(areadeinvestigacion):
                 band = True
             else:
-                print('ERROR, área de investigación incorrecta.')
+                print('ERROR: Área de investigación ingresada incorrecta.\n')
 
         actual = self.__comienzo
         cont_investigador = 0
@@ -160,52 +240,37 @@ class Lista:
         print('\nEn el área de investigacion %s trabajan %s investigador/es y %s Docente/s Investigador/es.\n' % (areadeinvestigacion, cont_investigador, cont_docinvestigador))
 
     def item6(self):
-        lista = []
+        listaper = []
         actual = self.__comienzo
         while actual != None:
             personal = actual.getDato()
-            tipo = ''
-            if type(personal) == DocenteInvestigador:
-                tipo = 'Docente Investigador'
-            elif isinstance(personal, PersonaldeApoyo):
-                tipo = 'Personal de Apoyo'
-            elif isinstance(personal, Investigador):
-                tipo = 'Investigador'
-            elif isinstance(personal, Docente):
-                tipo = 'Docente'
-            listapersonal = [personal.getNombre(), personal.getApellido(), tipo, personal.getSueldo()]
-            lista.append(listapersonal)
+            listaper.append(personal)
             actual = actual.getSiguiente()
-
-        lista.sort(key = lambda x:x[1], reverse = False)
-        print('  Nombre    Apellido    Tipo de Agente     Sueldo')
+            
+        lista = sorted(listaper)
+        print(' {0:<15} {1:<15} {2:^20} {3:^20}'.format('APELLIDO', 'NOMBRE', 'TIPO DE AGENTE', 'SUELDO'))
         for per in lista:
-            print(per)
-        print()
+            sueldo = '$%s' % (per.getSueldo())
+            print(' {0:<15} {1:<15} {2:^20} {3:^20}'.format(per.getApellido(), per.getNombre(), per.getType(), sueldo))
 
     def item7(self):
-        bande = False
-        while not bande:
-            print('=== CATEGORÍAS: I | II | III | IV | V ===')
-            categoria = ValidaCadenaAlfabetica('Ingrese categoría(i = I | v = V): ')
-            categoria.upper()
-            encontrada = self.validacategoria(categoria)
-            if encontrada != None:
-                categoria = encontrada
-                bande = True
-            else:
-                print('ERROR, categoría incorrecta.')
+        categoria = self.ingresaCategoria()
         print()
+        BanderaDocenteInvestigador = False  # variable utilizada para saber si aunque sea en la lista hay un docente investigador
         acum_importe = 0
         actual = self.__comienzo
         while actual != None:
             personal = actual.getDato()
             if isinstance(personal, DocenteInvestigador):
                 if categoria == personal.getCategoria():
+                    BanderaDocenteInvestigador = True
                     print('Apellido: %s | Nombre: %s | Importe extra por Docencia e Investigación: $%s' % (personal.getApellido(), personal.getNombre(), personal.getImporteextra())) 
                     acum_importe += personal.getImporteextra()
             actual = actual.getSiguiente()
-        print('Importe total a pagar por el extra de Docencia e Investigación es: $%s.\n' % (acum_importe))
+        if BanderaDocenteInvestigador == True:
+            print('\nImporte total a pagar por el extra de Docencia e Investigación es: $%s.' % (acum_importe))
+        else:
+            print('En la categoría ingresada no hay ningún Docente Investigador.')
 
     def toJSON(self):
         listapersonal = []

@@ -4,7 +4,7 @@ from ClaseInvestigador import Investigador
 from ClaseDocente import Docente
 from ClaseLista import Lista
 import json
-
+ 
 class ObjectEncoder(object):
     def Guardar(self, elementos):
         archivo = 'personal.json'

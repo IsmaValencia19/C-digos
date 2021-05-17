@@ -2,7 +2,7 @@ from ClasePersonal import Personal
 
 class PersonaldeApoyo(Personal):
     __categoria = 0
-
+ 
     def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, categoria):
         super().__init__(cuil, apellido, nombre, sueldobasico, antiguedad)
         self.__categoria = categoria
@@ -20,6 +20,9 @@ class PersonaldeApoyo(Personal):
 
         return (self.getSueldobasico() + (porcentaje * self.getSueldobasico()) / 100 + (porcentajecategoria * self.getSueldobasico()) / 100)
 
+    def getType(self):
+        return 'Personal de Apoyo'
+    
     def toJSON(self):
         return dict(
                     __class__ = self.__class__.__name__,

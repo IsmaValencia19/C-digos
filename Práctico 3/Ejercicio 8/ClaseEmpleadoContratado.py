@@ -40,4 +40,4 @@ class Contratado(Empleado):
 
     def __str__(self):
         super().mostrar()
-        return 'CONTRATO: %s a %s - CANTIDAD DE HORAS TRABAJADAS: %d - SUELDO: %d\n' % (self.__fechaInicio, self.__fechaFinalizacion, self.__cantHorasTrabajadas, self.getSueldo())
+        return 'CONTRATO: %s a %s - CANTIDAD DE HORAS TRABAJADAS: %d - SUELDO: $%d\n' % (self.__fechaInicio, self.__fechaFinalizacion, self.__cantHorasTrabajadas, self.getSueldo())

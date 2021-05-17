@@ -1,8 +1,8 @@
 from ClaseEmpleado import Empleado
 
 class Planta(Empleado):
-    __sueldoBasico=0
-    __antiguedad=0
+    __sueldoBasico = 0
+    __antiguedad = 0
 
     def __init__(self, dni, nom, dir, tel, sueldobasico, anti):
         Empleado.__init__(self, dni, nom, dir, tel)

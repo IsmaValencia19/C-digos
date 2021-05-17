@@ -8,7 +8,7 @@ if __name__ == '__main__':
     os.system("cls")
     ms = ManejaSabores()
     ms.carga()
-    mh = ManejaHelados()
+    mh = ManejaHelados(ms.getCantidadSabores())
     menu = Menu()
     cad = ' MENÚ '
     salir = False

@@ -7,16 +7,16 @@ import os
 class ManejaHelados:
     __lista = []
     __contSabores = 0   #variable usada para contar las veces que se pide un sabor
-    __acumgramos = 0
+    __acumgramos = 0    
     __tipoHelado = []
     __listsab = []
 
-    def __init__(self):
+    def __init__(self, cantidadsabores):
         self.__lista = []
-        self.__contSabores = np.full(6, 0)
-        self.__acumgramos = np.full(6, 0)
+        self.__contSabores = np.full(cantidadsabores, 0)
+        self.__acumgramos = np.full(cantidadsabores, 0)
         self.__tipoHelado = [100, 150, 250, 500, 1000]
-        self.__listsab = [[], [], [], [], []]
+        self.__listsab = [[], [], [], [], []]   #lista utilizada para almacenar los sabores vendidos por tipo de helado
 
     def agregar(self, helado):
         self.__lista.append(helado)
@@ -97,7 +97,7 @@ class ManejaHelados:
                         listadeids.append(idSabor - 1)
                         bande = True
                     else:
-                        print('ID de sabor incorrecto.')
+                        print('ID de sabor incorrecto.\n')
             t += 1
         self.agregarlista(sabores, tipohelado)   #agrega los sabores a la lista por tipo de helado
         pesohelado = self.__tipoHelado[tipohelado]

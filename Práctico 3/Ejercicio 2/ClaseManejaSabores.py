@@ -20,6 +20,9 @@ class ManejaSabores:
             self.agregar(unSabor)
         archivo.close()
 
+    def getCantidadSabores(self):
+        return len(self.__arre)
+
     def buscarSabor(self, idsabor):
         i = 0
         sabor = None

@@ -32,4 +32,4 @@ class Planta(Empleado):
 
     def __str__(self):
         super().mostrar()
-        return 'SUELDO BÁSICO: $%d - ANTIGÜEDAD: %d - SUELDO: %d\n' % (self.__sueldoBasico, self.__antiguedad, self.getSueldo())
+        return 'SUELDO BÁSICO: $%d - ANTIGÜEDAD: %d - SUELDO: $%d\n' % (self.__sueldoBasico, self.__antiguedad, self.getSueldo())

@@ -57,135 +57,82 @@ class ManejaEmpleados:
             self.agregar(unEmpleadoExterno)
         archivoexterno.close()
 
-    def validaempleado(self, dni):
+    def buscaEmpleado(self, dni):
         empleado = None
         i = 0
-        while i < len(self.__arre):
+        while i < len(self.__arre) and empleado == None:
             if dni == self.__arre[i].getDni():
                 empleado = self.__arre[i]
-                i = len(self.__arre)
             else:
                 i += 1
         return empleado
 
     #método de la interfaceTesorero
-    def gastosSueldoPorEmpleado(self, documento):
+    def gastosSueldoPorEmpleado(self, dni):
         band = False
         empleado = None
-        retorno = 1 #variable usada por si es incorrecto el dni
-        while not band and retorno == 1:
-            dni = documento
-            empleado = self.validaempleado(dni)
+        está = False
+        while not band:
+            empleado = self.buscaEmpleado(dni)
             if empleado != None:
                 print('\nEl sueldo del empleado %s - DNI: %s es de $%s.\n' % (empleado.getNom(), dni, empleado.getSueldo()))
                 band = True
+                está = True
             else:
-                retorno = -1
-        return retorno
+                band = True
+        return está
 
     #métodos de la interfaceGerente
     def modificarBasicoEPlanta(self, dni, nuevoBasico):
         band = False
         empleado = None
-        retorno = 1 #variable usada por si es incorrecto el dni
-        while not band and retorno == 1:
-            empleado = self.validaempleado(dni)
+        retorno = False
+        while not band:
+            empleado = self.buscaEmpleado(dni)
             if empleado != None and isinstance(empleado, Planta):
                 print('\n=== Sueldo básico antes de moficiar ===')
                 print(empleado)
                 empleado.setSueldoBasico(nuevoBasico)
                 print('=== Sueldo básico modificado ===')
                 print(empleado)
+                retorno = True
                 band = True
             else:
-                retorno = -1
+                band = True
         return retorno
 
     def modificarViaticoEExterno(self, dni, nuevoViatico):
         band = False
         empleado = None
-        retorno = 1 #variable usada por si es incorrecto el dni
-        while not band and retorno == 1:
-            empleado = self.validaempleado(dni)
+        retorno = False
+        while not band:
+            empleado = self.buscaEmpleado(dni)
             if empleado != None and isinstance(empleado, Externo):
                 print('\n=== Monto Viático antes de modificar ===')
                 print(empleado)
                 print('=== Monto Viático modificado ===')
                 empleado.setViatico(nuevoViatico)
                 print(empleado)
+                retorno = True
                 band = True
             else:
-                retorno = -1
+                band = True
         return retorno
 
     def modificarValorEPorHora(self, dni, nuevoValorHora):
         band = False
         empleado = None
-        retorno = 1 #variable usada por si es incorrecto el dni
-        while not band and retorno == 1:
-            empleado = self.validaempleado(dni)
+        retorno = False
+        while not band:
+            empleado = self.buscaEmpleado(dni)
             if empleado != None and isinstance(empleado, Contratado):
                 print('\n=== Valor por hora antes de modificar ===')
                 print('     $%s' % (empleado.getValorHora()))
                 print('\n=== Valor por hora modificado ===')
                 empleado.setValorHora(nuevoValorHora)
                 print('     $%s\n' % (empleado.getValorHora()))
+                retorno = True
                 band = True
             else:
-                retorno = -1
+                band = True
         return retorno
-
-def tesorero(manejarTesorero):
-    os.system("cls")
-    tesorero = ' CUENTA DE TESORERO '
-    print(tesorero.center(50, '='))
-    band = False
-    while not band:
-        dni = ValidaEntero('Ingrese DNI de un empleado para verificar el sueldo: ')
-        if manejarTesorero.gastosSueldoPorEmpleado(dni) != -1:
-            band = True
-        else:
-            print('ERROR, DNI incorrecto.')
-
-def gerente(manejarGerente):
-    os.system("cls")
-    gerente = ' CUENTA DE GERENTE '
-    print(gerente.center(55, '='))
-    cad = ' MENÚ '
-    cade = ''
-    print(cad.center(55, '='))
-    print('1 - Modificar sueldo básico de un Empleado Planta.')
-    print('2 - Mofidicar valor por hora de un Empleado Contratado.')
-    print('3 - Modificar monto del viático de un Empleado Externo.')
-    print(cade.center(55, '='))
-    op = ValidaEntero('Ingrese una opción: ')
-    print()
-    if op == 1:
-        band = False
-        while not band:
-            dni = ValidaEntero('Ingrese DNI de un Empleado Planta: ')
-            sueldo = ValidaEntero('Ingrese nuevo sueldo básico: ')
-            if manejarGerente.modificarBasicoEPlanta(dni, sueldo) != -1:
-                band = True
-            else:
-                print('ERROR, el DNI no pertenece a un Empleado Planta.\n')
-    elif op == 2:
-        band = False
-        while not band:
-            dni = ValidaEntero('Ingrese DNI de un Empleado Contratado: ')
-            nuevovalor = ValidaEntero('Ingrese nuevo valor por hora: ')
-            if manejarGerente.modificarValorEPorHora(dni, nuevovalor) != -1:
-                band = True
-            else:
-                print('ERROR, el DNI no pertenece a un Empleado Contratado.\n')
-    elif op == 3:
-        band = False
-        while not band:
-            dni = ValidaEntero('Ingrese DNI de un Empleado Externo: ')
-            nuevovalor = ValidaEntero('Ingrese nuevo valor de viático: ')
-            if manejarGerente.modificarViaticoEExterno(dni, nuevovalor) != -1:
-                band = True
-            else:
-                print('ERROR, el DNI no pertenece a un Empleado Externo.\n')
-    else:
-        print('=== OPCIÓN INCORRECTA ===')

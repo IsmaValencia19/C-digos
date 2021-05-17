@@ -4,72 +4,60 @@
         {
             "__class__": "DocenteInvestigador",
             "__atributos__": {
-                "cuil": "20.38.658.965.1",
-                "apellido": "Lopez",
-                "nombre": "Emilio",
-                "sueldobasico": 15000,
-                "antiguedad": 3,
-                "carrera": "Ciencias de la computaci\u00f3n",
-                "cargo": "Semi-Exclusivo",
-                "catedra": "Programaci\u00f3n orientada a objetos",
-                "areadeinvestigacion": "Ciencia de datos",
+                "cuil": "19372589632",
+                "apellido": "Martines",
+                "nombre": "Maria",
+                "sueldobasico": 30000,
+                "antiguedad": 4,
+                "carrera": "Sistemas de informaci\u00f3n",
+                "cargo": "Exclusivo",
+                "catedra": "Programacion orientada a objetos",
+                "areadeinvestigacion": "Redes",
                 "tipodeinvestigacion": "Aplicada",
-                "categoria": "II",
-                "importeextra": 10000
-            }
-        },
-        {
-            "__class__": "Investigador",
-            "__atributos__": {
-                "cuil": "19.39.852.265.2",
-                "apellido": "Gauna",
-                "nombre": "Julieta",
-                "sueldobasico": 25000,
-                "antiguedad": 3,
-                "areadeinvestigacion": "Ciencia de datos",
-                "tipodeinvestigacion": "Aplicada"
-            }
-        },
-        {
-            "__class__": "Investigador",
-            "__atributos__": {
-                "cuil": "19.38.258.369.2",
-                "apellido": "Sosa",
-                "nombre": "Romina",
-                "sueldobasico": 17000,
-                "antiguedad": 5,
-                "areadeinvestigacion": "Ciencia de datos",
-                "tipodeinvestigacion": "Aplicada"
-            }
-        },
-        {
-            "__class__": "PersonaldeApoyo",
-            "__atributos__": {
-                "cuil": "20.40.256.231.1",
-                "apellido": "Arrieta",
-                "nombre": "Martin",
-                "sueldobasico": 12000,
-                "antiguedad": 3,
-                "categoria": 22
+                "categoria": "I",
+                "importeextra": 20000
             }
         },
         {
             "__class__": "Docente",
             "__atributos__": {
-                "cuil": "19.35.526.362.2",
-                "apellido": "Ruarte",
-                "nombre": "Paula",
-                "sueldobasico": 15000,
-                "antiguedad": 4,
-                "carrera": "Programaci\u00f3n Web",
-                "cargo": "Exclusivo",
-                "catedra": "Dise\u00f1o Web 1"
+                "cuil": "20425232541",
+                "apellido": "Sanchez",
+                "nombre": "Carlos",
+                "sueldobasico": 8000,
+                "antiguedad": 1,
+                "carrera": "Ciencias de la computaci\u00f3n",
+                "cargo": "Simple",
+                "catedra": "Programaci\u00f3n Orientada a Objetos"
+            }
+        },
+        {
+            "__class__": "PersonaldeApoyo",
+            "__atributos__": {
+                "cuil": "19382563212",
+                "apellido": "Campillay",
+                "nombre": "Andrea",
+                "sueldobasico": 12000,
+                "antiguedad": 2,
+                "categoria": 15
+            }
+        },
+        {
+            "__class__": "Investigador",
+            "__atributos__": {
+                "cuil": "20302563241",
+                "apellido": "Jofre",
+                "nombre": "Eduardo",
+                "sueldobasico": 20000,
+                "antiguedad": 8,
+                "areadeinvestigacion": "Redes",
+                "tipodeinvestigacion": "Aplicada"
             }
         },
         {
             "__class__": "DocenteInvestigador",
             "__atributos__": {
-                "cuil": "20.38.256.365.1",
+                "cuil": "20382563651",
                 "apellido": "Martinez",
                 "nombre": "Juan",
                 "sueldobasico": 10000,
@@ -84,56 +72,68 @@
             }
         },
         {
-            "__class__": "Investigador",
+            "__class__": "Docente",
             "__atributos__": {
-                "cuil": "20.30.256.324.1",
-                "apellido": "Jofre",
-                "nombre": "Eduardo",
-                "sueldobasico": 20000,
-                "antiguedad": 8,
-                "areadeinvestigacion": "Redes",
-                "tipodeinvestigacion": "Aplicada"
+                "cuil": "19355263622",
+                "apellido": "Ruarte",
+                "nombre": "Paula",
+                "sueldobasico": 15000,
+                "antiguedad": 4,
+                "carrera": "Programación web",
+                "cargo": "Exclusivo",
+                "catedra": "Dise\u00f1o Web 1"
             }
         },
         {
             "__class__": "PersonaldeApoyo",
             "__atributos__": {
-                "cuil": "19.38.256.321.2",
-                "apellido": "Campillay",
-                "nombre": "Andrea",
+                "cuil": "20402562311",
+                "apellido": "Arrieta",
+                "nombre": "Martin",
                 "sueldobasico": 12000,
-                "antiguedad": 2,
-                "categoria": 15
+                "antiguedad": 3,
+                "categoria": 22
             }
         },
         {
-            "__class__": "Docente",
+            "__class__": "Investigador",
             "__atributos__": {
-                "cuil": "20.42.523.254.1",
-                "apellido": "Sanchez",
-                "nombre": "Carlos",
-                "sueldobasico": 8000,
-                "antiguedad": 1,
-                "carrera": "Ciencias de la Computaci\u00f3n",
-                "cargo": "Simple",
-                "catedra": "Programaci\u00f3n Orientada a Objetos"
+                "cuil": "19382583692",
+                "apellido": "Sosa",
+                "nombre": "Romina",
+                "sueldobasico": 17000,
+                "antiguedad": 5,
+                "areadeinvestigacion": "Ciencia de datos",
+                "tipodeinvestigacion": "Aplicada"
+            }
+        },
+        {
+            "__class__": "Investigador",
+            "__atributos__": {
+                "cuil": "19398522652",
+                "apellido": "Gauna",
+                "nombre": "Julieta",
+                "sueldobasico": 25000,
+                "antiguedad": 3,
+                "areadeinvestigacion": "Ciencia de datos",
+                "tipodeinvestigacion": "Aplicada"
             }
         },
         {
             "__class__": "DocenteInvestigador",
             "__atributos__": {
-                "cuil": "19.37.258.963.2",
-                "apellido": "Martinez",
-                "nombre": "Maria",
-                "sueldobasico": 30000,
-                "antiguedad": 4,
-                "carrera": "Sistemas de informaci\u00f3n",
-                "cargo": "Exclusivo",
-                "catedra": "Programacion orientada a objetos",
-                "areadeinvestigacion": "Redes",
+                "cuil": "20386589651",
+                "apellido": "Lopez",
+                "nombre": "Emilio",
+                "sueldobasico": 15000,
+                "antiguedad": 3,
+                "carrera": "Ciencias de la computaci\u00f3n",
+                "cargo": "Semi-Exclusivo",
+                "catedra": "Programaci\u00f3n orientada a objetos",
+                "areadeinvestigacion": "Ciencia de datos",
                 "tipodeinvestigacion": "Aplicada",
-                "categoria": "I",
-                "importeextra": 20000
+                "categoria": "II",
+                "importeextra": 10000
             }
         }
     ]

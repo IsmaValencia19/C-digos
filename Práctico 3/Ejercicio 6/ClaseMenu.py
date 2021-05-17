@@ -1,8 +1,4 @@
-from ObjectEncoder import ObjectEncoder
 from Validador import ValidaEntero, ValidaCadena, ValidaCadenaAlfabetica
-from ClaseAutoNuevo import AutoNuevo
-from ClaseAutoUsado import AutoUsado
-from ClaseNodo import Nodo
 import os
 
 class Menu:
@@ -36,38 +32,17 @@ class Menu:
         os.system("cls")
         bande = False
         while not bande:
-            band = False
             print('== INSERTA VEHÍCULO A LA COLECCIÓN EN UNA POSICIÓN DETERMINADA ==')
-            op = ValidaEntero('Ingrese |1| si el estado del vehículo es Nuevo, si es usado |2|: ')
+            op = ValidaEntero('Ingrese |1| si el estado del vehículo es Nuevo ó |2| si es usado: ')
             if op == 1:
-                print('\n>>>>>>>>>>REGISTRANDO VEHÍCULO NUEVO<<<<<<<<<<')
-                modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Punto, etc): ')
-                puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
-                color = ValidaCadenaAlfabetica('Ingrese color: ')
-                precio = ValidaEntero('Ingrese precio: ')
-                while not band:
-                    version = ValidaCadenaAlfabetica('Ingrese versión(Full o Base): ')
-                    if (version.capitalize() == 'Full') or (version.capitalize() == 'Base'):
-                        band = True
-                    else:
-                        print('ERROR, versión incorrecta.')
+                unAutoNuevo = a.RegistroAutoNuevo()
                 posicion = ValidaEntero('Ingrese posición en la que desea insertar el vehículo: ')
-                unAutoNuevo = AutoNuevo(modelo.capitalize(), puertas, color.capitalize(), precio, version.capitalize())
                 a.insertarElemento(unAutoNuevo, posicion - 1)
                 print('\nVEHÍCULO REGISTRADO CON ÉXITO.\n')
                 bande = True
             elif op == 2:
-                print('\n>>>>>>>>>>REGISTRANDO VEHÍCULO USADO<<<<<<<<<<')
-                modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Focus, etc): ')
-                puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
-                color = ValidaCadenaAlfabetica('Ingrese color: ')
-                precio = ValidaEntero('Ingrese precio: ')
-                marca = ValidaCadena('Ingrese marca: ')
-                patente = ValidaCadena('Ingrese patente: ')
-                año = ValidaEntero('Ingrese año de fabrica: ')
-                kilometraje = ValidaEntero('Ingrese kilometraje: ')
+                unAutoUsado = a.RegistroAutoUsado()
                 posicion = ValidaEntero('Ingrese posición en la que desea insertar el vehículo: ')
-                unAutoUsado = AutoUsado(modelo.capitalize(), puertas, color.capitalize(), precio, marca.capitalize(), patente, año, kilometraje)
                 a.insertarElemento(unAutoUsado, posicion - 1)
                 print('\nVEHÍCULO REGISTRADO CON ÉXITO.\n')
                 bande = True
@@ -82,34 +57,14 @@ class Menu:
         while not bande:
             band = False
             print('================== AGREGAR VEHÍCULO A LA COLECCIÓN ==================')
-            op = ValidaEntero('Ingrese |1| si el estado del vehículo es Nuevo, si es usado |2|: ')
+            op = ValidaEntero('Ingrese |1| si el estado del vehículo es Nuevo ó |2| si es usado: ')
             if op == 1:
-                print('\n>>>>>>>>REGISTRANDO VEHÍCULO NUEVO<<<<<<<<')
-                modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Punto, etc): ')
-                puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
-                color = ValidaCadenaAlfabetica('Ingrese color: ')
-                precio = ValidaEntero('Ingrese precio: ')
-                while not band:
-                    version = ValidaCadenaAlfabetica('Ingrese versión(Full o Base): ')
-                    if (version.capitalize() == 'Full') or (version.capitalize() == 'Base'):
-                        band = True
-                    else:
-                        print('ERROR, versión incorrecta.')
-                unAutoNuevo = AutoNuevo(modelo.capitalize(), puertas, color.capitalize(), precio, version.capitalize())
+                unAutoNuevo = a.RegistroAutoNuevo()
                 a.agregarElemento(unAutoNuevo)
                 print('\nVEHÍCULO REGISTRADO CON ÉXITO.\n')
                 bande = True
             elif op == 2:
-                print('\n>>>>>>>>REGISTRANDO VEHÍCULO USADO<<<<<<<<')
-                modelo = ValidaCadena('Ingrese el modelo(ej. Palio, Focus, etc): ')
-                puertas = ValidaEntero('Ingrese la cantidad de puertas: ')
-                color = ValidaCadenaAlfabetica('Ingrese color: ')
-                precio = ValidaEntero('Ingrese precio: ')
-                marca = ValidaCadena('Ingrese marca: ')
-                patente = ValidaCadena('Ingrese patente: ')
-                año = ValidaEntero('Ingrese año de fabrica: ')
-                kilometraje = ValidaEntero('Ingrese kilometraje: ')
-                unAutoUsado = AutoUsado(modelo.capitalize(), puertas, color.capitalize(), precio, marca.capitalize(), patente, año, kilometraje)
+                unAutoUsado = a.RegistroAutoUsado()
                 a.agregarElemento(unAutoUsado)
                 print('\nVEHÍCULO REGISTRADO CON ÉXITO.\n')
                 bande = True
@@ -121,8 +76,7 @@ class Menu:
     def opcion3(self, a, obj):
         os.system("cls")
         pos = ValidaEntero('Ingrese posición de la lista para ver el tipo de objeto: ')
-        auto = a.mostrarElemento(pos - 1)
-        print('\nEl objeto de la posición %s es de tipo %s.\n' % (pos, auto))
+        a.mostrarElemento(pos)
         os.system("pause")
 
     def opcion4(self, a, obj):

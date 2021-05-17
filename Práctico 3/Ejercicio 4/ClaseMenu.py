@@ -1,4 +1,4 @@
-import os
+import os 
 
 class Menu:
     __switcher = None
@@ -7,8 +7,7 @@ class Menu:
                             1:self.opcion1,
                             2:self.opcion2,
                             3:self.opcion3,
-                            4:self.opcion4,
-                            5:self.opcion5
+                            4:self.opcion4
                           }
     def getSwitcher(self):
         return self.__switcher
@@ -42,9 +41,4 @@ class Menu:
     def opcion4(self, me):
         os.system("cls")
         me.item4()
-        os.system("pause")
-
-    def opcion5(self, me):
-        os.system("cls")
-        me.mostrar()
         os.system("pause")

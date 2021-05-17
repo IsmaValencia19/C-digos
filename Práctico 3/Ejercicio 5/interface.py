@@ -6,6 +6,6 @@ class interface(Interface):
     
     def agregarElemento(objeto):
         pass
-
+ 
     def mostrarElemento(posicion):
         pass

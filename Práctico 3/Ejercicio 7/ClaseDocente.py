@@ -33,6 +33,9 @@ class Docente(Personal):
     def getCatedra(self):
         return self.__catedra
 
+    def getType(self):
+        return 'Docente'
+
     def toJSON(self):
         return dict(
                     __class__ = self.__class__.__name__,
@@ -51,7 +54,7 @@ class Docente(Personal):
     def mostrar(self):
         super().mostrarP()
         print('CARRERA EN LA QUE DICTA CLASES: %s | CARGO: %s | CÁTEDRA: %s' % (self.__carrera, self.__cargo, self.__catedra))
-    
+     
     #este mostrar lo hice para que en la clase DocenteInvestigador solo muestre los atributos de docente, porque con el mostrar de arriba trae el mostrar de personal, junto con
     #el método de mostrar de la clase Investigador me sale dos veces el mismo nombre, por eso cree este "mostra"
     def mostra(self):

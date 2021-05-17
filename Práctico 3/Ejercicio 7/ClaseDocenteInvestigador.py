@@ -4,7 +4,7 @@ from ClaseDocente import Docente
 class DocenteInvestigador(Docente, Investigador):
     __categoria = ''
     __importeextra = 0
-
+ 
     def __init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra):
         Docente.__init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
         Investigador.__init__(self, cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
@@ -20,8 +20,8 @@ class DocenteInvestigador(Docente, Investigador):
     def getImporteextra(self):
         return self.__importeextra
 
-    def __gt__(self, personal):
-        return self.getNombre() > personal.getNombre()
+    def getType(self):
+        return 'Docente Investigador'
 
     def toJSON(self):
         return dict(

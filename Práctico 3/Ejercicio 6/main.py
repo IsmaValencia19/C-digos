@@ -9,6 +9,7 @@ if __name__ == '__main__':
     autos = obj.Decoder(obj.Leer())
 
     cad = ' MENÚ '
+    cade = ''
     menu = Menu()
     salir = False
     while not salir:
@@ -17,11 +18,18 @@ if __name__ == '__main__':
         print('0 - Salir.')
         print('1 - Insertar vehículo en una posición determinada.')
         print('2 - Agregar vehículo a la colección.')
-        print('3 - Mostrar por posición.')
+        print('3 - Mostrar el tipo de auto por posición.')
         print('4 - Modificar precio base de un vehículo.')
         print('5 - Mostrar vehículo más económico.')
         print('6 - Mostrar todos los vehículos.')
         print('7 - Almacenar en el archivo los vehículos.')
-        op = ValidaEntero('Ingrese una opción: ')
+        print(cade.center(50, '='))
+        band = False
+        while not band: 
+            op = ValidaEntero('Ingrese una opción: ')
+            if ( op >= 0 and op <= 7 ):
+                band = True
+            else:
+                print('La opción ingresada es incorrecta.\n')
         menu.opcion(op, autos, obj)
         salir = op == 0
