@@ -5,12 +5,20 @@ import csv
 
 class ManejaTaller:
     __arre = 0
+    __cantidad = 0
 
     def __init__(self):
-        self.__arre = np.array([])
+        self.__arre = 0 #np.array([])
+        self.__cantidad = 0
+
+    #funcion utilizada para otorgar el tamaño al arreglo
+    def inicializar(self, tamaño):
+        self.__arre = np.empty(tamaño, dtype = TallerCapacitacion)
 
     def agregar(self, taller):
-        self.__arre = np.append(self.__arre, taller)
+        #self.__arre = np.append(self.__arre, taller)
+        self.__arre[self.__cantidad] = taller
+        self.__cantidad += 1
 
     #carga en el arreglo la información del archivo sobre los talleres
     def carga(self):
@@ -19,12 +27,17 @@ class ManejaTaller:
         band = True
         for fila in reader:
             if band:
-                'saltear cabecera'
+                tamaño = int(fila[0])
+                self.inicializar(tamaño)
                 band = not band
             else:
                 unTaller = TallerCapacitacion(int(fila[0]), fila[1], int(fila[2]), int(fila[3]))
                 self.agregar(unTaller)
         archivo.close()
+
+    #usado solamente para el testing de personas en el manejador de personas
+    def getArre(self):
+        return self.__arre
 
     #valida si existe el taller
     def validataller(self, id):
@@ -42,7 +55,7 @@ class ManejaTaller:
         taller = None
         band = False
         while not band:
-            id = ValidaEntero('Ingrese ID de taller para listar inscriptos: ')
+            id = ValidaEntero('Ingrese ID de taller: ')
             taller = self.validataller(id)
             if  taller != None:
                 band = True

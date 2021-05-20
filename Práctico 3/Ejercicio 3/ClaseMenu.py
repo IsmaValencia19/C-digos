@@ -1,6 +1,6 @@
 from ClaseManejadorInscripcion import ManejaInscripcion
 from ClaseTallerCapacitacion import TallerCapacitacion
-from Validador import ValidaEntero, ValidaCadena
+from Validador import ValidaEntero, ValidaCadena, ValidaCadenaAlfabetica
 from ClaseManejadorPersona import ManejaPersona
 from ClaseManejadorTaller import ManejaTaller
 from ClaseInscripcion import Inscripcion
@@ -40,23 +40,36 @@ class Menu:
         os.system("cls")
         cad = ' FORMULARIO DE REGISTRO '
         print(cad.center(81, '='))
+        inscripto = False   #variable utilizada para verificar si esta inscripto en algún taller
+        while not inscripto:
+            dni = ValidaEntero('Ingrese DNI: ')
+            persona = mp.validapersona(dni)
+            if persona == None:
+                nom = ValidaCadenaAlfabetica('Ingrese nombre: ')
+                nom += ' ' + ValidaCadenaAlfabetica('Ingrese apellido: ')
+                dir = ValidaCadena('Ingrese domicilio: ')
+                unapersona = Persona(nom, dir, dni)
+                inscripto = True
+            else:
+                print('ERROR: El DNI ingresado ya esta inscripto en un taller.\n')
+        os.system('cls')
+        cad = ' FORMULARIO DE REGISTRO '
+        print(cad.center(81, '='))
         print()
         band = False
         print(mt)
         while not band:
             taller = mt.buscataller()
-            if taller.verificarVacante() != False:
+            if taller.verificarVacante():
                 band = True
             else:
-                print('Por este año el taller de %s no dispone de vacantes.\n')
+                print('\nPor este año el taller de %s no dispone de vacantes.\n' % (taller.getNom()))
         fecha = datetime.now()
         os.system("cls")
-        print('Se esta inscribiendo el dia {}/{}/{} al taller de {}.'.format(fecha.day, fecha.month, fecha.year, taller.getNom()))
-        nom = ValidaCadena('Ingrese nombre y apellido: ')
-        dir = ValidaCadena('Ingrese domicilio: ')
-        dni = ValidaEntero('Ingrese DNI: ')
-        unapersona = Persona(nom, dir, dni)
-
+        caden = ''
+        print(caden.center(70, '='))
+        print('Inscripto exitosamente el dia {}/{}/{} al taller de {}.'.format(fecha.day, fecha.month, fecha.year, taller.getNom()))
+        print(caden.center(70, '='))
         pago = False
         unainscripcion = Inscripcion(fecha, pago, taller, unapersona)
 
@@ -66,7 +79,6 @@ class Menu:
 
         mi.agregaInscripcion(unainscripcion)
 
-        print('\nInscripto exitosamente.\n')
         os.system("pause")
     
     #consulta inscripción
