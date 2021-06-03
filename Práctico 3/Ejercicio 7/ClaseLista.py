@@ -99,9 +99,7 @@ class Lista:
         print('>>>>>REGISTRANDO PERSONAL DE APOYO<<<<<')
         cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
         apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
-        apellido.capitalize()
         nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
-        nombre.capitalize()
         sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
         antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
         band = False
@@ -111,55 +109,49 @@ class Lista:
                 band = True
             else:
                 print('ERROR: categoría ingresada incorrecta.\n')
-        personal = PersonaldeApoyo(cuil, apellido, nombre, sueldobasico, antiguedad, categoria)
+        personal = PersonaldeApoyo(cuil, apellido.capitalize(), nombre.capitalize(), sueldobasico, antiguedad, categoria)
         return personal
 
     def RegistroDocente(self):
         print('>>>>>REGISTRANDO DOCENTE<<<<<')
         cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
         apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
-        apellido.capitalize()
         nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
-        nombre.capitalize()
         sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
         antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
-        carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
-        cargo = input('Ingrese cargo que ocupa: ').capitalize()
-        catedra = input('Ingrese cátedra: ').capitalize()
-        docente = Docente(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra)
+        carrera = input('Ingrese carrera en la que dicta clases: ')
+        cargo = input('Ingrese cargo que ocupa: ')
+        catedra = input('Ingrese cátedra: ')
+        docente = Docente(cuil, apellido.capitalize(), nombre.capitalize(), sueldobasico, antiguedad, carrera.capitalize(), cargo.capitalize(), catedra.capitalize())
         return docente
 
     def RegistroInvestigador(self):
         print('>>>>>REGISTRANDO INVESTIGADOR<<<<<')
         cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
         apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
-        apellido.capitalize()
         nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
-        nombre.capitalize()
         sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
         antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
-        areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
-        tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
-        investigador = Investigador(cuil, apellido, nombre, sueldobasico, antiguedad, areadeinvestigacion, tipodeinvestigacion)
+        areadeinvestigacion = input('Ingrese área de investigación: ')
+        tipodeinvestigacion = input('Ingrese tipo de investigación: ')
+        investigador = Investigador(cuil, apellido.capitalize(), nombre.capitalize(), sueldobasico, antiguedad, areadeinvestigacion.capitalize(), tipodeinvestigacion.capitalize())
         return investigador
 
     def RegistroDocenteInvestigador(self):
         print('>>>>>REGISTRANDO DOCENTE INVESTIGADOR<<<<<')
         cuil = ValidaCadenaAlfanumerica('Ingrese cuil: ')
         apellido = ValidaCadenaAlfabetica('Ingrese apellido: ')
-        apellido.capitalize()
         nombre = ValidaCadenaAlfabetica('Ingrese nombre: ')
-        nombre.capitalize()
         sueldobasico = ValidaEntero('Ingrese sueldo básico: ')
         antiguedad = ValidaEntero('Ingrese años de antiguedad: ')
-        carrera = input('Ingrese carrera en la que dicta clases: ').capitalize()
-        cargo = input('Ingrese cargo que ocupa: ').capitalize()
-        catedra = input('Ingrese cátedra: ').capitalize()
-        areadeinvestigacion = input('Ingrese área de investigación: ').capitalize()
-        tipodeinvestigacion = input('Ingrese tipo de investigación: ').capitalize()
+        carrera = input('Ingrese carrera en la que dicta clases: ')
+        cargo = input('Ingrese cargo que ocupa: ')
+        catedra = input('Ingrese cátedra: ')
+        areadeinvestigacion = input('Ingrese área de investigación: ')
+        tipodeinvestigacion = input('Ingrese tipo de investigación: ')
         categoria = self.ingresaCategoria()
         importeextra = ValidaEntero('Ingrese importe extra por docencia e investigación: ')
-        docenteinvestigador = DocenteInvestigador(cuil, apellido, nombre, sueldobasico, antiguedad, carrera, cargo, catedra, areadeinvestigacion, tipodeinvestigacion, categoria, importeextra)
+        docenteinvestigador = DocenteInvestigador(cuil, apellido.capitalize(), nombre.capitalize(), sueldobasico, antiguedad, carrera.capitalize(), cargo.capitalize(), catedra.capitalize(), areadeinvestigacion.capitalize(), tipodeinvestigacion.capitalize(), categoria, importeextra)
         return docenteinvestigador
 
     def validacarrera(self, carrera):
@@ -240,18 +232,56 @@ class Lista:
         print('\nEn el área de investigacion %s trabajan %s investigador/es y %s Docente/s Investigador/es.\n' % (areadeinvestigacion, cont_investigador, cont_docinvestigador))
 
     def item6(self):
-        listaper = []
+        # Ordena intercambiando la posición de cada nodo
+        ##########################################################
+        '''fin = None
+        while fin != self.__comienzo:
+            r = p = self.__comienzo
+            while p.getSiguiente() != fin:
+                q = p.getSiguiente()
+                primero = p.getDato()
+                segundo = q.getDato()
+                if primero.getApellido() > segundo.getApellido():
+                    p.setSiguiente(q.getSiguiente())
+                    q.setSiguiente(p)
+                    if p != self.__comienzo:
+                        r.setSiguiente(q)
+                    else:
+                        self.__comienzo = q
+                    p, q = q, p
+                r = p
+                p = p.getSiguiente()
+            fin = p'''
+        ##########################################################
+
+        # Ordena intercambiando los datos de cada nodo
+        #####################################################################
+        fin = None
+        while fin != self.__comienzo:
+            p = self.__comienzo
+            while p.getSiguiente() != fin:
+                q = p.getSiguiente()
+                primero = p.getDato()
+                segundo = q.getDato()
+                if primero.getApellido() > segundo.getApellido():
+                    primero, segundo = segundo, primero
+                    p.setDato(primero)
+                    q.setDato(segundo)
+                p = p.getSiguiente()
+            fin = p
+        #####################################################################
+
+        cad = ''
+        print(cad.center(69, '='))
+        print(' {0:<15} {1:<15} {2:^20} {3:^20}'.format('APELLIDO', 'NOMBRE', 'TIPO DE AGENTE', 'SUELDO'))
+        print(cad.center(69, '='))
         actual = self.__comienzo
         while actual != None:
-            personal = actual.getDato()
-            listaper.append(personal)
-            actual = actual.getSiguiente()
-            
-        lista = sorted(listaper)
-        print(' {0:<15} {1:<15} {2:^20} {3:^20}'.format('APELLIDO', 'NOMBRE', 'TIPO DE AGENTE', 'SUELDO'))
-        for per in lista:
+            per = actual.getDato()
             sueldo = '$%s' % (per.getSueldo())
             print(' {0:<15} {1:<15} {2:^20} {3:^20}'.format(per.getApellido(), per.getNombre(), per.getType(), sueldo))
+            actual = actual.getSiguiente()
+        print(cad.center(69, '='))
 
     def item7(self):
         categoria = self.ingresaCategoria()
@@ -281,8 +311,12 @@ class Lista:
         return d
 
     def mostrar(self):
-        for personal in self:
-            print(personal.mostrar())
+        actual = self.__comienzo
+        while actual != None:
+            personal = actual.getDato()
+            personal.mostrar()
+            print()
+            actual = actual.getSiguiente()
 
     def __len__(self):
         return self.__tope

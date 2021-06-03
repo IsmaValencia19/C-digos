@@ -111,9 +111,15 @@ class Menu:
 
     def opcion3(self, p, obj):
         os.system("cls")
-        pos = ValidaEntero('Ingrese posición de la lista para ver el tipo de objeto: ')
-        personal = p.mostrarElemento(pos - 1)
-        print('\nEl objeto de la posición %s es de tipo %s.\n' % (pos, personal.getType()))
+        band = False
+        while not band:
+            pos = ValidaEntero('Ingrese posición de la lista para ver el tipo de objeto: ')
+            personal = p.mostrarElemento(pos - 1)
+            if personal != None:
+                print('\nEl agente que se encuentra en la posición %s es un/a %s.\n' % (pos, personal.getType()))
+                band = True
+            else:
+                print('No hay ningún agente en la posición ingresada.\n')
         os.system("pause")
 
     def opcion4(self, p, obj):

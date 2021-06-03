@@ -12,6 +12,9 @@ class Nodo:
     def getSiguiente(self):
         return self.__siguiente
 
+    def setDato(self, dato):
+        self.__dato = dato
+
     def getDato(self):
         return self.__dato
 
