@@ -1,0 +1,27 @@
+{% extends 'base_template.html' %}
+{% block title %} Solicitud de un móvil {% endblock %}
+{% block content %}
+    <center>
+        <div class="inicio">
+            <h1 class="title"> - SOLICITAR UN MÓVIL - </h1>
+            <div class="alMedio iniciar">
+                <form action="{{ url_for('registrarsolicitud') }}" method="POST">
+                    <label for="origen"><b>ORIGEN</b></label><br>
+                    <input class="entrada" type="origen" name="origen" id=""><br>
+                    <br>
+                    <label for="destino"><b>DESTINO</b></label><br>
+                    <input class="entrada" type="destino" name="destino"><br>
+                    <br>
+                    <label for="personas"><b>CANTIDAD DE PERSONAS</b></label><br>
+                    <input class="entrada" type="personas" name = "personas"><br>
+                    <br>
+                    <label for=""><b>EQUIPAJE</b></label><br>
+                    <label for="SI"><input type="radio" name="equipaje" value="SI">SI</label>
+                    <label for="NO"><input type="radio" name="equipaje" id="" value="NO">NO</label><br>
+                    <br>
+                    <input class="btn1" type="submit" value="ENVIAR SOLICITUD">
+                </form>
+            </div>
+        </div>
+    </center>
+{% endblock %}

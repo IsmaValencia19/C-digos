@@ -1,0 +1,22 @@
+{% extends 'base_template.html' %}
+{% block title %} Vista Operario {% endblock %}
+{% block content %}
+    <center>
+        <div class="inicio">
+            <h1>Operario {{ session['Nombre'] }}</h1>
+            <div class="alMedio iniciar">
+                <ul class="lista">
+                    <li class="boton btn1"><a href="{{ url_for('asignarmovil') }} ">ASIGNAR MÓVIL</a></li>
+                    <li class="boton btn1"><a href="{{ url_for('finalizarviaje') }}">FINALIZAR VIAJE</a></li>
+                    <li class="boton btn1"><a href="{{ url_for('consultarviajesrealizados') }}">CONSULTAR VIAJES REALIZADOS</a></li>
+                    <li class="boton btn1"><a href="{{ url_for('logout') }}">CERRAR SESIÓN</a></li>
+                </ul>
+            </div>
+            <div>
+                {% if msj != '' %}
+                    <p class="negro">{{msj}}</p>
+                {% endif %}
+            </div>
+        </div>
+    </center>
+{% endblock %}

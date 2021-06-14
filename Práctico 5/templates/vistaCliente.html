@@ -1,0 +1,21 @@
+{% extends 'base_template.html' %}
+{% block title %} Vista Cliente {% endblock %}
+{% block content %}
+    <center>
+        <div class="inicio">
+            <h1>Cliente {{ session['Nombre'] }}</h1>
+            <div class="alMedio iniciar">
+                <ul class="lista">
+                    <li class="boton btn1"><a href="{{ url_for('solicitamovil') }}">SOLICITAR UN MÓVIL</a></li>
+                    <li class="boton btn1"><a href="{{ url_for('consultarmovil') }}">CONSULTAR MÓVIL</a></li>
+                    <li class="boton btn1"><a href="{{ url_for('logout') }}">CERRAR SESIÓN</a></li>
+                </ul>
+            </div>
+            <div>   
+                {% if msj != '' %}
+                    <p class="">{{msj}}</p>
+                {% endif %}
+            </div>
+        </div>
+    </center>
+{% endblock %}

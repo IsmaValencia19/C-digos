@@ -1,0 +1,148 @@
+body
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background-color: #0099CC;
+    background-image: url(../img/autos-circulando-por-la-ciudad-última-hora-de-noche-vista-al-tráfico-con-semáforos-y-transporte-200620084.jpg);
+}
+
+.title
+{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.ini
+{
+    margin-top: -400px;
+}
+
+.inicio
+{
+    background-image: url(../img/504.jpg);
+    width: 500px;
+    padding-top: 20px;
+    margin-top: 100px;
+    border: 2px solid;
+    border-radius: 20px / 15px;
+    box-shadow: rgb(0, 0, 0) 5px 5px 20px;
+}
+
+table
+{
+    margin: 20px;
+    width: auto;
+    border-collapse: collapse #0099CC;
+    border: 1px solid #000000;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background:  #008CBA url("gradient.gif") bottom left repeat-x;
+    color: #fff;
+}
+
+td, th 
+{
+   background: #fff;
+   color: #000;
+   border: 1px solid #000000;
+}
+
+.entrada
+{
+    background-color: transparent;
+	border: 2px solid #A8A8A8;
+}
+
+a:link, a:visited 
+{
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+.boton
+{   
+    color: #0099CC;
+    background: transparent;
+    border: 2px solid #0099CC;
+    border-radius: 6px;
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 5px 0px 5px 0px;
+    width: 250px;
+}
+
+.btn1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+.btn1:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.btn11 {
+    background-color: white; 
+    color: black; 
+    border: 1px solid #000000;
+}
+
+.btn11:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.iniciar
+{
+    margin: 40px 0px 50px 0px;
+    width: 400px;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.lista
+{
+    margin-left: -40px;
+}
+
+td, th {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000000;
+}
+
+table
+{
+    margin: 20px;
+    width: auto;
+    border-collapse: collapse #0099CC;
+    border: 1px solid #000000;
+    border-collapse: separate;
+    border-spacing: 5px;
+    color: #fff;
+}
+
+td, th {
+   background: #fff;
+   color: #000;
+   border: 1px solid #000000;
+}
+
+.enelmedio
+{
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+{% extends 'base_template.html' %}
+{% block title %} Registrarse {% endblock %}
+{% block content %}
+    <center>
+        <div class="inicio">
+            <h1 class="title"> - TU REMIS YA - </h1>
+            <div class="alMedio iniciar">
+                <h2 class="title">Registrarse</h2>
+                <hr width="300px">
+                <form action="http://localhost:5000/RegistradoExitosamente" method="POST">
+                    <label for="dni"><b>DNI</b></label><br>
+                    <input class="entrada" type="dni" name="dni" id=""><br>
+                    <br>
+                    <label for="name"><b>NOMBRE</b></label><br>
+                    <input class="entrada" type="name" name="name"><br>
+                    <br>
+                    <label for="password"><b>CONTRASEÑA</b></label><br>
+                    <input class="entrada" type="password" name = "password"><br>
+                    <br>
+                    <label for="type"><b>TIPO</b></label><br>
+                    <label for="Operario"><input type="radio" name="tipo" value="Operario">Operario</label>
+                    <label for="Cliente"><input type="radio" name="tipo" value="Cliente">Cliente</label><br>
+                    <br>
+                    <input class="btn1" type="submit" value="Listo">
+                </form>
+                <hr width="300px">
+            </div>
+        </div>
+    </center>
+{% endblock %}

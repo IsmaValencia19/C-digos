@@ -1,0 +1,47 @@
+{% extends 'base_template.html' %}
+{% block title %} Asignar Móvil {% endblock %}
+{% block content %}
+    <center>
+        <div class="inicio">
+            <div class="alMedio iniciar">
+                <h2>LISTA DE VIAJES SIN MÓVIL ASIGNADO</h2>
+                <table>
+                    {% set viajescantidad = namespace(a=0) %}
+                    {% set viajesconmovil = namespace(b=0) %}
+                    {% for viaje in viajes %}
+                        {% set viajescantidad.a = viajescantidad.a + 1 %}
+                        {% if viaje.NumMovil == 0 %}
+                            <tr><th>ID</th><th>ORIGEN</th><th>DESTINO</th><th>DNI CLIENTE</th></tr>
+                            <tr>
+                                <td class="enelmedio btn1"><a href=" {{ url_for('asignarmovil', ID = viaje.IdViaje) }} ">{{viaje.IdViaje}}</a></td>
+                                <td class="enelmedio btn1"><a href="{{ url_for('asignarmovil', ID = viaje.IdViaje) }}">{{viaje.Origen}}</a></td>
+                                <td class="enelmedio btn1"><a href="{{ url_for('asignarmovil', ID = viaje.IdViaje) }}">{{viaje.Destino}}</a></td>
+                                <td class="enelmedio btn1"><a href="{{ url_for('asignarmovil', ID = viaje.IdViaje) }}">{{viaje.DniCliente}}</a></td>
+                            </tr>
+                        {% else %}
+                            {% set viajesconmovil.b = viajesconmovil.b + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if viajescantidad.a == viajesconmovil.b %}
+                        <p>No hay viajes sin asignar un móvil.</p>
+                    {% endif %}
+                </table>
+                {% if band != 0 %}
+                    <form action=" {{ url_for('confirmarasignaciondemovil', ID = viaje.IdViaje) }} " method="POST">
+                        <p>ID de Viaje: {{ viaje.IdViaje }}</p>
+                        <p>DNI de Cliente: {{ viaje.DniCliente }}</p>
+                        <label for="movil">Número de móvil a asignar</label><br>
+                        <input type="" name="movil" id=""><br>
+                        <br>
+                        <label for="espera">Tiempo de espera</label><br>
+                        <input type="" name="espera" id=""><br>
+                        <br>
+                        <input class="btn1" type="submit" name="" value="Asignar" id="">
+                    </form>
+                {% endif %}
+                <br>
+                <a class="btn1" href="{{ url_for('vistaoperario') }}">INICIO</a>
+            </div>
+        </div>
+    </center>
+{% endblock %}

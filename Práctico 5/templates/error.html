@@ -1,0 +1,14 @@
+{% extends "base_template.html" %}
+{% block title %} Error {% endblock %}
+{% block content %}
+   <center>
+      <div class="alMedio">
+         <h1> {{ error }} </h1>
+         {% if band != 'Registro' %}
+            <a class="boton btn1" href="{{ url_for('inicio') }}">Inicio</a>
+         {% else %}
+            <a class="boton btn1" href="{{ url_for('registro') }}">Registrarse</a>
+         {% endif %}
+         </div>
+   </center>
+{% endblock %}

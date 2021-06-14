@@ -1,0 +1,50 @@
+{% extends 'base_template.html' %}
+{% block title %} Consultar Móvil {% endblock %}
+{% block content %}
+<center>
+    <div class="inicio">
+        <div class="alMedio iniciar">    
+            <h2>Consultar Móvil</h2>
+            <hr width="300px">
+            <table>
+                {% set viajescantidad = namespace(a=0) %}
+                {% set viajescancelados = namespace(b=0) %}
+                {% for viaje in viajes %}
+                    {% if viaje.DniCliente == session['DNI'] %}
+                        {% set viajescantidad.a = viajescantidad.a + 1 %}
+                        {% if viaje.Importe == 0 %}
+                            <tr><th>ID</th><th>ORIGEN</th><th>DESTINO</th></tr>
+                            <tr>
+                                <td class="enelmedio btn1"><a href="{{ url_for('consultarmovil', ID = viaje.IdViaje) }}">{{ viaje.IdViaje }}</a></td>
+                                <td class="enelmedio btn1"><a href="{{ url_for('consultarmovil', ID = viaje.IdViaje) }}">{{ viaje.Origen }}</a></td>
+                                <td class="enelmedio btn1"><a href="{{ url_for('consultarmovil', ID = viaje.IdViaje) }}">{{ viaje.Destino }}</a></td>
+                            </tr>
+                        {% else %}
+                            {% set viajescancelados.b = viajescancelados.b + 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if viajescantidad.a == viajescancelados.b %}
+                    <p>No existen solicitudes pendientes.</p>
+                {% endif %}
+            </table>
+            {% if band != 0 %}
+                <p>ID VIAJE: {{ viaje.IdViaje }}</p>
+                {% for movil in moviles %}
+                    {% if viaje.NumMovil == movil.Numero %}
+                        <p>NÚMERO DEL MÓVIL: {{ viaje.movil.Numero }}</p>
+                        <p>PATENTE DEL MÓVIL: {{ viaje.movil.Patente }}</p>
+                    {% endif %}
+                {% endfor %}
+                {% if viaje.NumMovil != 0 %}
+                    <p>TIEMPO DE ESPERA: {{ viaje.Demora }} minutos.</p>
+                {% else %}
+                    <p>La solicitud aún no tiene asignado un móvil.</p>
+                {% endif %}
+            {% endif %}
+            <a class="btn1" href="{{ url_for('vistacliente') }}">INICIO</a>
+            <hr width="300px">
+        </div>
+    </div>
+</center>
+{% endblock %}

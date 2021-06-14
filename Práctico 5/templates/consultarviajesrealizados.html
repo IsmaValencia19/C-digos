@@ -1,0 +1,55 @@
+{% extends 'base_template.html' %}
+{% block title %} Viajes Realizados {% endblock %}
+{% block content %}
+<center>
+    <div class="inicio">
+        <div class="alMedio iniciar">
+            <h2>Viajes Realizados</h2>
+            <form action="{{ url_for('consultarviajesrealizados', ID = 1) }}" method="POST">
+                <label for="">Número de Móviles</label><br>
+                {% for movil in moviles %}
+                    <label for=""><input type="radio" name="movil" value="{{ movil.Numero }}">{{ movil.Numero }}</label>
+                {% endfor %}
+                <br>
+                <label for="">Fechas</label><br>
+                <input type="date" id="" name="fecha" min="2020-01-01" max="2021-12-31"><br>
+                <br>
+                <input class="btn1" type="submit" name="" id="" value="Ver viajes">
+            </form>
+            {% if band != 0 %}
+                <table>
+                    {% set importeacumulado = namespace(a=0) %}
+                    <tr><th colspan="4">Número de Móvil: {{ movil.Numero }} - Fecha: {{fecha}}</tr>
+                    {% if sinviajes == False %}
+                        {% for viaje in viajes %}
+                            {% if movil.Numero == viaje.NumMovil %}
+                                {% if viaje.Fecha == fecha %}
+                                    {% if viaje.Importe != 0 %}
+                                        <tr><th>Dirección de Origen</th><th>Dirección de Destino</th><th>Duración</th><th>Importe</th></tr>
+                                        <tr>
+                                            <td class="enelmedio">{{viaje.Origen}}</td>
+                                            <td class="enelmedio">{{viaje.Destino}}</td>
+                                            <td class="enelmedio">{{viaje.Duracion}}</td>
+                                            <td class="enelmedio">${{viaje.Importe}}</td>
+                                        </tr>
+                                        {% set importeacumulado.a = importeacumulado.a + viaje.Importe %}
+                                    {% endif %}
+                                {% else %}
+                                    <tr><td class="enelmedio">No tiene viajes.</td></tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if importeacumulado.a != 0 %}
+                            <tr><th colspan="4">Importe Total: ${{importeacumulado.a}}</th></tr>
+                        {% endif %}
+                    {% else %}
+                        <tr><td class="enelmedio">No tiene viajes.</td></tr>
+                    {% endif %}
+                </table>
+            {% endif %}
+            <br>
+            <a class="btn1" href="{{ url_for('vistaoperario') }}">INICIO</a>
+        </div>
+    </div>
+</center>
+{% endblock %}
