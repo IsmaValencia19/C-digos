@@ -10,6 +10,7 @@ class Calculadora(object):
     __operadorAux = None
     __primerFraccion = None
     __segundaFraccion = None
+    __separ = None
 
     def __init__(self):
         self.__ventana = Tk()
@@ -45,23 +46,40 @@ class Calculadora(object):
         ttk.Button(mainframe, text='*', command=partial(self.ponerOPERADOR, '*')).grid(column=1, row=7, sticky=W)
         ttk.Button(mainframe, text='%', command=partial(self.ponerOPERADOR, '%')).grid(column=2, row=7, sticky=W)
         ttk.Button(mainframe, text='=', command=partial(self.ponerOPERADOR, '='), width = 4).grid(column=3, row=7, sticky=E)
-        ttk.Button(mainframe, text = '/', command = partial(self.ponerNUMERO, '/'), width = 5).grid(column = 3, row = 7, sticky = W)
+        self.__separ = ttk.Button(mainframe, state='!disabled',text = '/', command = partial(self.ponerNUMERO, '/'), width = 5)
+        self.__separ.grid(column = 3, row = 7, sticky = W)
         self.__panel.set('')
         panelEntry.focus()
         self.__ventana.mainloop()
 
+    def botonDH(self):
+        if self.__separ.state(['!disabled']) == self.__separ.state(['!disabled']):
+            self.__separ.state(['disabled'])
+        else:
+            self.__separ.state(['!disabled'])
+
     def ponerNUMERO(self, numero):
         if self.__operadorAux == None:
             valor = self.__panel.get()
-            self.__panel.set(valor + numero)
+            if valor.find('/') == 1:
+                self.__panel.set(valor + numero)
+                self.botonDH()
+            else:
+                self.__panel.set(valor + numero)
         else:
             self.__operadorAux = None
             valor = self.__panel.get()
-            num, den = valor.split('/')
-            fraccion = Fraccion(int(num), '/', int(den))
-            self.__primerFraccion = fraccion
-            self.__panel.set(numero)
-            
+            if valor.find('/') == 1:
+                num, den = valor.split('/')
+                fraccion = Fraccion(int(num), '/', int(den))
+                self.__primerFraccion = fraccion
+                self.__panel.set(numero)
+            else:
+                num = valor
+                fraccion = Fraccion(int(num), '/', 1)
+                self.__primerFraccion = fraccion
+                self.__panel.set(numero)
+    
     def borrarPanel(self):
         self.__panel.set('')
 

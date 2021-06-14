@@ -7,7 +7,7 @@ class Fraccion():
         self.__numerador = numerador
         self.__separador = separador
         self.__denominador = denominador
-
+ 
     def getNumerador(self):
         return self.__numerador
 
