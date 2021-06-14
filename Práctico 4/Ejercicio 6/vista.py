@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from ClaseProvincia import Provincia
 import json
 import requests
-
+ 
 class ListaProvincia(Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master)

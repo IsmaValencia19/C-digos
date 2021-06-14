@@ -4,6 +4,16 @@
         {
             "__class__": "Paciente",
             "__atributos__": {
+                "nombre": "Martin",
+                "apellido": "Martinez",
+                "telefono": "(264)5364758",
+                "altura": 180,
+                "peso": 70
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
                 "nombre": "Juana",
                 "apellido": "Mart\u00ed",
                 "telefono": "(264)4365343",
@@ -34,11 +44,21 @@
         {
             "__class__": "Paciente",
             "__atributos__": {
+                "nombre": "Paulo",
+                "apellido": "Dybala",
+                "telefono": "(264)4522312",
+                "altura": 168,
+                "peso": 75
+            }
+        },
+        {
+            "__class__": "Paciente",
+            "__atributos__": {
                 "nombre": "Fernando",
                 "apellido": "Torres",
                 "telefono": "(264)6321478",
-                "altura": "190",
-                "peso": "85"
+                "altura": 190,
+                "peso": 85
             }
         }
     ]

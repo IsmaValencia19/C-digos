@@ -2,7 +2,7 @@ from ClaseRepositorioPacientes import RepositorioPacientes
 from ClaseControladorPacientes import ControladorPacientes
 from vista_listapacientes import VistaPaciente
 from ObjectEncoder import ObjectEncoder
-
+ 
 def run():
     conn = ObjectEncoder('pacientes.json')
     repo = RepositorioPacientes(conn)

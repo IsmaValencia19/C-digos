@@ -1,6 +1,6 @@
 from vista_listapacientes import NuevoPaciente, VistaPaciente, IMC
 from ClaseManejadorPacientes import ManejadorPacientes
-
+ 
 class ControladorPacientes:
     def __init__(self, repo, vista):
         self.repo = repo

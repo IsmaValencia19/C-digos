@@ -1,7 +1,7 @@
 from ClasePaciente import Paciente
 from ObjectEncoder import ObjectEncoder
 from ClaseManejadorPacientes import ManejadorPacientes
-
+ 
 class RepositorioPacientes(object):
     __conn = None
     __manejador = None

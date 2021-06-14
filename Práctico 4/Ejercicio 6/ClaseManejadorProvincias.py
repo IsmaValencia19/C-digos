@@ -1,5 +1,5 @@
 from ClaseProvincia import Provincia
-
+ 
 class ManejadorProvincias:
     indice = 0
     __provincias = None

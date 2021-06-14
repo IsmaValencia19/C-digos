@@ -2,7 +2,7 @@ from ClaseManejadorProvincias import ManejadorProvincias
 from ClaseProvincia import Provincia
 from pathlib import Path
 import json
-
+ 
 class ObjectEncoder(object):
     __pathArchivo = None
 

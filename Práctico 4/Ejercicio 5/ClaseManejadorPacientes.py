@@ -18,7 +18,7 @@ class ManejadorPacientes:
     def deletePaciente(self, paciente):
         indice = self.obtenerIndicePaciente(paciente)
         self.__lista.pop(indice)
-
+ 
     def updatePaciente(self, paciente):
         indice = self.obtenerIndicePaciente(paciente)
         self.__lista[indice] = paciente

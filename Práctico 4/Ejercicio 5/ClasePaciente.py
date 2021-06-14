@@ -1,5 +1,5 @@
 import re
-
+ 
 class Paciente:
     telefonoRegex = re.compile(r"\([0-9]{3}\)[0-9]{7}")
     __nombre = None

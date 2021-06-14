@@ -93,11 +93,8 @@ class IMC(tk.Toplevel):
         self.entries = list(map(self.crearCampo, enumerate(self.fields)))
         self.frame.pack()
         
-        self.btn_back = tk.Button(self, text = 'Volver', command = self.volver)
+        self.btn_back = tk.Button(self, text = 'Salir', command = self.destroy)
         self.btn_back.pack(side = tk.BOTTOM, pady = 5)
-
-    def volver(self):
-        pass
 
     def mostrarEstadoPacienteEnFormulario(self, imc, comp):
         values = (imc, comp)

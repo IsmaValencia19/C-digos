@@ -2,7 +2,7 @@ from ClaseRepositor import RepositorioProvincias
 from vista import VistaProvincia
 from ClaseControlador import ControladorProvincias
 from ObjectEncoder import ObjectEncoder
-
+ 
 def run():
     obj = ObjectEncoder('datos.json')
     repo = RepositorioProvincias(obj)

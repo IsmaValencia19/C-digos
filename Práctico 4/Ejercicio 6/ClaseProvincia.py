@@ -3,7 +3,7 @@ class Provincia:
     __capital = None
     __cantidaddehabitantes = None
     __cantidaddedepartamentos = None
-
+ 
     def __init__(self, nombre = None, capital = None, cantidaddehabitantes = None, cantidaddedepartamentos = None, temperatura = None, sensaciontermica = None, humedad = None):
         self.__nombre = nombre
         self.__capital = capital

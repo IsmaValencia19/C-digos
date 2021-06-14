@@ -1,6 +1,6 @@
 from vista import NuevaProvincia, VistaProvincia
 from ClaseManejadorProvincias import ManejadorProvincias
-
+ 
 class ControladorProvincias(object):
     def __init__(self, repo, vista):
         self.repo = repo

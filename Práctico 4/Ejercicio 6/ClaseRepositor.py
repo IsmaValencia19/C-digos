@@ -1,7 +1,7 @@
 from ClaseProvincia import Provincia
 from ObjectEncoder import ObjectEncoder
 from ClaseManejadorProvincias import ManejadorProvincias
-
+ 
 class RepositorioProvincias(object):
     __conn = None
     __manejador = None

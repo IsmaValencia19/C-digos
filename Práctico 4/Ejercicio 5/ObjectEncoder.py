@@ -2,7 +2,7 @@ from ClaseManejadorPacientes import ManejadorPacientes
 from ClasePaciente import Paciente
 import json
 from pathlib import Path
-
+ 
 class ObjectEncoder(object):
     __pathArchivo = None
 
