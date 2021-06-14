@@ -8,7 +8,7 @@ class Aplicacion():
 
     def __init__(self):
         self.__ventana = Tk()
-        self.__ventana.geometry('417x250')
+        self.__ventana.geometry('417x240')
         self.__ventana.title('Calculadora de IMC')
         self.__ventana.config(bg = 'white')
         self.__ventana.resizable(0, 0)

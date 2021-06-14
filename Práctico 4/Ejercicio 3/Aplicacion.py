@@ -11,7 +11,7 @@ class Aplicacion():
 
     def __init__(self):
         self.__ventana = Tk()
-        self.__ventana.geometry('290x200')
+        self.__ventana.geometry('300x200')
         self.__actualizacion = StringVar()
 
         mainframe = ttk.Frame(self.__ventana, padding = '5')

@@ -11,7 +11,7 @@ class Aplicacion():
 
     def __init__(self):
         self.__ventana = Tk()
-        self.__ventana.geometry('290x115')
+        self.__ventana.geometry('235x85')
         self.__ventana.title('Conversor de moneda')
 
         self.__dolar = StringVar()
