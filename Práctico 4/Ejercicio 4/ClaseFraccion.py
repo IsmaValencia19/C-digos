@@ -37,9 +37,11 @@ class Fraccion():
 
         num3 = (num1 * (den3 // den1)) + (num2 * (den3 // den2))
 
-        comun = self.simplifica(num3, den3)
+        return Fraccion(num3, '/', den3)
 
-        return Fraccion(num3 // comun, '/', den3 // comun)
+        # con estos datos se simplifica directamente la fracción
+        #comun = self.mcd(num3, den3)
+        #return Fraccion(num3 // comun, '/', den3 // comun)
 
     def __sub__(self, fraccion2):
         den1 = self.getDenominador()
@@ -64,9 +66,11 @@ class Fraccion():
 
         num3 = (num1 * (den3 // den1)) - (num2 * (den3 // den2))
 
-        comun = self.simplifica(num3, den3)
+        return Fraccion(num3, '/', den3)
 
-        return Fraccion(num3 // comun, '/', den3 // comun)
+        # con estos datos se simplifica directamente la fracción
+        #comun = self.mcd(num3, den3)
+        #return Fraccion(num3 // comun, '/', den3 // comun)
 
     def __mul__(self, fraccion2):
         num1 = self.getNumerador()
@@ -77,9 +81,11 @@ class Fraccion():
         num3 = (num1 * num2)
         den3 = (den1 * den2)
 
-        comun = self.simplifica(num3, den3)
-
-        return Fraccion(num3 // comun, '/', den3 // comun)
+        return Fraccion(num3, '/', den3)
+        
+        # con estos datos se simplifica directamente la fracción
+        #comun = self.mcd(num3, den3)
+        #return Fraccion(num3 // comun, '/', den3 // comun)
 
     def __truediv__(self, fraccion2):
         num1 = self.getNumerador()
@@ -90,11 +96,14 @@ class Fraccion():
         num3 = (num1 * den2)
         den3 = (den1 * num2)
 
-        comun = self.simplifica(num3, den3)
+        return Fraccion(num3, '/', den3)
 
-        return Fraccion(num3 // comun, '/', den3 // comun)
+        # con estos datos se simplifica directamente la fracción
+        #comun = self.mcd(num3, den3)
+        #return Fraccion(num3 // comun, '/', den3 // comun)
         
-    def simplifica(self, m, n):
+    # calcula el mcd entre el numerador y el denominador para simplificar la fracción
+    def mcd(self, m, n):
         while m % n != 0:
             mViejo = m
             nViejo = n
